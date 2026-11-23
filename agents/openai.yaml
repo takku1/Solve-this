@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solve This"
+  short_description: "Research, test, and verify uncertain solutions"
+  default_prompt: "Use $solve-this to find the smallest reliable route to a verified solution, testing uncertain claims only when necessary."

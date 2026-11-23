@@ -12,7 +12,7 @@ def test_skill_identity():
 
 def test_references_exist():
     text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
-    for name in ("experiment-protocol", "result-template", "probe-patterns", "research-and-evidence", "worked-examples", "evaluation-scenarios", "sources"):
+    for name in ("experiment-protocol", "result-template", "probe-patterns", "research-and-evidence", "worked-examples", "evaluation-scenarios", "sources", "research-foundations", "game-theory-and-design", "decision-policy"):
         assert (ROOT / "references" / f"{name}.md").is_file()
         assert f"references/{name}.md" in text
 

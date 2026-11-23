@@ -19,3 +19,7 @@ Copy this repository's `SKILL.md` and `references/` into `~/.agents/skills/solve
 ## Evidence
 
 This is a new skill revision, not a validated improvement over Freestyle. Behavioral A/B testing remains to be done.
+
+## Research-informed methods
+
+The skill now conditionally applies active learning, fixed-budget candidate comparison, game-theoretic counterplay, mechanics/dynamics/experience playtesting, and metamorphic testing. See [research foundations](references/research-foundations.md), [game theory and design](references/game-theory-and-design.md), and [decision policy](references/decision-policy.md). These are guidance, not proven improvements in agent performance.

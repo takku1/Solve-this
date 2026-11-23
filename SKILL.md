@@ -23,13 +23,17 @@ Enter when a procedure behaves unexpectedly, competing explanations imply differ
 
 Establish the outcome, observable completion condition, target, environment, and constraints. Ask only for missing information that changes the work; preserve settled choices and approvals. Clarify an unclear objective rather than inventing one.
 
-Use a reliable procedure when cheaper than discovery. Apply available domain procedures; use Freestyle only for the unresolved part, then return to execution. Do not investigate every task.
+Use a reliable procedure when cheaper than discovery. Apply available domain procedures; use Solve This only for the unresolved part, then return to execution. Do not investigate every task.
 
 Use the loop internally. Share concise findings, consequential decisions, and remaining uncertainty, not a transcript of deliberation or mandatory forms.
 
 ### Reference routing
 
 Load [references/probe-patterns.md](references/probe-patterns.md) when choosing or bounding a test for an unfamiliar control, tool, interface, layered system, retry, or intermittent failure. Load [references/research-and-evidence.md](references/research-and-evidence.md) when evidence is noisy, external, ambiguous, or being used to support a causal claim. If a reference is unavailable, continue with the core guidance, note the limitation when material, and do not treat the loading failure as evidence about the target.
+
+## Research-grounded decision policy
+
+Choose the cheapest authorized action that can change the next decision. Consult [decision policy](references/decision-policy.md) to route between execution, diagnosis, research, or PoC. For costly noisy comparisons, consider sequential experimental design or fixed-budget candidate elimination without invented probabilities. Consult [research foundations](references/research-foundations.md) for evidence and limitations. For opponents, incentives, rules, balance, or player experience, use [game theory and design](references/game-theory-and-design.md): separate correct mechanics, emergent dynamics, and actual experience. When expected outputs are unavailable, test defensible metamorphic relations and invariants. A passing test is not a formal proof.
 
 ## Operating modes
 

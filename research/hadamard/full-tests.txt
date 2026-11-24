@@ -1,0 +1,22 @@
+..................................F.                                     [100%]
+================================== FAILURES ===================================
+________ CheckerMutationTests.test_unpersisted_suspension_is_rejected _________
+
+self = <test_skillwren.CheckerMutationTests testMethod=test_unpersisted_suspension_is_rejected>
+
+    def test_unpersisted_suspension_is_rejected(self):
+        operation = "  return #suspended saved as research-state\n"
+        text = self.original.replace(operation, "", 1)
+        marker = "  exec persist checkpoint "
+        position = text.index(marker)
+        text = text[:position] + operation + text[position:]
+        path = self.fixtures / "unpersisted-suspension.md"
+        path.write_text(text, encoding="utf-8")
+        errors, _ = validate_fragment(path)
+>       self.assertTrue(any(e.rule == "P1" and "exec persist checkpoint" in e.msg for e in errors), errors)
+E       AssertionError: False is not true : [Diag(line=23, rule='F2', msg="malformed order entry 'return #suspended saved as research-state'", fix='Use `<earlier statement> before <later statement>` or `never <earlier> before <later>`, with `before` exactly once.'), Diag(line=85, rule='R2', msg='flow falls off the end without return or abort', fix='End every path with a return or abort.')]
+
+tests\test_skillwren.py:95: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_skillwren.py::CheckerMutationTests::test_unpersisted_suspension_is_rejected
+1 failed, 35 passed in 8.33s

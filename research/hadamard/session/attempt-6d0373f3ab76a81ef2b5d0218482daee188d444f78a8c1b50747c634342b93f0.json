@@ -1,0 +1,6619 @@
+{
+  "grammar": "signed 2x2 same-order A/B blocks",
+  "total_grammar_size": 256,
+  "tested": 256,
+  "not_certified_by_reduction": 192,
+  "unsuccessful_candidates": [
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -2
+        },
+        {
+          "cross": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {
+          "cross": -1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {
+          "cross": -1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 2
+        },
+        {
+          "cross": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {
+          "cross": 1,
+          "nI": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {
+          "cross": 1,
+          "nI": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {
+          "nI": -1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {
+          "nI": -1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": -2
+        },
+        {
+          "nI": -2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          -1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {
+          "nI": 1,
+          "cross": -1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {
+          "nI": 1,
+          "cross": 1
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    },
+    {
+      "cells": [
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "residuals": [
+        {},
+        {
+          "nI": 2
+        },
+        {
+          "nI": 2
+        },
+        {}
+      ],
+      "meaning": "not certified by this reduction; not unrestricted nonexistence"
+    }
+  ],
+  "exhaustive_for_this_grammar": true,
+  "state": "BRANCH_EXHAUSTED",
+  "candidates": [
+    {
+      "id": "5fe6a86c26f17e87",
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "assumptions": [
+        "A,B square Hadamard of same order n"
+      ],
+      "amicable": false,
+      "unreduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "reduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "experiment": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "novelty": "KNOWN_RESULT: Sylvester up to signed block symmetries",
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+      "proof_body": "by\n  intro n aa bb ab ba haa hbb\n  exact \u27e8by omega, by omega, by omega, by omega\u27e9",
+      "remaining": [
+        "matrix-index/sign/dimension lifting",
+        "parameter existence over the desired domain",
+        "literature and equivalence review",
+        "symbolic coverage comparison"
+      ]
+    },
+    {
+      "id": "f347e3a0425942cf",
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "assumptions": [
+        "A,B square Hadamard of same order n"
+      ],
+      "amicable": false,
+      "unreduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "reduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "experiment": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "novelty": "UNREVIEWED: grammar fingerprint is not a literature novelty result",
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+      "proof_body": "by\n  intro n aa bb ab ba haa hbb\n  exact \u27e8by omega, by omega, by omega, by omega\u27e9",
+      "remaining": [
+        "matrix-index/sign/dimension lifting",
+        "parameter existence over the desired domain",
+        "literature and equivalence review",
+        "symbolic coverage comparison"
+      ]
+    },
+    {
+      "id": "77650a5902a83896",
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          1
+        ]
+      ],
+      "assumptions": [
+        "A,B square Hadamard of same order n"
+      ],
+      "amicable": false,
+      "unreduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "reduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "experiment": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "novelty": "UNREVIEWED: grammar fingerprint is not a literature novelty result",
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "proof_body": "by\n  intro n aa bb ab ba haa hbb\n  exact \u27e8by omega, by omega, by omega, by omega\u27e9",
+      "remaining": [
+        "matrix-index/sign/dimension lifting",
+        "parameter existence over the desired domain",
+        "literature and equivalence review",
+        "symbolic coverage comparison"
+      ]
+    },
+    {
+      "id": "babf882252d5aea7",
+      "cells": [
+        [
+          "A",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "B",
+          -1
+        ],
+        [
+          "A",
+          1
+        ]
+      ],
+      "assumptions": [
+        "A,B square Hadamard of same order n",
+        "AB^T = BA^T (amicability)"
+      ],
+      "amicable": true,
+      "unreduced_residuals": [
+        {},
+        {
+          "ab": 1,
+          "ba": -1
+        },
+        {
+          "ba": 1,
+          "ab": -1
+        },
+        {}
+      ],
+      "reduced_residuals": [
+        {},
+        {},
+        {},
+        {}
+      ],
+      "experiment": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": {
+          "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+          "A": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "output_hadamard": false
+        },
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "novelty": "UNREVIEWED: grammar fingerprint is not a literature novelty result",
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "proof_body": "by\n  intro n aa bb ab ba haa hbb hab\n  exact \u27e8by omega, by omega, by omega, by omega\u27e9",
+      "remaining": [
+        "matrix-index/sign/dimension lifting",
+        "parameter existence over the desired domain",
+        "literature and equivalence review",
+        "symbolic coverage comparison"
+      ]
+    }
+  ],
+  "global_resolution": "UNRESOLVED",
+  "objective_hash": "1144b2f39d8bc148de7e99745c190d47c2f2ea75c7092291f5fa71b4242c25e3",
+  "engine_sha256": "47bde149c2a9bf55a87db10265419ea33226128e55b18ccff698bc0fe9a677a1",
+  "fresh_reason": "Finalize proof-evidence metadata, preserve failed reductions, and correct hypothesis-removal relation direction",
+  "formal_lemma_attempts": [
+    {
+      "verified": true,
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "scope": "exact elaborated statement; no novelty or global coverage inferred",
+      "status": "VERIFIED",
+      "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+      "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+      "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "source": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.lean",
+      "source_sha256": "ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1",
+      "output": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.log",
+      "output_sha256": "dc67005408cfb0f88c7aa6b40b9a06c604abf8be427a7de7969750e0b6b150c2",
+      "exit_code": 0
+    },
+    {
+      "verified": true,
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "scope": "exact elaborated statement; no novelty or global coverage inferred",
+      "status": "VERIFIED",
+      "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+      "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+      "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+      "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "source": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.lean",
+      "source_sha256": "7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55",
+      "output": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.log",
+      "output_sha256": "38c682a97f7d75a0eafaa707fc7e8e9c5975364f39dd140857bb6313e33bbf5e",
+      "exit_code": 0
+    }
+  ],
+  "matrix_family_theorem": "UNRESOLVED: scalar cancellation does not discharge lifting or parameter-existence obligations"
+}

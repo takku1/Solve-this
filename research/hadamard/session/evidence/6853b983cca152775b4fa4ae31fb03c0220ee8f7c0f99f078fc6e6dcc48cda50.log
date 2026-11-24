@@ -1,0 +1,13 @@
+Z:\Solve-this\research\hadamard\session\evidence\6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean:16:32: warning: Variable name `ab` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ab
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Z:\Solve-this\research\hadamard\session\evidence\6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean:16:35: warning: Variable name `ba` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ba
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Certified' depends on axioms: [propext, Quot.sound]

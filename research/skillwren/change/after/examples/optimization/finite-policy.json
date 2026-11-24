@@ -1,0 +1,19 @@
+{
+  "format": "skillwren-finite-policy-1",
+  "scope": {"regime": "offline-finite-policy", "authority": "owner", "dependencies": []},
+  "variables": {
+    "approved": {"role": "obs", "type": "Bool"},
+    "ready": {"role": "param", "type": "Bool"},
+    "write": {"role": "choice", "type": "Bool"}
+  },
+  "constraint": ["and", true,
+    ["or", ["not", "write"], ["and", "approved", "ready"]],
+    ["not", ["not", ["or", ["not", "write"], ["and", "approved", "ready"]]]],
+    ["or", ["or", ["not", "write"], ["and", "approved", "ready"]],
+      ["and", ["or", ["not", "write"], ["and", "approved", "ready"]], "write"]]],
+  "objective": {"loss_domain": "declared Boolean decisions only"},
+  "rewrite_policy": {
+    "allowed": ["constants", "idempotence", "double-negation", "absorption", "factoring"],
+    "optimize": ["constraint"]
+  }
+}

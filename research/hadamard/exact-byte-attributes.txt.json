@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "-m",
+    "pytest",
+    "tests/test_math_research.py::test_digest_bound_files_keep_exact_bytes_across_git_checkouts",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "cwd": "Z:\\Solve-this",
+  "returncode": 0,
+  "elapsed_seconds": 1.485
+}

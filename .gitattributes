@@ -1,0 +1,15 @@
+# These bytes are bound by package manifests, audit hashes or proof receipts.
+# Never silently normalize them on a Windows checkout.
+[attr]digest-bound -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+SKILL.md digest-bound
+agents/openai.yaml digest-bound
+references/** digest-bound
+examples/hadamard/** digest-bound
+docs/history/** digest-bound
+research/hadamard/** digest-bound
+research/skillwren/** digest-bound
+investigations/** digest-bound
+# Raw historical evidence preserves diff context and captured terminal whitespace.
+investigations/skillwren/skillwren-fixes.patch -whitespace
+research/hadamard/implementation-tests.txt -whitespace
+research/skillwren/change/review.patch -whitespace

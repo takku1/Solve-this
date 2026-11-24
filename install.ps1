@@ -3,7 +3,8 @@ param(
     [ValidateSet('codex', 'claude', 'both')]
     [string]$Target = 'both',
     [string]$UserRoot = [Environment]::GetFolderPath('UserProfile'),
-    [switch]$Force
+    [switch]$Force,
+    [switch]$IncludeHadamard
 )
 
 $ErrorActionPreference = 'Stop'
@@ -16,10 +17,16 @@ if ($Target -in @('claude', 'both')) {
     $destinations += Join-Path $UserRoot '.claude/skills/solve-this'
 }
 
-# Explicit package contents exclude the draft, installer, and repository files.
+# Default: only the canonical instructions, metadata and focused references.
 $packageFiles = @('SKILL.md', 'agents/openai.yaml')
 $packageFiles += Get-ChildItem -LiteralPath (Join-Path $sourceRoot 'references') -File -Filter '*.md' |
     ForEach-Object { 'references/' + $_.Name }
+if ($IncludeHadamard) {
+    $exampleRoot = Join-Path $sourceRoot 'examples/hadamard'
+    $packageFiles += Get-ChildItem -LiteralPath $exampleRoot -Recurse -File |
+        Where-Object { $_.Extension -in @('.md', '.py', '.json', '.lean') -and $_.FullName -notmatch '[\\/]__pycache__[\\/]' } |
+        ForEach-Object { $_.FullName.Substring($sourceRoot.Length + 1).Replace('\', '/') }
+}
 
 # Preflight every destination before writing either installation.
 foreach ($destination in $destinations) {

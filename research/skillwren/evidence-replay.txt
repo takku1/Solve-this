@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "Z:\Solve-this\scripts\check_skillwren_discovery.py", line 36, in <module>
+    main()
+  File "Z:\Solve-this\scripts\check_skillwren_discovery.py", line 21, in main
+    result = verify(certificate, source, candidate, lean)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "Z:\SkillWren\src\skillwren\policy_compression.py", line 194, in verify
+    raise ValueError("formal receipt does not match independent kernel replay")
+ValueError: formal receipt does not match independent kernel replay

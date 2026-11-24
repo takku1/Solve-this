@@ -1,0 +1,1076 @@
+{
+  "objective": {
+    "id": "hadamard-conjecture",
+    "domain": "k in positive integers; real sign matrices of order 4*k",
+    "statement": "forall k in Z_{>0}, exists H in {-1,1}^{4k x 4k}, H*transpose(H) = 4k*I",
+    "formal_type": "HadamardConjecture",
+    "resolution": [
+      "CONJECTURE_PROVEN",
+      "CONJECTURE_REFUTED"
+    ],
+    "non_resolutions": [
+      "finite verification",
+      "known constructions",
+      "restricted UNSAT",
+      "candidate counterexample",
+      "branch exhaustion",
+      "budget exhaustion"
+    ]
+  },
+  "objective_hash": "1144b2f39d8bc148de7e99745c190d47c2f2ea75c7092291f5fa71b4242c25e3",
+  "resolution": "UNRESOLVED",
+  "session": "BUDGET_EXHAUSTED",
+  "sources": {
+    "sage-hadamard": {
+      "id": "sage-hadamard",
+      "title": "SageMath Hadamard constructions",
+      "url": "https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html",
+      "version": "reference manual retrieved 2026-11-23",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    },
+    "cati-pasechnik-v2": {
+      "id": "cati-pasechnik-v2",
+      "title": "A database of constructions of Hadamard matrices",
+      "url": "https://arxiv.org/abs/2411.18897v2",
+      "version": "2025-08-30 v2",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    },
+    "egan-et-al-v2": {
+      "id": "egan-et-al-v2",
+      "title": "Recent progress in the construction of Hadamard matrices",
+      "url": "https://arxiv.org/abs/2610.27175v2",
+      "version": "2026-11-03 v2; abstract 85 versus retrieved PDF/HTML 95 is unresolved",
+      "accessed": "2026-11-23",
+      "status": "version-discrepancy; independent verification reported, not locally replayed"
+    },
+    "williamson-et-al-v2": {
+      "id": "williamson-et-al-v2",
+      "title": "Generating Hadamard matrices with transformers",
+      "url": "https://arxiv.org/abs/2604.11101v2",
+      "version": "2026-05-11 v2",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    }
+  },
+  "claims": {
+    "hadamard-conjecture": {
+      "id": "hadamard-conjecture",
+      "kind": "objective",
+      "statement": "forall k in Z_{>0}, exists H in {-1,1}^{4k x 4k}, H*transpose(H) = 4k*I",
+      "scope": "k in positive integers; real sign matrices of order 4*k",
+      "formal_type": "HadamardConjecture",
+      "status": "UNRESOLVED",
+      "sources": [],
+      "novelty": "not_claimed"
+    },
+    "sylvester": {
+      "id": "sylvester",
+      "statement": "H(2^a) for every integer a >= 0 by Sylvester doubling",
+      "scope": "classical existence family; literature theorem, not a new discovery",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard",
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "paley-I": {
+      "id": "paley-I",
+      "statement": "H(q+1) for prime powers q congruent to 3 modulo 4",
+      "scope": "prime-power domain and congruence are required",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "paley-II": {
+      "id": "paley-II",
+      "statement": "H(2*(q+1)) for odd prime powers q congruent to 1 modulo 4",
+      "scope": "prime-power domain and congruence are required",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "kronecker": {
+      "id": "kronecker",
+      "statement": "H(a) and H(b) imply H(a*b)",
+      "scope": "positive integer orders; construction closure does not imply all multiples of four",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard",
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "paley-method-barrier": {
+      "id": "paley-method-barrier",
+      "statement": "Paley constructions fail at orders 2^m*509203",
+      "scope": "a barrier to a construction method, not nonexistence of Hadamard matrices",
+      "kind": "known",
+      "sources": [
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "reported-2026-orders": {
+      "id": "reported-2026-orders",
+      "statement": "Independent verification reported for the twelve formerly unresolved orders below 2000",
+      "scope": "external literature report only; local matrices not downloaded or verified",
+      "kind": "known",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "universal-family-coverage": {
+      "id": "universal-family-coverage",
+      "statement": "Prove that certified construction rules cover every positive order divisible by four",
+      "scope": "unbounded symbolic coverage, not a finite scan",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "universal-legendre-pairs": {
+      "id": "universal-legendre-pairs",
+      "statement": "A Legendre pair exists at every odd positive length",
+      "scope": "sufficient route to Hadamard; no converse assumed",
+      "kind": "candidate",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "legendre-to-hadamard": {
+      "id": "legendre-to-hadamard",
+      "statement": "A Legendre pair of odd length ell yields H(2*ell+2)",
+      "scope": "known implication requiring a formal lifting proof in this project",
+      "kind": "obligation",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "construction-parameter-existence": {
+      "id": "construction-parameter-existence",
+      "statement": "Supply parameters satisfying a proposed universal construction at all required indices",
+      "scope": "cannot be inferred from conditional Gram identities",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "block-5fe6a86c26f17e87": {
+      "id": "block-5fe6a86c26f17e87",
+      "statement": "Signed block operator [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "KNOWN_RESULT",
+      "novelty": "UNREVIEWED"
+    },
+    "gram-5fe6a86c26f17e87": {
+      "id": "gram-5fe6a86c26f17e87",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+      "status": "LEMMA_PROVEN",
+      "novelty": "UNREVIEWED"
+    },
+    "lifting-5fe6a86c26f17e87": {
+      "id": "lifting-5fe6a86c26f17e87",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "block-f347e3a0425942cf": {
+      "id": "block-f347e3a0425942cf",
+      "statement": "Signed block operator [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "EMPIRICALLY_SUPPORTED",
+      "novelty": "UNREVIEWED"
+    },
+    "gram-f347e3a0425942cf": {
+      "id": "gram-f347e3a0425942cf",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+      "status": "LEMMA_PROVEN",
+      "novelty": "UNREVIEWED"
+    },
+    "lifting-f347e3a0425942cf": {
+      "id": "lifting-f347e3a0425942cf",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "block-77650a5902a83896": {
+      "id": "block-77650a5902a83896",
+      "statement": "Signed block operator [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "EMPIRICALLY_SUPPORTED",
+      "novelty": "UNREVIEWED"
+    },
+    "gram-77650a5902a83896": {
+      "id": "gram-77650a5902a83896",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "status": "LEMMA_PROVEN",
+      "novelty": "UNREVIEWED"
+    },
+    "lifting-77650a5902a83896": {
+      "id": "lifting-77650a5902a83896",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "block-babf882252d5aea7": {
+      "id": "block-babf882252d5aea7",
+      "statement": "Signed block operator [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "A,B square Hadamard of same order n; AB^T = BA^T (amicability)",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "EMPIRICALLY_SUPPORTED",
+      "novelty": "UNREVIEWED"
+    },
+    "gram-babf882252d5aea7": {
+      "id": "gram-babf882252d5aea7",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "status": "LEMMA_PROVEN",
+      "novelty": "UNREVIEWED"
+    },
+    "lifting-babf882252d5aea7": {
+      "id": "lifting-babf882252d5aea7",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "unguarded-babf882252d5aea7": {
+      "id": "unguarded-babf882252d5aea7",
+      "statement": "The same block operator works without amicability: [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "all Hadamard A,B of the same order",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "COUNTEREXAMPLE_FOUND",
+      "novelty": "UNREVIEWED"
+    }
+  },
+  "edges": [
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "universal-family-coverage",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "universal-legendre-pairs",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "legendre-to-hadamard",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "construction-parameter-existence",
+      "kind": "may_support"
+    },
+    {
+      "claim": "universal-family-coverage",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    {
+      "claim": "universal-legendre-pairs",
+      "dependency": "legendre-to-hadamard",
+      "kind": "may_support"
+    },
+    {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "gram-5fe6a86c26f17e87",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "lifting-5fe6a86c26f17e87",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    {
+      "claim": "universal-family-coverage",
+      "dependency": "block-5fe6a86c26f17e87",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-5fe6a86c26f17e87",
+      "kind": "may_support"
+    },
+    {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "gram-f347e3a0425942cf",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "lifting-f347e3a0425942cf",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    {
+      "claim": "universal-family-coverage",
+      "dependency": "block-f347e3a0425942cf",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-f347e3a0425942cf",
+      "kind": "may_support"
+    },
+    {
+      "claim": "block-77650a5902a83896",
+      "dependency": "gram-77650a5902a83896",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-77650a5902a83896",
+      "dependency": "lifting-77650a5902a83896",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-77650a5902a83896",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    {
+      "claim": "universal-family-coverage",
+      "dependency": "block-77650a5902a83896",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-77650a5902a83896",
+      "kind": "may_support"
+    },
+    {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "gram-babf882252d5aea7",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "lifting-babf882252d5aea7",
+      "kind": "requires"
+    },
+    {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    {
+      "claim": "universal-family-coverage",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "may_support"
+    },
+    {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "may_support"
+    },
+    {
+      "claim": "unguarded-babf882252d5aea7",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "generalizes"
+    }
+  ],
+  "observations": [
+    {
+      "claim": "sylvester",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard",
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 6
+    },
+    {
+      "claim": "paley-I",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 8
+    },
+    {
+      "claim": "paley-II",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 10
+    },
+    {
+      "claim": "kronecker",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard",
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 12
+    },
+    {
+      "claim": "paley-method-barrier",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 14
+    },
+    {
+      "claim": "reported-2026-orders",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "egan-et-al-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 16
+    },
+    {
+      "claim": "block-5fe6a86c26f17e87",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 28
+    },
+    {
+      "claim": "block-f347e3a0425942cf",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 39
+    },
+    {
+      "claim": "block-77650a5902a83896",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 50
+    },
+    {
+      "claim": "block-babf882252d5aea7",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": {
+          "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+          "A": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "output_hadamard": false
+        },
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 59
+    },
+    {
+      "claim": "unguarded-babf882252d5aea7",
+      "state": "COUNTEREXAMPLE_FOUND",
+      "evidence": {
+        "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+        "A": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ]
+        ],
+        "B": [
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "output_hadamard": false
+      },
+      "branch": "obstruction-theory",
+      "event_number": 68
+    },
+    {
+      "claim": "unguarded-babf882252d5aea7",
+      "state": "COUNTEREXAMPLE_FOUND",
+      "evidence": {
+        "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+        "A": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ]
+        ],
+        "B": [
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "output_hadamard": false
+      },
+      "branch": "obstruction-theory",
+      "event_number": 76
+    }
+  ],
+  "proofs": [
+    {
+      "claim": "gram-5fe6a86c26f17e87",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean",
+        "source_sha256": "6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50",
+        "output": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.log",
+        "output_sha256": "254e8cfe36fcbb1b1ccd958663b1a1b957fb4dee2af50d1b0eb93012e69ba4f5",
+        "exit_code": 0
+      }
+    },
+    {
+      "claim": "gram-f347e3a0425942cf",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.lean",
+        "source_sha256": "d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7",
+        "output": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.log",
+        "output_sha256": "ee849787e3b27b6fb18c7bc2aead9380a513b0e59ab6fb016f2b6db5cb8471db",
+        "exit_code": 0
+      }
+    },
+    {
+      "claim": "gram-77650a5902a83896",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.lean",
+        "source_sha256": "ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1",
+        "output": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.log",
+        "output_sha256": "dc67005408cfb0f88c7aa6b40b9a06c604abf8be427a7de7969750e0b6b150c2",
+        "exit_code": 0
+      }
+    },
+    {
+      "claim": "gram-babf882252d5aea7",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.lean",
+        "source_sha256": "7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55",
+        "output": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.log",
+        "output_sha256": "38c682a97f7d75a0eafaa707fc7e8e9c5975364f39dd140857bb6313e33bbf5e",
+        "exit_code": 0
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "claim": "gram-5fe6a86c26f17e87",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean",
+        "source_sha256": "6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50",
+        "output": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.log",
+        "output_sha256": "254e8cfe36fcbb1b1ccd958663b1a1b957fb4dee2af50d1b0eb93012e69ba4f5",
+        "exit_code": 0
+      }
+    },
+    {
+      "claim": "gram-f347e3a0425942cf",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.lean",
+        "source_sha256": "d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7",
+        "output": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.log",
+        "output_sha256": "ee849787e3b27b6fb18c7bc2aead9380a513b0e59ab6fb016f2b6db5cb8471db",
+        "exit_code": 0
+      }
+    },
+    {
+      "run_key": "c2bd3b8c26377d525b3d87764e9200539c7e3c7830097a331ea893d6fc2f6680",
+      "artifact": "attempt-d655335eae3cdc705cda87683fea10c4ae3bf37236cb4d9ab096cd00007eb7d9.json",
+      "artifact_sha256": "91b3b7df817ab69b5f6882ab3eca152461fcd92ae0c0aaeacb65f348149b7a60",
+      "candidate_state": "BRANCH_EXHAUSTED",
+      "engine_sha256": "ffaf49f07ce00da9eb2ab9d2539596344851cf543623095f182ddebec508f86c"
+    },
+    {
+      "claim": "gram-77650a5902a83896",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.lean",
+        "source_sha256": "ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1",
+        "output": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.log",
+        "output_sha256": "dc67005408cfb0f88c7aa6b40b9a06c604abf8be427a7de7969750e0b6b150c2",
+        "exit_code": 0
+      }
+    },
+    {
+      "claim": "gram-babf882252d5aea7",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.lean",
+        "source_sha256": "7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55",
+        "output": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.log",
+        "output_sha256": "38c682a97f7d75a0eafaa707fc7e8e9c5975364f39dd140857bb6313e33bbf5e",
+        "exit_code": 0
+      }
+    },
+    {
+      "run_key": "569291dd1ba788ce48e90998dd5bf158788d61ac1dcfaf970284e5f68b153100",
+      "artifact": "attempt-6d0373f3ab76a81ef2b5d0218482daee188d444f78a8c1b50747c634342b93f0.json",
+      "artifact_sha256": "99b39cbb54d03613dc44008f2b61aabf84aecb8b4926a3aa204f663d4476f0f3",
+      "candidate_state": "BRANCH_EXHAUSTED",
+      "engine_sha256": "47bde149c2a9bf55a87db10265419ea33226128e55b18ccff698bc0fe9a677a1"
+    }
+  ],
+  "program": {
+    "audit": "evidence/audit-a14f54c8c3ebbe1e9336314d3526176d13084b8517570dd753e04e4c9ce07218.md",
+    "audit_sha256": "a14f54c8c3ebbe1e9336314d3526176d13084b8517570dd753e04e4c9ce07218",
+    "program": "evidence/program-bf90a9155bf7bd5cae3b3f7129f5d6b8d9d372b0b82693bad967e1a561018937.md",
+    "program_sha256": "bf90a9155bf7bd5cae3b3f7129f5d6b8d9d372b0b82693bad967e1a561018937"
+  },
+  "branches": {
+    "constructive-algebra": {
+      "description": "Parameterized block constructions and exact Gram conditions",
+      "attempts": 4,
+      "last_event": 59
+    },
+    "combinatorial-design": {
+      "description": "Scoped difference-set, sequence and design implications",
+      "attempts": 0,
+      "last_event": 0
+    },
+    "computational-search": {
+      "description": "Exact witnesses and counterexamples within declared encodings",
+      "attempts": 0,
+      "last_event": 0
+    },
+    "recursive-composition": {
+      "description": "Parameterized order transforms and composition laws",
+      "attempts": 0,
+      "last_event": 0
+    },
+    "number-theory": {
+      "description": "Symbolic coverage gaps and parameter-existence lemmas",
+      "attempts": 0,
+      "last_event": 0
+    },
+    "obstruction-theory": {
+      "description": "Necessary conditions with explicitly restricted domains",
+      "attempts": 2,
+      "last_event": 76
+    },
+    "formal-mathematics": {
+      "description": "Cancellation, lifting, equivalence and global proof obligations",
+      "attempts": 4,
+      "last_event": 79
+    }
+  }
+}

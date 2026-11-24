@@ -1,0 +1,64 @@
+{
+  "base": "a5d7d40fab57b90bad0d07bf736479ff23b70808",
+  "target": "Z:\\SkillWren",
+  "files": {
+    ".gitattributes": {
+      "before_sha256": "dc415d77701fc6a017e01aede77e6a80f57455a758f888db2ee6db87a49a18c7",
+      "candidate_sha256": "071ab3c51a499ca7c465103df6df3f09da1bdc2cfc070e54ff14efe0fdcb8db9"
+    },
+    "docs/STATUS.md": {
+      "before_sha256": "d524049d8ce3fb6bb9295d11fefb6dcd5d8940fc002237422e8c6ad213f68c53",
+      "candidate_sha256": "0d9f64e5b954d4227a31605e998f80ffbcbc8c1958c76d843b4e4045400c5343"
+    },
+    "docs/current/compiler.md": {
+      "before_sha256": "c450c14e0ad0f65b5d42efb0eea9be9f163ab55abe5c0737d9bf0d54f7128f6e",
+      "candidate_sha256": "ac8217f42905f78b81175733b7fa38367f0f08632082fe78b98514849206f415"
+    },
+    "plugin/skillwren/lib/skillwren/inventory.py": {
+      "before_sha256": "1cd237d2ee43168785690ea20ea4aeb6115b414d9947ec03bceb7dffdd2ab4ac",
+      "candidate_sha256": "14c3697f09d950bc2cc7d640cd3fd048912ffb75e106eef5cc7c438859ce5b94"
+    },
+    "plugin/skillwren/lib/skillwren/nlcompile.py": {
+      "before_sha256": "017d4dc02580a8669bf5a5f2b1edf31087e4f7d586ff7f44738c83ca8fb69878",
+      "candidate_sha256": "01c2e432f290c9ef1d6937888a6acf3f2faa6dc911e365ad4912ef91ef75d799"
+    },
+    "plugin/skillwren/lib/skillwren/validator/workflow.py": {
+      "before_sha256": "40eb9c88b151feede02057aed2dc2f08aacc998a348e8adb9c899765d569ca66",
+      "candidate_sha256": "52cf0a757cbacdbd8b5440a7dd1bd287d08998c9b23912fecd0009ac451454e8"
+    },
+    "plugin/skillwren/references/compiler.md": {
+      "before_sha256": "2f6db218a083a108f4ee12d581c98ddafd8292efd50ebe5403c6049793b27588",
+      "candidate_sha256": "c7d3b1eb3e2c3cfff879eae6c5a09bc8ea51738826bc45638417869066b0ec0d"
+    },
+    "scripts/adapters/claude_compile.py": {
+      "before_sha256": "6161b118ddda57ba27e038b52eb95ce1857edd1957f467fd75ab69c82a40d3de",
+      "candidate_sha256": "fcb5ad339e9c3f9990f2114c38401c2f17cb2d21b49277eb48ec95e3714f7859"
+    },
+    "src/skillwren/inventory.py": {
+      "before_sha256": "7848514b8a19427d509a91d4b2a9cc3583cb60807128e9d30e961c557644b2cd",
+      "candidate_sha256": "ccb66f5ab36e2bbdd1e3284a34c29279f99bd8272f473b398a43b71ce51fd081"
+    },
+    "src/skillwren/nlcompile.py": {
+      "before_sha256": "08fbf2fa0c1e499165873a836deb20d264762b1bfe6f4fe8100478317458d457",
+      "candidate_sha256": "f595cbf372014e618315dc33f666067cb311feb26795dc234167b70b7484cd69"
+    },
+    "src/skillwren/validator/workflow.py": {
+      "before_sha256": "40eb9c88b151feede02057aed2dc2f08aacc998a348e8adb9c899765d569ca66",
+      "candidate_sha256": "25d38bb84fac0d39ad6e6243280c26e04c95dd4b403b2aed72d53f81e18f7581"
+    },
+    "tests/test_explain_workflow.py": {
+      "before_sha256": "fdf9e0f61baf643b46c5df6f8378330c0d52e662156d01dd389753612b477af2",
+      "candidate_sha256": "1090cb9bac289d4a8b35fa2b5b2e2d0f09c3561006a44dfcb41c6cd239e18202"
+    },
+    "tests/test_nl_compile.py": {
+      "before_sha256": "3e57c74803e377286f08e1d89b93a1510bd2853c1e5b34c1ff55778985f8aac1",
+      "candidate_sha256": "aff9332d8b4ebce32f531b60b99f441bb16b66293a1c2cc68e817fe512f80b5f"
+    },
+    "tests/test_optimization.py": {
+      "before_sha256": "ba1c9842d65eba503853e9f11116355693faedf5a03b7080dd60c98d73656299",
+      "candidate_sha256": "ecb3c2526409e584e01b10638f7ea68993caeeae376d72b7627c14875122f97c"
+    }
+  },
+  "patch_sha256": "6ff4c417b99f5bba245693c16093c86c564d2006748684f465311441214bbfd5",
+  "applied": false
+}

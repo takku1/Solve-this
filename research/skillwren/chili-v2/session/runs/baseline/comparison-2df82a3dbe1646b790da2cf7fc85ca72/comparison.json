@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1",
+  "kind": "trusted_local_comparison",
+  "run_id": "comparison-2df82a3dbe1646b790da2cf7fc85ca72",
+  "state": "FINALIZED",
+  "config": {
+    "schema_version": "0.1",
+    "root": "..",
+    "build": null,
+    "test": [
+      "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "driver.py"
+    ],
+    "command_seconds": 300,
+    "comparison_seconds": 1200,
+    "output_bytes_per_stream": 1048576,
+    "protected_paths": [
+      "driver.py",
+      "fixtures.json",
+      "src"
+    ]
+  },
+  "sources": {
+    "baseline": "Z:\\Solve-this\\research\\skillwren\\chili-v2\\session\\champions\\initial",
+    "candidate": "Z:\\Solve-this\\research\\skillwren\\chili-v2\\session\\champions\\initial"
+  },
+  "evaluations": {
+    "baseline": {
+      "source_hash": "207b852551ca6d510487aedb8ee8664b2026c482aa343585030a0cdd1a90dd98",
+      "commands": [
+        {
+          "stage": "test",
+          "command": [
+            "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+            "-B",
+            "driver.py"
+          ],
+          "outcome": "pass",
+          "exit_code": 0,
+          "elapsed_seconds": 0.09299999999348074,
+          "capture": {
+            "stdout": {
+              "bytes": 66,
+              "sha256": "55e368fec13b0e3a4eebf95c117497a39dd0c2d339463e6faf7fec5466c17fec",
+              "hash_scope": "complete_stream",
+              "truncated": false
+            },
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hash_scope": "complete_stream",
+              "truncated": false
+            }
+          },
+          "error": null
+        }
+      ],
+      "outcome": "pass"
+    },
+    "candidate": {
+      "source_hash": "207b852551ca6d510487aedb8ee8664b2026c482aa343585030a0cdd1a90dd98",
+      "commands": [
+        {
+          "stage": "test",
+          "command": [
+            "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+            "-B",
+            "driver.py"
+          ],
+          "outcome": "pass",
+          "exit_code": 0,
+          "elapsed_seconds": 0.09400000001187436,
+          "capture": {
+            "stdout": {
+              "bytes": 66,
+              "sha256": "55e368fec13b0e3a4eebf95c117497a39dd0c2d339463e6faf7fec5466c17fec",
+              "hash_scope": "complete_stream",
+              "truncated": false
+            },
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "hash_scope": "complete_stream",
+              "truncated": false
+            }
+          },
+          "error": null
+        }
+      ],
+      "outcome": "pass"
+    }
+  },
+  "decision": "public_tests_passed",
+  "limitations": [
+    "Host commands are trusted and unconfined; snapshots are writable.",
+    "Build/test elapsed time is diagnostic, not a performance benchmark.",
+    "No resource-pressure enforcement, sealed grading, or automatic promotion.",
+    "Windows descendant cleanup is best effort; avoid commands that detach processes."
+  ],
+  "correctness_contract": {
+    "driver.py": {
+      "sha256": "2991271122f8bc0a5d5acde9de13bed55b88ff136c0b4f0cf52d0d496f6bbc93",
+      "executable": false
+    },
+    "fixtures.json": {
+      "sha256": "2a711564c66839f6492fb65f745950de22a4480c4f0a6e822bacd4cdca266f63",
+      "executable": false
+    },
+    "src": {
+      "kind": "directory"
+    },
+    "src/skillwren": {
+      "kind": "directory"
+    },
+    "src/skillwren/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "executable": false
+    },
+    "src/skillwren/finite_policy.py": {
+      "sha256": "e110bf010b3fcc909ace6ab398f2cdaf2dfef74976fd59fcae8bfb34cd251c8c",
+      "executable": false
+    },
+    "src/skillwren/policy_compression.py": {
+      "sha256": "5e582b1606c0f9e021c90bf504296d10fb40313ab795b93aa5d15a7684aa7087",
+      "executable": false
+    }
+  }
+}

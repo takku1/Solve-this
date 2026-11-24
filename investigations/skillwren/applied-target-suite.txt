@@ -1,0 +1,34 @@
+..........................................................................................s................................................skillwren ledger: the flow file has no order rules; steps are recorded, nothing is checked
+......................................................s.....................................................................s..................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 490 tests in 25.033s
+
+OK (skipped=3)
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json
+demo.md: 1 kept of 1 (PROBLEMS)
+  'Approval:' must be one of: human, AI-reviewed baseline (say which kind of review this is; it travels with every result)
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  C:\Users\dcarn\AppData\Local\Temp\tmpjk_6s6jv\r.json: scored against candidates (unreviewed, model-drafted); publish only frozen ground truth
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  C:\Users\dcarn\AppData\Local\Temp\tmpfpsy9_mm\r.adjudication.md: adjudication sheet missing (fidelity_score.py --adjudication)
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  r.adjudication.md:9: not adjudicated (mark [x] agree or [!] overturn)
+  r.adjudication.md:13: not adjudicated (mark [x] agree or [!] overturn)
+[
+  {
+    "source": "demo",
+    "built": "b.md",
+    "publication": "published",
+    "basis": "frozen, reviewed by Ada on 2026-11-20",
+    "preserved": "2/2",
+    "weakened": 0,
+    "missing": 0,
+    "overturned": 1,
+    "widening_introductions": 1
+  }
+]
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json

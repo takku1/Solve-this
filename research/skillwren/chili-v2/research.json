@@ -1,0 +1,11 @@
+{
+  "hypothesis": "Authorized Boolean rewrites reduce redundant policy context",
+  "mechanism": "Enable the audited rewrite search instead of the identity fallback",
+  "falsification": "Any changed golden decision, metadata, failed audit or insufficient byte reduction",
+  "sources": [
+    {
+      "reference": "https://arxiv.org/abs/2108.12099",
+      "supports": "Separate proposal incentives from independent verification; this is not PVG training"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "scripts/benchmark_skillwren_compression.py"
+  ],
+  "cwd": "Z:\\Solve-this",
+  "returncode": 0,
+  "elapsed_seconds": 2.532
+}

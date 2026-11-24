@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1",
+  "concept": "Reduce full executable finite-policy bytes with identical decisions",
+  "project_config": "Z:\\Solve-this\\research\\skillwren\\chili-v2\\baseline\\.chilicrisp\\project.json",
+  "benchmark_command": [
+    "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-B",
+    "driver.py"
+  ],
+  "objective": "artifact_bytes",
+  "artifact_paths": [
+    "build/policies.json"
+  ],
+  "regression_limits": {
+    "wall_seconds": 5
+  },
+  "reductions": [
+    0.05
+  ],
+  "repetitions": 3,
+  "confirmation_repetitions": 3,
+  "max_generations": 1,
+  "seed": 31
+}

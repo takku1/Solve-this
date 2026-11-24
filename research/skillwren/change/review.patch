@@ -1,0 +1,1322 @@
+--- a/README.md
++++ b/README.md
+@@ -77,7 +77,7 @@
+ 
+ - `src/skillwren/` — stdlib-only package and `skillwren` CLI (`check`,
+   `explain-workflow`, `draft`, `approve`, `policy`, `guard`, `ledger`,
+-  `audit`, `sandbox`, `measure`, `select`, `certgate`, `build`, `conform`,
++  `audit`, `sandbox`, `measure`, `compress`, `select`, `certgate`, `build`, `conform`,
+   `compile`, `inventory`, `coverage`). `compile` runs the natural-language compiler
+   (`nlcompile`) and `inventory` its requirement accounting.
+   The validator is the `skillwren.validator` package: `syntax`,
+@@ -101,6 +101,12 @@
+   launcher); `plugin/` — the generated, self-contained plugin.
+ 
+ ## Quickstart
++
++For executable finite Boolean policies, `compress` generates authorized symbolic
++rewrites, measures complete canonical bytes or exact tokens, checks every
++declared assignment and emits replayable certificates, with optional Lean
++kernel proofs. See [finite-policy compression](docs/current/design/finite-policy-compression.md).
++Natural-language equivalence and deployed-model behavior remain separate obligations.
+ 
+ For fixed-study empirical representation selection, `skillwren select`
+ checks supplied structural manifests and simultaneous requirement-risk
+--- a/src/skillwren/cli.py
++++ b/src/skillwren/cli.py
+@@ -8,6 +8,7 @@
+ import sys
+ 
+ COMMANDS = {
++    "compress": ("skillwren.policy_compression", "synthesize and certify a smaller finite Boolean policy"),
+     "audit": ("skillwren.audit", "check retained log against an independent checkpoint"),
+     "sandbox": ("skillwren.sandbox", "observe command effects in an offline restricted container"),
+     "guard": ("skillwren.guard", "mediate policy-bound verified writes on a trusted host"),
+--- /dev/null
++++ b/src/skillwren/finite_policy.py
+@@ -0,0 +1,151 @@
++"""Finite Boolean policies: typed validation and an independent exact auditor.
++
++No natural-language interpretation, model-performance or deployment claim is
++implied. Enumeration is deliberately bounded and never samples.
++"""
++import itertools
++import json
++
++
++FORMAT = "skillwren-finite-policy-1"
++ROLES = {"obs", "choice", "aux", "param"}
++RULES = {"constants", "idempotence", "double-negation", "absorption", "factoring"}
++
++
++def canonical(value):
++    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
++
++
++def validate(policy, max_worlds=65536):
++    required = {"format", "scope", "variables", "constraint", "objective", "rewrite_policy"}
++    if not isinstance(policy, dict) or set(policy) != required or policy["format"] != FORMAT:
++        raise ValueError("unsupported policy format or fields")
++    if not isinstance(policy["scope"], dict) or not policy["scope"]:
++        raise ValueError("explicit nonempty scope is required")
++    if not isinstance(policy["objective"], dict):
++        raise ValueError("objective must be explicit")
++    variables = policy["variables"]
++    if not isinstance(variables, dict) or not variables:
++        raise ValueError("variables must be a nonempty mapping")
++    for name, spec in variables.items():
++        if not isinstance(name, str) or not name.isidentifier():
++            raise ValueError("invalid variable name")
++        if not isinstance(spec, dict) or set(spec) != {"role", "type"}:
++            raise ValueError("invalid variable declaration")
++        if spec["role"] not in ROLES or spec["type"] != "Bool":
++            raise ValueError("only declared Boolean variables with typed roles are supported")
++    if type(max_worlds) is not int or not 1 <= max_worlds <= 65536:
++        raise ValueError("max_worlds must be in 1..65536")
++    if 2 ** len(variables) > max_worlds:
++        raise ValueError("OPEN: exhaustive world budget exceeded")
++    permission = policy["rewrite_policy"]
++    if (not isinstance(permission, dict) or set(permission) != {"allowed", "optimize"}
++            or permission["optimize"] != ["constraint"]
++            or not isinstance(permission["allowed"], list)
++            or any(not isinstance(rule, str) or rule not in RULES for rule in permission["allowed"])):
++        raise ValueError("unsupported rewrite authorization")
++    count = [0]
++
++    def check(expr, depth=0):
++        count[0] += 1
++        if depth > 64 or count[0] > 10000:
++            raise ValueError("expression size/depth budget exceeded")
++        if type(expr) is bool:
++            return
++        if isinstance(expr, str) and expr in variables:
++            return
++        if not isinstance(expr, list) or not expr or not isinstance(expr[0], str):
++            raise ValueError("invalid Boolean expression")
++        op = expr[0]
++        if op not in {"not", "and", "or"} or (len(expr) != 2 if op == "not" else len(expr) < 3):
++            raise ValueError("unsupported operator or arity")
++        for part in expr[1:]:
++            check(part, depth + 1)
++    check(policy["constraint"])
++    return policy
++
++
++def evaluate(expr, world):
++    if type(expr) is bool:
++        return expr
++    if isinstance(expr, str):
++        value = world[expr]
++        if type(value) is not bool:
++            raise ValueError("Boolean assignment required")
++        return value
++    if expr[0] == "not":
++        return not evaluate(expr[1], world)
++    values = [evaluate(x, world) for x in expr[1:]]
++    return all(values) if expr[0] == "and" else any(values)
++
++
++def assignments(names):
++    names = sorted(names)
++    for values in itertools.product((False, True), repeat=len(names)):
++        yield dict(zip(names, values))
++
++
++def audit(source, candidate, max_worlds=65536):
++    """Compare complete constraints, a stronger gate than aux projection.
++
++    Equality includes all metadata. Strict inclusion gets an exclusive verdict;
++    it is never permission to deploy an equivalent rewrite.
++    """
++    validate(source, max_worlds)
++    validate(candidate, max_worlds)
++    metadata = lambda p: {k: v for k, v in p.items() if k != "constraint"}
++    if metadata(source) != metadata(candidate):
++        return {"verdict": "REDESIGN", "reason": "scope, roles, objective or authority changed"}
++    removed, added = [], []
++    checked = 0
++    for world in assignments(source["variables"]):
++        before = evaluate(source["constraint"], world)
++        after = evaluate(candidate["constraint"], world)
++        checked += 1
++        if before and not after and not removed:
++            removed.append(world)
++        if after and not before and not added:
++            added.append(world)
++    verdict = ("PROVEN_EQUIVALENT" if not removed and not added else
++               "CERTIFIED_TIGHTENING" if removed and not added else
++               "CERTIFIED_RELAXATION" if added and not removed else "REFUTED")
++    return {"verdict": verdict, "worlds_checked": checked,
++            "removed_witness": removed, "added_witness": added,
++            "scope": "complete declared finite Boolean relation, not LLM behavior"}
++
++
++def decisions(policy, observations, max_worlds=65536):
++    """Execute the finite policy; existentially quantify aux variables.
++
++    Observed and parameter values must be supplied, never optimized.
++    """
++    validate(policy, max_worlds)
++    variables = policy["variables"]
++    fixed = {n for n, s in variables.items() if s["role"] in {"obs", "param"}}
++    if set(observations) != fixed or any(type(v) is not bool for v in observations.values()):
++        raise ValueError("supply exactly the observed and parameter Boolean values")
++    choice = {n for n, s in variables.items() if s["role"] == "choice"}
++    auxiliary = {n for n, s in variables.items() if s["role"] == "aux"}
++    result = []
++    for action in assignments(choice):
++        if any(evaluate(policy["constraint"], dict(observations, **action, **extra))
++               for extra in assignments(auxiliary)):
++            result.append(action)
++    return result
++
++
++def decision_certificate(source, candidate, max_worlds=65536):
++    result = audit(source, candidate, max_worlds)
++    if result["verdict"] != "PROVEN_EQUIVALENT":
++        return {"verdict": "OPEN", "reason": "complete relation equivalence is required"}
++    fixed = {n for n, spec in source["variables"].items() if spec["role"] in {"obs", "param"}}
++    for world in assignments(fixed):
++        if not decisions(source, world, max_worlds):
++            return {"verdict": "OPEN", "reason": "an observation has no feasible action; optimal finite risk is undefined",
++                    "witness": world}
++    return {"verdict": "PROVEN_EQUIVALENT", "deficiency_upper": "0",
++            "loss_class": "all finite real losses on identical declared observation/action domains",
++            "risk_model": "same feasible decision rules with the same observation distribution",
++            "argument": "equal relations imply identical projected feasible actions and decision rules; "
++                        "therefore their risk sets and optimal risks coincide",
++            "excluded": ["LLM text interpretation", "undeclared actions", "changed observation channels"]}
+--- /dev/null
++++ b/src/skillwren/policy_compression.py
+@@ -0,0 +1,254 @@
++"""Proof-gated, resumable compression of executable finite Boolean policies."""
++import argparse
++import copy
++import hashlib
++import json
++import os
++from pathlib import Path
++import sys
++import subprocess
++
++from .finite_policy import RULES, audit, canonical, decision_certificate, validate
++
++
++def digest(value):
++    return hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
++
++
++def measure(policy, metric):
++    text = canonical(policy)
++    if metric == "bytes":
++        return len(text.encode("utf-8"))
++    if metric != "tokens":
++        raise ValueError("unsupported metric")
++    try:
++        import tiktoken
++    except ImportError as exc:
++        raise ValueError("exact tokens require the optional tiktoken dependency") from exc
++    return len(tiktoken.get_encoding("cl100k_base").encode(text, disallowed_special=()))
++
++
++def rewrites(expr, allowed):
++    """Local algebraic proposals; the independent truth-table auditor is final."""
++    if not isinstance(expr, list):
++        return
++    op, parts = expr[0], expr[1:]
++    if op == "not":
++        x = parts[0]
++        if "constants" in allowed and type(x) is bool:
++            yield "constants", not x
++        if "double-negation" in allowed and isinstance(x, list) and x[0] == "not":
++            yield "double-negation", x[1]
++    else:
++        if "constants" in allowed:
++            absorbing, neutral = (False, True) if op == "and" else (True, False)
++            if any(type(x) is bool and x == absorbing for x in parts):
++                yield "constants", absorbing
++            kept = [x for x in parts if not (type(x) is bool and x == neutral)]
++            if len(kept) != len(parts):
++                yield "constants", neutral if not kept else kept[0] if len(kept) == 1 else [op] + kept
++        if "idempotence" in allowed:
++            unique = []
++            for x in parts:
++                if x not in unique:
++                    unique.append(x)
++            if len(unique) != len(parts):
++                yield "idempotence", unique[0] if len(unique) == 1 else [op] + unique
++        dual = "or" if op == "and" else "and"
++        if "absorption" in allowed:
++            kept = [x for x in parts if not (isinstance(x, list) and x[0] == dual
++                    and any(y in parts for y in x[1:]))]
++            if kept and len(kept) < len(parts):
++                yield "absorption", kept[0] if len(kept) == 1 else [op] + kept
++        if "factoring" in allowed:
++            for i, left in enumerate(parts):
++                for j in range(i + 1, len(parts)):
++                    right = parts[j]
++                    if not (isinstance(left, list) and isinstance(right, list)
++                            and left[0] == dual and right[0] == dual):
++                        continue
++                    for common in left[1:]:
++                        if common not in right[1:]:
++                            continue
++                        a, b = list(left[1:]), list(right[1:])
++                        a.remove(common)
++                        b.remove(common)
++                        fold = lambda xs: xs[0] if len(xs) == 1 else [dual] + xs
++                        replacement = [dual, common, [op, fold(a), fold(b)]]
++                        yield "factoring", [op] + [x for k, x in enumerate(parts) if k not in (i, j)] + [replacement] if len(parts) > 2 else replacement
++    for i, part in enumerate(parts):
++        for rule, replacement in rewrites(part, allowed):
++            changed = list(expr)
++            changed[i + 1] = replacement
++            yield rule, changed
++
++
++def compress(source, metric="tokens", budget=128, max_worlds=65536, history=None):
++    validate(source, max_worlds)
++    if type(budget) is not int or budget < 0 or budget > 10000:
++        raise ValueError("budget must be an integer in 0..10000")
++    pinned = {"source_sha256": digest(source), "metric": metric,
++              "max_worlds": max_worlds, "engine_sha256": engine_hash()}
++    if history is None:
++        history = {"format": "skillwren-compression-search-1", "objective": pinned,
++                   "original": source, "attempts": [], "frontier": [source], "seen": [digest(source)]}
++    else:
++        # Reconstruct instead of trusting mutable checkpoints or supplied verdicts.
++        if history.get("objective") != pinned or history.get("original") != source:
++            raise ValueError("immutable objective or engine changed")
++        previous = history.get("attempts", [])
++        replay = compress(source, metric, len(previous), max_worlds)
++        if replay["history"] != history:
++            raise ValueError("search checkpoint does not match deterministic replay")
++        history = copy.deepcopy(history)
++    original_size = measure(source, metric)
++    accepted = [source] + [a["candidate"] for a in history["attempts"] if a["verdict"] == "PROVEN_EQUIVALENT"]
++    best = min(accepted, key=lambda p: (measure(p, metric), canonical(p)))
++    remaining = budget
++    allowed = set(source["rewrite_policy"]["allowed"])
++    seen = set(history["seen"])
++    while history["frontier"] and remaining:
++        parent = history["frontier"][0]
++        proposals = list(rewrites(parent["constraint"], allowed))
++        for rule, expression in proposals:
++            candidate = dict(parent, constraint=expression)
++            key = digest(candidate)
++            if key in seen:
++                continue
++            if not remaining:
++                break
++            seen.add(key)
++            history["seen"].append(key)
++            result = audit(source, candidate, max_worlds)
++            size = measure(candidate, metric)
++            history["attempts"].append({"rule": rule, "candidate": candidate,
++                "parent_sha256": digest(parent), "sha256": key, "size": size, **result})
++            remaining -= 1
++            if result["verdict"] == "PROVEN_EQUIVALENT":
++                history["frontier"].append(candidate)
++                if (size, canonical(candidate)) < (measure(best, metric), canonical(best)):
++                    best = candidate
++        if all(digest(dict(parent, constraint=e)) in seen for _, e in proposals):
++            history["frontier"].pop(0)
++    # Ties retain the original artifact, not a gratuitous rewrite.
++    improved = measure(best, metric) < original_size
++    if not improved:
++        best = source
++    certificate = {"format": "skillwren-finite-certificate-1", "objective": pinned,
++        "source": source, "candidate": best, "candidate_sha256": digest(best),
++        "metric": metric, "original_size": original_size, "candidate_size": measure(best, metric),
++        "strictly_smaller": improved, "audit": audit(source, best, max_worlds),
++        "derivation": history["attempts"],
++        "decision_risk": decision_certificate(source, best, max_worlds),
++        "state": "BRANCH_EXHAUSTED" if not history["frontier"] else "BUDGET_EXHAUSTED",
++        "resolution": "UNRESOLVED: arbitrary natural-language and deployed-model semantics"}
++    return {"certificate": certificate, "history": history}
++
++
++def engine_hash():
++    from . import finite_policy
++    return hashlib.sha256(Path(__file__).read_bytes() + Path(finite_policy.__file__).read_bytes()).hexdigest()
++
++
++def verify(certificate, source, candidate, lean=None):
++    pinned = certificate["objective"]
++    if (certificate.get("format") != "skillwren-finite-certificate-1"
++            or source != certificate["source"] or candidate != certificate["candidate"]
++            or digest(source) != pinned["source_sha256"]
++            or digest(candidate) != certificate["candidate_sha256"]
++            or pinned["engine_sha256"] != engine_hash()
++            or pinned["metric"] != certificate["metric"]):
++        raise ValueError("certificate/artifact/engine binding mismatch")
++    limit = pinned["max_worlds"]
++    result = audit(source, candidate, limit)
++    if result["verdict"] != "PROVEN_EQUIVALENT" or result != certificate["audit"]:
++        raise ValueError("equivalence audit failed")
++    before, after = measure(source, certificate["metric"]), measure(candidate, certificate["metric"])
++    if (before != certificate["original_size"] or after != certificate["candidate_size"]
++            or (after < before) != certificate["strictly_smaller"]
++            or after > before or decision_certificate(source, candidate, limit) != certificate["decision_risk"]):
++        raise ValueError("measurement or decision certificate failed")
++    # Authorization is about the applied derivation, not just mathematical truth.
++    known = {digest(source): source}
++    allowed = set(source["rewrite_policy"]["allowed"])
++    for step in certificate["derivation"]:
++        parent = known.get(step["parent_sha256"])
++        proposed = step["candidate"]
++        if (parent is None or step["rule"] not in allowed or
++                not any(rule == step["rule"] and dict(parent, constraint=expr) == proposed
++                        for rule, expr in rewrites(parent["constraint"], allowed))):
++            raise ValueError("unauthorized derivation")
++        checked = audit(source, proposed, limit)
++        if (step["sha256"] != digest(proposed) or step["size"] != measure(proposed, certificate["metric"])
++                or any(step.get(key) != value for key, value in checked.items())):
++            raise ValueError("invalid derivation evidence")
++        if checked["verdict"] == "PROVEN_EQUIVALENT":
++            known[digest(proposed)] = proposed
++    if digest(candidate) not in known:
++        raise ValueError("candidate has no authorized derivation")
++    if "formal" in certificate:
++        if lean is None:
++            raise ValueError("formal receipt requires a caller-trusted --lean for independent replay")
++        from .policy_proof import prove
++        if prove(source, candidate, lean, limit) != certificate["formal"]:
++            raise ValueError("formal receipt does not match independent kernel replay")
++    return {"verified": True, "strictly_smaller": after < before, "audit": result}
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("source", type=Path)
++    parser.add_argument("--output", type=Path)
++    parser.add_argument("--metric", choices=("tokens", "bytes"), default="tokens")
++    parser.add_argument("--budget", type=int, default=128)
++    parser.add_argument("--max-worlds", type=int, default=65536)
++    parser.add_argument("--resume", action="store_true")
++    parser.add_argument("--verify", type=Path, help="certificate to replay against source and --candidate")
++    parser.add_argument("--candidate", type=Path)
++    parser.add_argument("--lean", type=Path, help="caller-trusted Lean 4 executable; certify or replay exact obligations")
++    args = parser.parse_args(argv)
++    lock = None
++    lockpath = None
++    try:
++        source = json.loads(args.source.read_text(encoding="utf-8-sig"))
++        if args.verify:
++            if not args.candidate:
++                raise ValueError("--verify requires --candidate")
++            result = verify(json.loads(args.verify.read_text(encoding="utf-8")), source,
++                            json.loads(args.candidate.read_text(encoding="utf-8")), args.lean)
++            print(json.dumps(result, indent=2))
++            return 0
++        if not args.output:
++            raise ValueError("compression requires a new --output directory")
++        args.output.parent.mkdir(parents=True, exist_ok=True)
++        lockpath = args.output.with_name(args.output.name + ".lock")
++        lock = lockpath.open("x", encoding="utf-8")
++        lock.write(str(os.getpid()))
++        lock.flush()
++        history = None
++        if args.resume:
++            history = json.loads((args.output / "search.json").read_text(encoding="utf-8"))
++        elif args.output.exists():
++            raise ValueError("output exists; use --resume to replay a checkpoint")
++        result = compress(source, args.metric, args.budget, args.max_worlds, history)
++        if args.lean:
++            from .policy_proof import prove
++            result["certificate"]["formal"] = prove(source, result["certificate"]["candidate"],
++                                                  args.lean, args.max_worlds)
++        args.output.mkdir(parents=True, exist_ok=args.resume)
++        for name, value in (("policy.json", result["certificate"]["candidate"]),
++                            ("certificate.json", result["certificate"]), ("search.json", result["history"])):
++            path = args.output / name
++            temporary = path.with_suffix(".pending")
++            temporary.write_text(canonical(value) + "\n", encoding="utf-8")
++            temporary.replace(path)
++        print(json.dumps({k: v for k, v in result["certificate"].items()
++                          if k not in {"source", "candidate", "derivation", "formal"}}, indent=2))
++        return 0
++    except (ValueError, OSError, KeyError, TypeError, RecursionError, subprocess.SubprocessError) as exc:
++        print("OPEN: " + str(exc), file=sys.stderr)
++        return 2
++    finally:
++        if lock is not None:
++            lock.close()
++            lockpath.unlink()
+--- /dev/null
++++ b/src/skillwren/policy_proof.py
+@@ -0,0 +1,78 @@
++"""Emit closed Boolean equivalence obligations and execute a caller-trusted Lean.
++
++The receipt never chooses an executable. The verifier supplies its own Lean
++path, regenerates the statement and reruns the kernel. No injected proof text.
++"""
++import hashlib
++from pathlib import Path
++import re
++import subprocess
++import tempfile
++
++from .finite_policy import audit, validate
++
++
++CORE = """import Std
++
++def Optimal {O A L : Type} [LE L] (S : O → A → Prop) (loss : O → A → L)
++    (o : O) (a : A) : Prop := S o a ∧ ∀ b, S o b → loss o a ≤ loss o b
++
++theorem sameOptimal {O A L : Type} [LE L] (S T : O → A → Prop)
++    (h : ∀ o a, S o a ↔ T o a) (loss : O → A → L) (o : O) (a : A) :
++    Optimal S loss o a ↔ Optimal T loss o a := by
++  constructor
++  · rintro ⟨ha, hm⟩
++    exact ⟨(h o a).mp ha, fun b hb => hm b ((h o b).mpr hb)⟩
++  · rintro ⟨ha, hm⟩
++    exact ⟨(h o a).mpr ha, fun b hb => hm b ((h o b).mp hb)⟩
++
++"""
++
++
++def obligation(source, candidate, max_worlds=65536):
++    validate(source, max_worlds)
++    if audit(source, candidate, max_worlds)["verdict"] != "PROVEN_EQUIVALENT":
++        raise ValueError("formal proof requires an equivalent typed policy")
++    names = {name: "_v" + str(i) for i, name in enumerate(sorted(source["variables"]))}
++
++    def emit(expr):
++        if type(expr) is bool:
++            return "true" if expr else "false"
++        if isinstance(expr, str):
++            return names[expr]
++        if expr[0] == "not":
++            return "(!" + emit(expr[1]) + ")"
++        op = " && " if expr[0] == "and" else " || "
++        return "(" + op.join(emit(x) for x in expr[1:]) + ")"
++    binders = " ".join(names.values())
++    return (CORE + "theorem Certified : ∀ (" + binders + " : Bool), "
++            + emit(source["constraint"]) + " = " + emit(candidate["constraint"])
++            + " := by decide\n\n#print axioms Certified\n#print axioms sameOptimal\n")
++
++
++def prove(source, candidate, lean, max_worlds=65536):
++    lean = Path(lean).resolve(strict=True)
++    text = obligation(source, candidate, max_worlds)
++    version = subprocess.run([str(lean), "--version"], capture_output=True, text=True,
++                             encoding="utf-8", timeout=15, check=True).stdout.strip()
++    if not version.startswith("Lean (version 4."):
++        raise ValueError("expected Lean 4")
++    with tempfile.TemporaryDirectory(prefix="skillwren-policy-proof-") as folder:
++        path = Path(folder) / "Proof.lean"
++        path.write_text(text, encoding="utf-8")
++        result = subprocess.run([str(lean), str(path)], capture_output=True,
++                                encoding="utf-8", timeout=60)
++    output = result.stdout + result.stderr
++    if result.returncode or "sorryAx" in output or "error:" in output:
++        raise ValueError("Lean did not certify the obligation: " + output[:2000])
++    declarations = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", output)
++    empty = output.count("does not depend on any axioms")
++    allowed = {"propext", "Classical.choice", "Quot.sound"}
++    if len(declarations) + empty != 2 or any(
++            a.strip() not in allowed for group in declarations for a in group.split(",") if a.strip()):
++        raise ValueError("missing or unexpected Lean axiom report")
++    return {"checker": "Lean 4 kernel", "version": version,
++            "binary_sha256": hashlib.sha256(lean.read_bytes()).hexdigest(),
++            "source_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
++            "source": text, "output": output,
++            "scope": "Boolean constraint equivalence and optimal-decision transport theorem"}
+--- /dev/null
++++ b/tests/test_policy_compression.py
+@@ -0,0 +1,167 @@
++import copy
++import itertools
++import json
++
++import pytest
++
++from skillwren.finite_policy import FORMAT, RULES, audit, decisions, decision_certificate, evaluate, validate
++from skillwren.policy_compression import compress, verify, rewrites
++
++
++def policy(expr):
++    return {"format": FORMAT, "scope": {"regime": "offline-test", "authority": "owner"},
++            "variables": {name: {"type": "Bool", "role": role}
++                          for name, role in (("approved", "obs"), ("write", "choice"), ("ready", "param"))},
++            "constraint": expr, "objective": {"loss_domain": "declared actions only"},
++            "rewrite_policy": {"allowed": sorted(RULES), "optimize": ["constraint"]}}
++
++
++def test_compression_replays_and_executes():
++    p = policy(["and", ["or", "approved", ["and", "approved", "write"]], True,
++                ["not", ["not", "ready"]], ["or", "write", "write"]])
++    result = compress(p, "bytes")
++    c = result["certificate"]
++    assert c["strictly_smaller"] and c["candidate_size"] < c["original_size"]
++    assert verify(c, p, c["candidate"])["verified"]
++    for approved, ready in itertools.product((False, True), repeat=2):
++        obs = {"approved": approved, "ready": ready}
++        assert decisions(p, obs) == decisions(c["candidate"], obs)
++    assert c["decision_risk"]["verdict"] == "OPEN"
++
++
++def test_roles_scope_objective_are_immutable():
++    p = policy("approved")
++    for key, value in (("scope", {}), ("objective", {"new": "goal"}),
++                       ("variables", dict(p["variables"], write={"role": "obs", "type": "Bool"}))):
++        q = copy.deepcopy(p)
++        q[key] = value or {"changed": True}
++        assert audit(p, q)["verdict"] == "REDESIGN"
++
++
++def test_exclusive_inclusion_and_counterexample():
++    p = policy("approved")
++    assert audit(p, policy(["and", "approved", "write"]))["verdict"] == "CERTIFIED_TIGHTENING"
++    assert audit(p, policy(["or", "approved", "write"]))["verdict"] == "CERTIFIED_RELAXATION"
++    assert audit(p, policy(["not", "approved"]))["verdict"] == "REFUTED"
++    assert audit(p, p)["verdict"] == "PROVEN_EQUIVALENT"
++    assert decision_certificate(p, policy(True))["verdict"] == "OPEN"
++
++
++def test_bounded_checks_never_sample_or_optimize_observations():
++    p = policy("approved")
++    with pytest.raises(ValueError, match="budget"):
++        audit(p, p, max_worlds=4)
++    for obs in ({"ready": True}, {"approved": 1, "ready": True},
++                {"approved": True, "ready": True, "write": False}):
++        with pytest.raises(ValueError):
++            decisions(p, obs)
++
++
++@pytest.mark.parametrize("expr", [["or"], ["eq", True, True], ["not", True, False], "missing", 1,
++                                  {"let": "capture"}, ["and", "approved", {"python": "exec"}]])
++def test_unsupported_expressions_fail_closed(expr):
++    with pytest.raises(ValueError):
++        validate(policy(expr))
++
++
++def test_resume_is_exact_and_detects_tampering():
++    p = policy(["and", ["not", ["not", "approved"]], True, True, "write"])
++    first = compress(p, "bytes", 1)
++    resumed = compress(p, "bytes", 10, history=first["history"])
++    full = compress(p, "bytes", 11)
++    assert resumed == full
++    changed = copy.deepcopy(first["history"])
++    changed["attempts"][0]["size"] = 0
++    with pytest.raises(ValueError, match="replay"):
++        compress(p, "bytes", history=changed)
++    with pytest.raises(ValueError, match="objective"):
++        compress(policy(False), "bytes", history=first["history"])
++
++
++def test_fallback_and_denied_rewrites():
++    p = policy(["and", "approved", "approved"])
++    p["rewrite_policy"]["allowed"] = []
++    c = compress(p, "bytes")["certificate"]
++    assert not c["strictly_smaller"] and c["candidate"] == p
++    assert verify(c, p, p)["verified"]
++
++
++def test_certificate_cannot_attest_its_own_success():
++    p = policy(["or", "approved", "approved"])
++    c = compress(p, "bytes")["certificate"]
++    for field, value in (("candidate_size", 0), ("derivation", []), ("candidate_sha256", "fake")):
++        bad = copy.deepcopy(c)
++        bad[field] = value
++        with pytest.raises(ValueError):
++            verify(bad, p, c["candidate"])
++    bad = copy.deepcopy(c)
++    bad["candidate"]["constraint"] = True
++    with pytest.raises(ValueError):
++        verify(bad, p, bad["candidate"])
++
++
++def test_all_local_rules_against_independent_worlds():
++    atoms = [True, False, "approved", "write", "ready"]
++    inner = [[op, a, b] for op in ("and", "or") for a in atoms for b in atoms]
++    expressions = [[op, a, b] for op in ("and", "or") for a in atoms + inner for b in atoms]
++    expressions += [["not", ["not", x]] for x in atoms + inner]
++    expressions += [["or", ["and", "approved", "write"], ["and", "approved", "ready"]]]
++    for expr in expressions:
++        for rule, changed in rewrites(expr, RULES):
++            assert audit(policy(expr), policy(changed))["verdict"] == "PROVEN_EQUIVALENT", (rule, expr, changed)
++
++
++def test_auxiliary_is_existential_and_parameters_fixed():
++    p = policy(["and", "ready", ["or", "write", "approved"]])
++    p["variables"]["approved"]["role"] = "aux"
++    assert decisions(p, {"ready": True}) == [{"write": False}, {"write": True}]
++    assert decisions(p, {"ready": False}) == []
++
++
++def test_risk_bound_requires_feasible_decisions_in_every_context():
++    total = policy(["or", ["not", "write"], ["and", "approved", "ready"]])
++    assert decision_certificate(total, total)["deficiency_upper"] == "0"
++    infeasible = policy(["and", "approved", "write"])
++    assert decision_certificate(infeasible, infeasible)["verdict"] == "OPEN"
++
++
++def test_cli_and_mutated_artifact(tmp_path):
++    from skillwren.cli import dispatch
++    p = policy(["and", "approved", "approved"])
++    source, output = tmp_path / "source.json", tmp_path / "out"
++    source.write_text(json.dumps(p), encoding="utf-8")
++    assert dispatch(["skillwren", "compress", str(source), "--metric", "bytes", "--output", str(output)]) == 0
++    argv = ["skillwren", "compress", str(source), "--verify", str(output / "certificate.json"),
++            "--candidate", str(output / "policy.json")]
++    assert dispatch(argv) == 0
++    altered = json.loads((output / "policy.json").read_text())
++    altered["constraint"] = False
++    (output / "policy.json").write_text(json.dumps(altered))
++    assert dispatch(argv) == 2
++
++
++def test_formal_obligation_is_closed_and_injection_free():
++    from skillwren.policy_proof import obligation
++    p = policy(["and", "approved", "approved"])
++    text = obligation(p, policy("approved"))
++    assert "∀ (_v0 _v1 _v2 : Bool)" in text and "by decide" in text
++    assert "sorry" not in text and "axiom " not in text
++    with pytest.raises(ValueError):
++        obligation(p, policy(False))
++
++
++def test_real_lean_and_independent_receipt_replay():
++    from pathlib import Path
++    from skillwren.policy_proof import prove
++    lean = Path.home() / ".elan/toolchains/leanprover--lean4---v4.33.1/bin/lean.exe"
++    if not lean.is_file():
++        pytest.skip("pinned local Lean is unavailable")
++    p = policy(["and", "approved", "approved"])
++    c = compress(p, "bytes")["certificate"]
++    c["formal"] = prove(p, c["candidate"], lean)
++    assert verify(c, p, c["candidate"], lean)["verified"]
++    with pytest.raises(ValueError, match="caller-trusted"):
++        verify(c, p, c["candidate"])
++    c["formal"]["source"] += "\n-- tampered"
++    with pytest.raises(ValueError, match="replay"):
++        verify(c, p, c["candidate"], lean)
+--- /dev/null
++++ b/docs/current/design/finite-policy-compression.md
+@@ -0,0 +1,99 @@
++# Certified finite-policy compression
++
++`skillwren compress` completes a restricted, executable compression pipeline:
++generate symbolic candidates, test them against every declared Boolean world,
++measure the complete serialized artifact, select a strictly smaller equivalent
++candidate, retain all attempts, resume and independently replay the certificate.
++It does not translate arbitrary prose into formal semantics.
++
++## Run
++
++```text
++skillwren compress examples/optimization/finite-policy.json --output out/finite --metric tokens
++skillwren compress examples/optimization/finite-policy.json --output out/finite --metric tokens --resume --budget 128
++skillwren compress examples/optimization/finite-policy.json --verify out/finite/certificate.json --candidate out/finite/policy.json
++```
++
++Use `--lean PATH_TO_LEAN4` on both creation and verification to execute Lean on
++the exact equivalence obligation and a general optimal-decision transport
++theorem. The verifier selects its trusted executable; certificate data cannot
++select one. Checker errors, missing dependencies and exhausted world budgets
++produce `OPEN` with exit 2. The Python implementation and prose interpretation
++are not formally verified by these theorems.
++
++Tokens use exact `cl100k_base` with the optional `tokens` dependency; there is no
++estimated-token fallback. `--metric bytes` uses canonical UTF-8 bytes. Both
++baseline and candidate include the same scope, variables, objective and rewrite
++authority, with identical canonical JSON formatting. Evidence files are separate
++offline audit artifacts, not hidden context needed to execute `policy.json`.
++Sending the full certificate to a model would add context and is not counted as
++a compressed deployment. No beneficial rewrite means unchanged original output.
++
++## Typed meaning and authorization
++
++The versioned format has Boolean `obs`, `choice`, `aux` and `param` declarations.
++Its constraint grammar is Boolean literals, declared variable names, unary
++`not`, and n-ary `and`/`or` (at least two operands). There are no binders, textual
++macros, untyped substitutions, embedded code or variable elimination. Capture
++cannot occur in this grammar. Only the constraint may change and only the
++explicitly authorized constant, idempotence, double-negation, absorption and
++factoring rules may be applied. Scope, roles, types and objectives remain fixed.
++
++`finite_policy.decisions(policy, observations)` is the executable semantics:
++the caller supplies every observation and parameter as a Boolean; the evaluator
++returns all feasible choice assignments, existentially projecting auxiliary
++variables. Observations and parameters are never optimized. An empty result is
++infeasibility, not permission to choose an arbitrary action.
++
++The independent auditor compares the complete relation, stronger than comparing
++its auxiliary projection. Exclusive verdicts distinguish equality, strict
++tightening, strict relaxation, incompatible redesign and crossing relations
++with witnesses. Only equality qualifies for this compressor. Every candidate's
++authorized derivation is replayed, not just its final truth table. Whole-domain
++checks have a hard ceiling of 65,536 worlds. Adaptive proposal reuse is sound
++here because checks are exhaustive, rather than statistical evidence reused as
++independent trials.
++
++## Decision-theoretic scope
++
++Equal relations and an unchanged observation/action interface yield identical
++feasible decision rules. With the same observation distribution, their risk
++sets and optimal risks coincide for every finite real loss on that declared
++domain, provided every observation has a feasible action. The implementation
++checks that condition; otherwise the risk certificate stays `OPEN` with a
++witness, rather than subtracting undefined optimal risks. For a total policy,
++the finite-model deficiency bound is exactly zero. This does not
++bound the behavior of an LLM interpreting two different text prompts; it is not
++an estimator for the general DPCC deployed-model deficiency. `select` and
++`certgate` keep their existing model-evidence requirements. This certificate
++cannot be substituted for empirical model measurements or host guard wiring.
++
++## Persistence and trust
++
++`search.json` pins the original canonical policy, full metric and engine bytes.
++Resumption reconstructs the deterministic attempt sequence and rejects altered
++goals, results or engine versions. A changed engine needs an explicit new run.
++`policy.json` is the executable output, and `certificate.json` binds source,
++candidate, measured sizes, derivation, complete audit and optional Lean receipt.
++Per-file atomic replacement writes the checkpoint last. An exclusive sibling
++lock prevents concurrent writers. After an interrupted process, an owner may
++remove a stale lock only after verifying no writer is alive; incomplete output
++without a checkpoint needs a new output directory. These are reproducibility
++controls, not a substitute for host-owned deployment storage.
++
++## Research grounding and remaining obligations
++
++[LLMLingua-2](https://arxiv.org/abs/2403.12968) studies learned token pruning and
++empirical downstream performance. It does not provide this pipeline's exact
++Boolean equivalence guarantee or a universal natural-language guarantee.
++[Prover-Verifier Games](https://arxiv.org/abs/2108.12099) motivates separating
++proposal incentives from verification. Here that translates into a fixed
++independent auditor, counterexample witnesses, immutable correctness fixtures
++and a size reward available only after correctness. This implementation does
++not train game-theoretic agents or claim an equilibrium result.
++
++The wider semantic-sufficiency program remains unresolved: arbitrary prose
++grounding, richer typed domains and capture-avoiding binders, inferred deficiency
++bounds for actual model behavior, infinite-family proofs, sequential statistical
++certification and deployment scope. Finite-policy success closes none of those
++by implication. Original objective preservation remains the resolution gate.
+--- /dev/null
++++ b/examples/optimization/finite-policy.json
+@@ -0,0 +1,19 @@
++{
++  "format": "skillwren-finite-policy-1",
++  "scope": {"regime": "offline-finite-policy", "authority": "owner", "dependencies": []},
++  "variables": {
++    "approved": {"role": "obs", "type": "Bool"},
++    "ready": {"role": "param", "type": "Bool"},
++    "write": {"role": "choice", "type": "Bool"}
++  },
++  "constraint": ["and", true,
++    ["or", ["not", "write"], ["and", "approved", "ready"]],
++    ["not", ["not", ["or", ["not", "write"], ["and", "approved", "ready"]]]],
++    ["or", ["or", ["not", "write"], ["and", "approved", "ready"]],
++      ["and", ["or", ["not", "write"], ["and", "approved", "ready"]], "write"]]],
++  "objective": {"loss_domain": "declared Boolean decisions only"},
++  "rewrite_policy": {
++    "allowed": ["constants", "idempotence", "double-negation", "absorption", "factoring"],
++    "optimize": ["constraint"]
++  }
++}
+--- a/plugin/skillwren/lib/skillwren/cli.py
++++ b/plugin/skillwren/lib/skillwren/cli.py
+@@ -8,6 +8,7 @@
+ import sys
+ 
+ COMMANDS = {
++    "compress": ("skillwren.policy_compression", "synthesize and certify a smaller finite Boolean policy"),
+     "audit": ("skillwren.audit", "check retained log against an independent checkpoint"),
+     "sandbox": ("skillwren.sandbox", "observe command effects in an offline restricted container"),
+     "guard": ("skillwren.guard", "mediate policy-bound verified writes on a trusted host"),
+--- /dev/null
++++ b/plugin/skillwren/lib/skillwren/finite_policy.py
+@@ -0,0 +1,151 @@
++"""Finite Boolean policies: typed validation and an independent exact auditor.
++
++No natural-language interpretation, model-performance or deployment claim is
++implied. Enumeration is deliberately bounded and never samples.
++"""
++import itertools
++import json
++
++
++FORMAT = "skillwren-finite-policy-1"
++ROLES = {"obs", "choice", "aux", "param"}
++RULES = {"constants", "idempotence", "double-negation", "absorption", "factoring"}
++
++
++def canonical(value):
++    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
++
++
++def validate(policy, max_worlds=65536):
++    required = {"format", "scope", "variables", "constraint", "objective", "rewrite_policy"}
++    if not isinstance(policy, dict) or set(policy) != required or policy["format"] != FORMAT:
++        raise ValueError("unsupported policy format or fields")
++    if not isinstance(policy["scope"], dict) or not policy["scope"]:
++        raise ValueError("explicit nonempty scope is required")
++    if not isinstance(policy["objective"], dict):
++        raise ValueError("objective must be explicit")
++    variables = policy["variables"]
++    if not isinstance(variables, dict) or not variables:
++        raise ValueError("variables must be a nonempty mapping")
++    for name, spec in variables.items():
++        if not isinstance(name, str) or not name.isidentifier():
++            raise ValueError("invalid variable name")
++        if not isinstance(spec, dict) or set(spec) != {"role", "type"}:
++            raise ValueError("invalid variable declaration")
++        if spec["role"] not in ROLES or spec["type"] != "Bool":
++            raise ValueError("only declared Boolean variables with typed roles are supported")
++    if type(max_worlds) is not int or not 1 <= max_worlds <= 65536:
++        raise ValueError("max_worlds must be in 1..65536")
++    if 2 ** len(variables) > max_worlds:
++        raise ValueError("OPEN: exhaustive world budget exceeded")
++    permission = policy["rewrite_policy"]
++    if (not isinstance(permission, dict) or set(permission) != {"allowed", "optimize"}
++            or permission["optimize"] != ["constraint"]
++            or not isinstance(permission["allowed"], list)
++            or any(not isinstance(rule, str) or rule not in RULES for rule in permission["allowed"])):
++        raise ValueError("unsupported rewrite authorization")
++    count = [0]
++
++    def check(expr, depth=0):
++        count[0] += 1
++        if depth > 64 or count[0] > 10000:
++            raise ValueError("expression size/depth budget exceeded")
++        if type(expr) is bool:
++            return
++        if isinstance(expr, str) and expr in variables:
++            return
++        if not isinstance(expr, list) or not expr or not isinstance(expr[0], str):
++            raise ValueError("invalid Boolean expression")
++        op = expr[0]
++        if op not in {"not", "and", "or"} or (len(expr) != 2 if op == "not" else len(expr) < 3):
++            raise ValueError("unsupported operator or arity")
++        for part in expr[1:]:
++            check(part, depth + 1)
++    check(policy["constraint"])
++    return policy
++
++
++def evaluate(expr, world):
++    if type(expr) is bool:
++        return expr
++    if isinstance(expr, str):
++        value = world[expr]
++        if type(value) is not bool:
++            raise ValueError("Boolean assignment required")
++        return value
++    if expr[0] == "not":
++        return not evaluate(expr[1], world)
++    values = [evaluate(x, world) for x in expr[1:]]
++    return all(values) if expr[0] == "and" else any(values)
++
++
++def assignments(names):
++    names = sorted(names)
++    for values in itertools.product((False, True), repeat=len(names)):
++        yield dict(zip(names, values))
++
++
++def audit(source, candidate, max_worlds=65536):
++    """Compare complete constraints, a stronger gate than aux projection.
++
++    Equality includes all metadata. Strict inclusion gets an exclusive verdict;
++    it is never permission to deploy an equivalent rewrite.
++    """
++    validate(source, max_worlds)
++    validate(candidate, max_worlds)
++    metadata = lambda p: {k: v for k, v in p.items() if k != "constraint"}
++    if metadata(source) != metadata(candidate):
++        return {"verdict": "REDESIGN", "reason": "scope, roles, objective or authority changed"}
++    removed, added = [], []
++    checked = 0
++    for world in assignments(source["variables"]):
++        before = evaluate(source["constraint"], world)
++        after = evaluate(candidate["constraint"], world)
++        checked += 1
++        if before and not after and not removed:
++            removed.append(world)
++        if after and not before and not added:
++            added.append(world)
++    verdict = ("PROVEN_EQUIVALENT" if not removed and not added else
++               "CERTIFIED_TIGHTENING" if removed and not added else
++               "CERTIFIED_RELAXATION" if added and not removed else "REFUTED")
++    return {"verdict": verdict, "worlds_checked": checked,
++            "removed_witness": removed, "added_witness": added,
++            "scope": "complete declared finite Boolean relation, not LLM behavior"}
++
++
++def decisions(policy, observations, max_worlds=65536):
++    """Execute the finite policy; existentially quantify aux variables.
++
++    Observed and parameter values must be supplied, never optimized.
++    """
++    validate(policy, max_worlds)
++    variables = policy["variables"]
++    fixed = {n for n, s in variables.items() if s["role"] in {"obs", "param"}}
++    if set(observations) != fixed or any(type(v) is not bool for v in observations.values()):
++        raise ValueError("supply exactly the observed and parameter Boolean values")
++    choice = {n for n, s in variables.items() if s["role"] == "choice"}
++    auxiliary = {n for n, s in variables.items() if s["role"] == "aux"}
++    result = []
++    for action in assignments(choice):
++        if any(evaluate(policy["constraint"], dict(observations, **action, **extra))
++               for extra in assignments(auxiliary)):
++            result.append(action)
++    return result
++
++
++def decision_certificate(source, candidate, max_worlds=65536):
++    result = audit(source, candidate, max_worlds)
++    if result["verdict"] != "PROVEN_EQUIVALENT":
++        return {"verdict": "OPEN", "reason": "complete relation equivalence is required"}
++    fixed = {n for n, spec in source["variables"].items() if spec["role"] in {"obs", "param"}}
++    for world in assignments(fixed):
++        if not decisions(source, world, max_worlds):
++            return {"verdict": "OPEN", "reason": "an observation has no feasible action; optimal finite risk is undefined",
++                    "witness": world}
++    return {"verdict": "PROVEN_EQUIVALENT", "deficiency_upper": "0",
++            "loss_class": "all finite real losses on identical declared observation/action domains",
++            "risk_model": "same feasible decision rules with the same observation distribution",
++            "argument": "equal relations imply identical projected feasible actions and decision rules; "
++                        "therefore their risk sets and optimal risks coincide",
++            "excluded": ["LLM text interpretation", "undeclared actions", "changed observation channels"]}
+--- /dev/null
++++ b/plugin/skillwren/lib/skillwren/policy_compression.py
+@@ -0,0 +1,254 @@
++"""Proof-gated, resumable compression of executable finite Boolean policies."""
++import argparse
++import copy
++import hashlib
++import json
++import os
++from pathlib import Path
++import sys
++import subprocess
++
++from .finite_policy import RULES, audit, canonical, decision_certificate, validate
++
++
++def digest(value):
++    return hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
++
++
++def measure(policy, metric):
++    text = canonical(policy)
++    if metric == "bytes":
++        return len(text.encode("utf-8"))
++    if metric != "tokens":
++        raise ValueError("unsupported metric")
++    try:
++        import tiktoken
++    except ImportError as exc:
++        raise ValueError("exact tokens require the optional tiktoken dependency") from exc
++    return len(tiktoken.get_encoding("cl100k_base").encode(text, disallowed_special=()))
++
++
++def rewrites(expr, allowed):
++    """Local algebraic proposals; the independent truth-table auditor is final."""
++    if not isinstance(expr, list):
++        return
++    op, parts = expr[0], expr[1:]
++    if op == "not":
++        x = parts[0]
++        if "constants" in allowed and type(x) is bool:
++            yield "constants", not x
++        if "double-negation" in allowed and isinstance(x, list) and x[0] == "not":
++            yield "double-negation", x[1]
++    else:
++        if "constants" in allowed:
++            absorbing, neutral = (False, True) if op == "and" else (True, False)
++            if any(type(x) is bool and x == absorbing for x in parts):
++                yield "constants", absorbing
++            kept = [x for x in parts if not (type(x) is bool and x == neutral)]
++            if len(kept) != len(parts):
++                yield "constants", neutral if not kept else kept[0] if len(kept) == 1 else [op] + kept
++        if "idempotence" in allowed:
++            unique = []
++            for x in parts:
++                if x not in unique:
++                    unique.append(x)
++            if len(unique) != len(parts):
++                yield "idempotence", unique[0] if len(unique) == 1 else [op] + unique
++        dual = "or" if op == "and" else "and"
++        if "absorption" in allowed:
++            kept = [x for x in parts if not (isinstance(x, list) and x[0] == dual
++                    and any(y in parts for y in x[1:]))]
++            if kept and len(kept) < len(parts):
++                yield "absorption", kept[0] if len(kept) == 1 else [op] + kept
++        if "factoring" in allowed:
++            for i, left in enumerate(parts):
++                for j in range(i + 1, len(parts)):
++                    right = parts[j]
++                    if not (isinstance(left, list) and isinstance(right, list)
++                            and left[0] == dual and right[0] == dual):
++                        continue
++                    for common in left[1:]:
++                        if common not in right[1:]:
++                            continue
++                        a, b = list(left[1:]), list(right[1:])
++                        a.remove(common)
++                        b.remove(common)
++                        fold = lambda xs: xs[0] if len(xs) == 1 else [dual] + xs
++                        replacement = [dual, common, [op, fold(a), fold(b)]]
++                        yield "factoring", [op] + [x for k, x in enumerate(parts) if k not in (i, j)] + [replacement] if len(parts) > 2 else replacement
++    for i, part in enumerate(parts):
++        for rule, replacement in rewrites(part, allowed):
++            changed = list(expr)
++            changed[i + 1] = replacement
++            yield rule, changed
++
++
++def compress(source, metric="tokens", budget=128, max_worlds=65536, history=None):
++    validate(source, max_worlds)
++    if type(budget) is not int or budget < 0 or budget > 10000:
++        raise ValueError("budget must be an integer in 0..10000")
++    pinned = {"source_sha256": digest(source), "metric": metric,
++              "max_worlds": max_worlds, "engine_sha256": engine_hash()}
++    if history is None:
++        history = {"format": "skillwren-compression-search-1", "objective": pinned,
++                   "original": source, "attempts": [], "frontier": [source], "seen": [digest(source)]}
++    else:
++        # Reconstruct instead of trusting mutable checkpoints or supplied verdicts.
++        if history.get("objective") != pinned or history.get("original") != source:
++            raise ValueError("immutable objective or engine changed")
++        previous = history.get("attempts", [])
++        replay = compress(source, metric, len(previous), max_worlds)
++        if replay["history"] != history:
++            raise ValueError("search checkpoint does not match deterministic replay")
++        history = copy.deepcopy(history)
++    original_size = measure(source, metric)
++    accepted = [source] + [a["candidate"] for a in history["attempts"] if a["verdict"] == "PROVEN_EQUIVALENT"]
++    best = min(accepted, key=lambda p: (measure(p, metric), canonical(p)))
++    remaining = budget
++    allowed = set(source["rewrite_policy"]["allowed"])
++    seen = set(history["seen"])
++    while history["frontier"] and remaining:
++        parent = history["frontier"][0]
++        proposals = list(rewrites(parent["constraint"], allowed))
++        for rule, expression in proposals:
++            candidate = dict(parent, constraint=expression)
++            key = digest(candidate)
++            if key in seen:
++                continue
++            if not remaining:
++                break
++            seen.add(key)
++            history["seen"].append(key)
++            result = audit(source, candidate, max_worlds)
++            size = measure(candidate, metric)
++            history["attempts"].append({"rule": rule, "candidate": candidate,
++                "parent_sha256": digest(parent), "sha256": key, "size": size, **result})
++            remaining -= 1
++            if result["verdict"] == "PROVEN_EQUIVALENT":
++                history["frontier"].append(candidate)
++                if (size, canonical(candidate)) < (measure(best, metric), canonical(best)):
++                    best = candidate
++        if all(digest(dict(parent, constraint=e)) in seen for _, e in proposals):
++            history["frontier"].pop(0)
++    # Ties retain the original artifact, not a gratuitous rewrite.
++    improved = measure(best, metric) < original_size
++    if not improved:
++        best = source
++    certificate = {"format": "skillwren-finite-certificate-1", "objective": pinned,
++        "source": source, "candidate": best, "candidate_sha256": digest(best),
++        "metric": metric, "original_size": original_size, "candidate_size": measure(best, metric),
++        "strictly_smaller": improved, "audit": audit(source, best, max_worlds),
++        "derivation": history["attempts"],
++        "decision_risk": decision_certificate(source, best, max_worlds),
++        "state": "BRANCH_EXHAUSTED" if not history["frontier"] else "BUDGET_EXHAUSTED",
++        "resolution": "UNRESOLVED: arbitrary natural-language and deployed-model semantics"}
++    return {"certificate": certificate, "history": history}
++
++
++def engine_hash():
++    from . import finite_policy
++    return hashlib.sha256(Path(__file__).read_bytes() + Path(finite_policy.__file__).read_bytes()).hexdigest()
++
++
++def verify(certificate, source, candidate, lean=None):
++    pinned = certificate["objective"]
++    if (certificate.get("format") != "skillwren-finite-certificate-1"
++            or source != certificate["source"] or candidate != certificate["candidate"]
++            or digest(source) != pinned["source_sha256"]
++            or digest(candidate) != certificate["candidate_sha256"]
++            or pinned["engine_sha256"] != engine_hash()
++            or pinned["metric"] != certificate["metric"]):
++        raise ValueError("certificate/artifact/engine binding mismatch")
++    limit = pinned["max_worlds"]
++    result = audit(source, candidate, limit)
++    if result["verdict"] != "PROVEN_EQUIVALENT" or result != certificate["audit"]:
++        raise ValueError("equivalence audit failed")
++    before, after = measure(source, certificate["metric"]), measure(candidate, certificate["metric"])
++    if (before != certificate["original_size"] or after != certificate["candidate_size"]
++            or (after < before) != certificate["strictly_smaller"]
++            or after > before or decision_certificate(source, candidate, limit) != certificate["decision_risk"]):
++        raise ValueError("measurement or decision certificate failed")
++    # Authorization is about the applied derivation, not just mathematical truth.
++    known = {digest(source): source}
++    allowed = set(source["rewrite_policy"]["allowed"])
++    for step in certificate["derivation"]:
++        parent = known.get(step["parent_sha256"])
++        proposed = step["candidate"]
++        if (parent is None or step["rule"] not in allowed or
++                not any(rule == step["rule"] and dict(parent, constraint=expr) == proposed
++                        for rule, expr in rewrites(parent["constraint"], allowed))):
++            raise ValueError("unauthorized derivation")
++        checked = audit(source, proposed, limit)
++        if (step["sha256"] != digest(proposed) or step["size"] != measure(proposed, certificate["metric"])
++                or any(step.get(key) != value for key, value in checked.items())):
++            raise ValueError("invalid derivation evidence")
++        if checked["verdict"] == "PROVEN_EQUIVALENT":
++            known[digest(proposed)] = proposed
++    if digest(candidate) not in known:
++        raise ValueError("candidate has no authorized derivation")
++    if "formal" in certificate:
++        if lean is None:
++            raise ValueError("formal receipt requires a caller-trusted --lean for independent replay")
++        from .policy_proof import prove
++        if prove(source, candidate, lean, limit) != certificate["formal"]:
++            raise ValueError("formal receipt does not match independent kernel replay")
++    return {"verified": True, "strictly_smaller": after < before, "audit": result}
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("source", type=Path)
++    parser.add_argument("--output", type=Path)
++    parser.add_argument("--metric", choices=("tokens", "bytes"), default="tokens")
++    parser.add_argument("--budget", type=int, default=128)
++    parser.add_argument("--max-worlds", type=int, default=65536)
++    parser.add_argument("--resume", action="store_true")
++    parser.add_argument("--verify", type=Path, help="certificate to replay against source and --candidate")
++    parser.add_argument("--candidate", type=Path)
++    parser.add_argument("--lean", type=Path, help="caller-trusted Lean 4 executable; certify or replay exact obligations")
++    args = parser.parse_args(argv)
++    lock = None
++    lockpath = None
++    try:
++        source = json.loads(args.source.read_text(encoding="utf-8-sig"))
++        if args.verify:
++            if not args.candidate:
++                raise ValueError("--verify requires --candidate")
++            result = verify(json.loads(args.verify.read_text(encoding="utf-8")), source,
++                            json.loads(args.candidate.read_text(encoding="utf-8")), args.lean)
++            print(json.dumps(result, indent=2))
++            return 0
++        if not args.output:
++            raise ValueError("compression requires a new --output directory")
++        args.output.parent.mkdir(parents=True, exist_ok=True)
++        lockpath = args.output.with_name(args.output.name + ".lock")
++        lock = lockpath.open("x", encoding="utf-8")
++        lock.write(str(os.getpid()))
++        lock.flush()
++        history = None
++        if args.resume:
++            history = json.loads((args.output / "search.json").read_text(encoding="utf-8"))
++        elif args.output.exists():
++            raise ValueError("output exists; use --resume to replay a checkpoint")
++        result = compress(source, args.metric, args.budget, args.max_worlds, history)
++        if args.lean:
++            from .policy_proof import prove
++            result["certificate"]["formal"] = prove(source, result["certificate"]["candidate"],
++                                                  args.lean, args.max_worlds)
++        args.output.mkdir(parents=True, exist_ok=args.resume)
++        for name, value in (("policy.json", result["certificate"]["candidate"]),
++                            ("certificate.json", result["certificate"]), ("search.json", result["history"])):
++            path = args.output / name
++            temporary = path.with_suffix(".pending")
++            temporary.write_text(canonical(value) + "\n", encoding="utf-8")
++            temporary.replace(path)
++        print(json.dumps({k: v for k, v in result["certificate"].items()
++                          if k not in {"source", "candidate", "derivation", "formal"}}, indent=2))
++        return 0
++    except (ValueError, OSError, KeyError, TypeError, RecursionError, subprocess.SubprocessError) as exc:
++        print("OPEN: " + str(exc), file=sys.stderr)
++        return 2
++    finally:
++        if lock is not None:
++            lock.close()
++            lockpath.unlink()
+--- /dev/null
++++ b/plugin/skillwren/lib/skillwren/policy_proof.py
+@@ -0,0 +1,78 @@
++"""Emit closed Boolean equivalence obligations and execute a caller-trusted Lean.
++
++The receipt never chooses an executable. The verifier supplies its own Lean
++path, regenerates the statement and reruns the kernel. No injected proof text.
++"""
++import hashlib
++from pathlib import Path
++import re
++import subprocess
++import tempfile
++
++from .finite_policy import audit, validate
++
++
++CORE = """import Std
++
++def Optimal {O A L : Type} [LE L] (S : O → A → Prop) (loss : O → A → L)
++    (o : O) (a : A) : Prop := S o a ∧ ∀ b, S o b → loss o a ≤ loss o b
++
++theorem sameOptimal {O A L : Type} [LE L] (S T : O → A → Prop)
++    (h : ∀ o a, S o a ↔ T o a) (loss : O → A → L) (o : O) (a : A) :
++    Optimal S loss o a ↔ Optimal T loss o a := by
++  constructor
++  · rintro ⟨ha, hm⟩
++    exact ⟨(h o a).mp ha, fun b hb => hm b ((h o b).mpr hb)⟩
++  · rintro ⟨ha, hm⟩
++    exact ⟨(h o a).mpr ha, fun b hb => hm b ((h o b).mp hb)⟩
++
++"""
++
++
++def obligation(source, candidate, max_worlds=65536):
++    validate(source, max_worlds)
++    if audit(source, candidate, max_worlds)["verdict"] != "PROVEN_EQUIVALENT":
++        raise ValueError("formal proof requires an equivalent typed policy")
++    names = {name: "_v" + str(i) for i, name in enumerate(sorted(source["variables"]))}
++
++    def emit(expr):
++        if type(expr) is bool:
++            return "true" if expr else "false"
++        if isinstance(expr, str):
++            return names[expr]
++        if expr[0] == "not":
++            return "(!" + emit(expr[1]) + ")"
++        op = " && " if expr[0] == "and" else " || "
++        return "(" + op.join(emit(x) for x in expr[1:]) + ")"
++    binders = " ".join(names.values())
++    return (CORE + "theorem Certified : ∀ (" + binders + " : Bool), "
++            + emit(source["constraint"]) + " = " + emit(candidate["constraint"])
++            + " := by decide\n\n#print axioms Certified\n#print axioms sameOptimal\n")
++
++
++def prove(source, candidate, lean, max_worlds=65536):
++    lean = Path(lean).resolve(strict=True)
++    text = obligation(source, candidate, max_worlds)
++    version = subprocess.run([str(lean), "--version"], capture_output=True, text=True,
++                             encoding="utf-8", timeout=15, check=True).stdout.strip()
++    if not version.startswith("Lean (version 4."):
++        raise ValueError("expected Lean 4")
++    with tempfile.TemporaryDirectory(prefix="skillwren-policy-proof-") as folder:
++        path = Path(folder) / "Proof.lean"
++        path.write_text(text, encoding="utf-8")
++        result = subprocess.run([str(lean), str(path)], capture_output=True,
++                                encoding="utf-8", timeout=60)
++    output = result.stdout + result.stderr
++    if result.returncode or "sorryAx" in output or "error:" in output:
++        raise ValueError("Lean did not certify the obligation: " + output[:2000])
++    declarations = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", output)
++    empty = output.count("does not depend on any axioms")
++    allowed = {"propext", "Classical.choice", "Quot.sound"}
++    if len(declarations) + empty != 2 or any(
++            a.strip() not in allowed for group in declarations for a in group.split(",") if a.strip()):
++        raise ValueError("missing or unexpected Lean axiom report")
++    return {"checker": "Lean 4 kernel", "version": version,
++            "binary_sha256": hashlib.sha256(lean.read_bytes()).hexdigest(),
++            "source_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
++            "source": text, "output": output,
++            "scope": "Boolean constraint equivalence and optimal-decision transport theorem"}

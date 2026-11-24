@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_nl_compile.py"
+  ],
+  "cwd": "Z:\\Solve-this\\experiments\\skillwren",
+  "returncode": 1,
+  "elapsed_seconds": 3.765
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "root": "..",
+  "build": null,
+  "test": [
+    "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-B",
+    "driver.py"
+  ],
+  "command_seconds": 300,
+  "comparison_seconds": 1200,
+  "output_bytes_per_stream": 1048576,
+  "protected_paths": [
+    "driver.py",
+    "fixtures.json",
+    "src"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "-m",
+    "pytest",
+    "tests",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "cwd": "Z:\\Solve-this",
+  "returncode": 1,
+  "elapsed_seconds": 9.719
+}

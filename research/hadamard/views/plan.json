@@ -1,0 +1,62 @@
+{
+  "objective_hash": "1144b2f39d8bc148de7e99745c190d47c2f2ea75c7092291f5fa71b4242c25e3",
+  "target": "hadamard-conjecture",
+  "unresolved_prerequisites": [],
+  "possible_support": [
+    "universal-family-coverage",
+    "universal-legendre-pairs",
+    "legendre-to-hadamard",
+    "construction-parameter-existence",
+    "block-5fe6a86c26f17e87",
+    "block-f347e3a0425942cf",
+    "block-77650a5902a83896",
+    "block-babf882252d5aea7"
+  ],
+  "branches": [
+    {
+      "id": "combinatorial-design",
+      "description": "Scoped difference-set, sequence and design implications",
+      "attempts": 0,
+      "last_event": 0
+    },
+    {
+      "id": "computational-search",
+      "description": "Exact witnesses and counterexamples within declared encodings",
+      "attempts": 0,
+      "last_event": 0
+    },
+    {
+      "id": "number-theory",
+      "description": "Symbolic coverage gaps and parameter-existence lemmas",
+      "attempts": 0,
+      "last_event": 0
+    },
+    {
+      "id": "recursive-composition",
+      "description": "Parameterized order transforms and composition laws",
+      "attempts": 0,
+      "last_event": 0
+    },
+    {
+      "id": "constructive-algebra",
+      "description": "Parameterized block constructions and exact Gram conditions",
+      "attempts": 4,
+      "last_event": 59
+    },
+    {
+      "id": "obstruction-theory",
+      "description": "Necessary conditions with explicitly restricted domains",
+      "attempts": 2,
+      "last_event": 76
+    },
+    {
+      "id": "formal-mathematics",
+      "description": "Cancellation, lifting, equivalence and global proof obligations",
+      "attempts": 4,
+      "last_event": 79
+    }
+  ],
+  "decision_policy": "First attack unresolved prerequisites; among viable scoped tests preserve branch diversity and revisit least-recently explored branches. Generality, novelty review and exact test cost are qualitative judgments, not invented probabilities.",
+  "resolution": "UNRESOLVED",
+  "session": "BUDGET_EXHAUSTED"
+}

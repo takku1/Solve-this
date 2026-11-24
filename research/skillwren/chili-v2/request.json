@@ -1,0 +1,39 @@
+{
+  "kind": "development_request",
+  "generation": 1,
+  "concept": "Reduce full executable finite-policy bytes with identical decisions",
+  "champion_source": "Z:\\Solve-this\\research\\skillwren\\chili-v2\\session\\champions\\initial",
+  "champion_source_hash": "207b852551ca6d510487aedb8ee8664b2026c482aa343585030a0cdd1a90dd98",
+  "objective": "artifact_bytes",
+  "measured_baseline": {
+    "wall_seconds": 0.09299999999348074,
+    "sampled_peak_rss_bytes": 18075648,
+    "sampled_cpu_seconds": 0.046875,
+    "sampled_io_read_bytes": 1238929,
+    "sampled_io_write_bytes": 2007,
+    "artifact_bytes": 1941
+  },
+  "target": 1843,
+  "target_basis": "median local measurements; no scarcity limit is enforced",
+  "regression_limits": {
+    "wall_seconds": 5
+  },
+  "protected_paths": [
+    "driver.py",
+    "fixtures.json",
+    "src"
+  ],
+  "previous_attempt": null,
+  "experiment_memory": {
+    "scope": "public session observations only; research claims are not measured evidence",
+    "total_attempts": 0,
+    "omitted_attempts": 0,
+    "attempts": []
+  },
+  "instructions": [
+    "Research the limiting work and record source references and a falsifiable hypothesis.",
+    "Create a separate candidate source directory and preserve the protected behavior.",
+    "Use public experiment memory to avoid failed approaches; explain intentional retries under changed targets.",
+    "Submit the candidate plus research JSON; the controller owns all measurements and decisions."
+  ]
+}

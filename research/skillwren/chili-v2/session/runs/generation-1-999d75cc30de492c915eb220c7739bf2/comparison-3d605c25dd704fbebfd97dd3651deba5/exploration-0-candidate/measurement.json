@@ -1,0 +1,78 @@
+{
+  "command": [
+    "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-B",
+    "driver.py"
+  ],
+  "outcome": "pass",
+  "exit_code": 0,
+  "elapsed_seconds": 0.09400000001187436,
+  "capture": {
+    "stdout": {
+      "bytes": 66,
+      "sha256": "55e368fec13b0e3a4eebf95c117497a39dd0c2d339463e6faf7fec5466c17fec",
+      "hash_scope": "complete_stream",
+      "truncated": false
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_scope": "complete_stream",
+      "truncated": false
+    }
+  },
+  "error": null,
+  "metrics": {
+    "wall_seconds": 0.09400000001187436,
+    "sampled_peak_rss_bytes": 18673664,
+    "sampled_cpu_seconds": 0.078125,
+    "sampled_io_read_bytes": 1178535,
+    "sampled_io_write_bytes": 0,
+    "artifact_bytes": 1402
+  },
+  "metric_quality": {
+    "artifact_bytes": {
+      "tier": "exact_declared_volume",
+      "scope": "logical bytes in selected files"
+    },
+    "wall_seconds": {
+      "tier": "repeated_timing",
+      "scope": "instrumented command and cleanup"
+    },
+    "sampled_io_write_bytes": {
+      "tier": "screening_sample",
+      "scope": "observed process samples; incomplete coverage possible"
+    },
+    "sampled_cpu_seconds": {
+      "tier": "screening_sample",
+      "scope": "observed process samples; incomplete coverage possible"
+    },
+    "sampled_peak_rss_bytes": {
+      "tier": "screening_sample",
+      "scope": "observed process samples; incomplete coverage possible"
+    },
+    "sampled_io_read_bytes": {
+      "tier": "screening_sample",
+      "scope": "observed process samples; incomplete coverage possible"
+    }
+  },
+  "samples": 4,
+  "collector_errors": [
+    "NoSuchProcess"
+  ],
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "cpu_count": 32,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "psutil": "6.1.0",
+    "collector_sha256": "02a575fe33d93690abddc069a6f498025ae51122397665a887caa331519eff97"
+  },
+  "enforcement": "none",
+  "limitations": [
+    "Trusted host execution; no resource scarcity is enforced.",
+    "RSS is a sampled sum across observed processes and may double-count shared pages.",
+    "Short-lived processes and CPU/I/O after their last sample can be missed.",
+    "I/O counters have platform-specific semantics; artifact bytes are logical file sizes."
+  ]
+}

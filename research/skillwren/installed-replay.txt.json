@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "-c",
+    "import skillwren; print(skillwren.__file__); from skillwren.cli import dispatch; from pathlib import Path; raise SystemExit(dispatch(['skillwren','compress','examples/optimization/finite-policy.json','--verify','Z:/Solve-this/research/skillwren/demo-v2/certificate.json','--candidate','Z:/Solve-this/research/skillwren/demo-v2/policy.json','--lean',str(Path.home()/'.elan/toolchains/leanprover--lean4---v4.33.1/bin/lean.exe')]))"
+  ],
+  "cwd": "Z:\\SkillWren",
+  "returncode": 0,
+  "elapsed_seconds": 1.266
+}

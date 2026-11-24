@@ -1,0 +1,29 @@
+....F..FF..
+======================================================================
+FAIL: test_exec_only_flow_reports_possible_effects (test_explain_workflow.ExplainerTests.test_exec_only_flow_reports_possible_effects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_explain_workflow.py", line 44, in test_exec_only_flow_reports_possible_effects
+    self.assertNotIn('the workflow changes nothing', text)
+AssertionError: 'the workflow changes nothing' unexpectedly found in "Workflow in SKILL.md:\nflow `example`:\n  - 'exec build from tools as result' (line 8)\n  - 'return result as result' (line 9)\nOrdering: no order rules; steps may run in any order.\nAuthority: no ask steps; nothing requires a human decision.\nEffects: none declared; the workflow changes nothing.\nEnforcement:\n  - 'exec build from tools as result' (line 8) is advisory-only: no stable ID, so order rules match it by prose text and the guard cannot bind it.\nCalls: no cross-file runs; the meaning above is complete.\nWhat this text cannot show: the prose meaning of untyped steps is not machine-checked, so rewording can silently change intent; correlated branch conditions are not recognized; approval here is not a guard policy and grants no capabilities. Run `check` for rule compliance. Deterministic from the AST: no model paraphrased this text.\n"
+
+======================================================================
+FAIL: test_no_order_rules_does_not_erase_written_sequence (test_explain_workflow.ExplainerTests.test_no_order_rules_does_not_erase_written_sequence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_explain_workflow.py", line 55, in test_no_order_rules_does_not_erase_written_sequence
+    self.assertNotIn('steps may run in any order', text)
+AssertionError: 'steps may run in any order' unexpectedly found in "Workflow in SKILL.md:\nflow `example`:\n  - 'read source from context as result' (line 8)\n  - 'return result as result' (line 9)\nOrdering: no order rules; steps may run in any order.\nAuthority: no ask steps; nothing requires a human decision.\nEffects: none declared; the workflow changes nothing.\nEnforcement:\n  No guard verbs present; nothing here can be enforced.\nCalls: no cross-file runs; the meaning above is complete.\nWhat this text cannot show: the prose meaning of untyped steps is not machine-checked, so rewording can silently change intent; correlated branch conditions are not recognized; approval here is not a guard policy and grants no capabilities. Run `check` for rule compliance. Deterministic from the AST: no model paraphrased this text.\n"
+
+======================================================================
+FAIL: test_readonly_exec_is_a_declaration_not_an_effect_guarantee (test_explain_workflow.ExplainerTests.test_readonly_exec_is_a_declaration_not_an_effect_guarantee)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_explain_workflow.py", line 50, in test_readonly_exec_is_a_declaration_not_an_effect_guarantee
+    self.assertNotIn('the workflow changes nothing', text)
+AssertionError: 'the workflow changes nothing' unexpectedly found in "Workflow in SKILL.md:\nflow `example`:\n  - 'exec readonly inspect from tools as result' (line 8) -- declared read-only: not counted as a mutation before asks; enforced only when run with `ledger exec --readonly`\n  - 'return result as result' (line 9)\nOrdering: no order rules; steps may run in any order.\nAuthority: no ask steps; nothing requires a human decision.\nEffects: none declared; the workflow changes nothing.\nEnforcement:\n  - 'exec readonly inspect from tools as result' (line 8) is advisory-only: no stable ID, so order rules match it by prose text and the guard cannot bind it.\nCalls: no cross-file runs; the meaning above is complete.\nWhat this text cannot show: the prose meaning of untyped steps is not machine-checked, so rewording can silently change intent; correlated branch conditions are not recognized; approval here is not a guard policy and grants no capabilities. Run `check` for rule compliance. Deterministic from the AST: no model paraphrased this text.\n"
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.089s
+
+FAILED (failures=3)

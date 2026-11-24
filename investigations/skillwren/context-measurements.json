@@ -1,0 +1,151 @@
+{
+  "source_commit": "a5d7d40fab57b90bad0d07bf736479ff23b70808",
+  "selected_solve_this_files": [
+    "SKILL.md",
+    "references/decision-policy.md",
+    "references/evaluation-scenarios.md",
+    "references/experiment-protocol.md",
+    "references/game-theory-and-design.md",
+    "references/probe-patterns.md",
+    "references/research-and-evidence.md",
+    "references/research-foundations.md",
+    "references/result-template.md",
+    "references/sources.md",
+    "references/worked-examples.md"
+  ],
+  "limits": "Size only. No semantic equivalence or behavioral preservation inferred.",
+  "measurements": {
+    "solve_this_entry": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 16736,
+          "bytes": 16746,
+          "lines": 228,
+          "files": 1
+        },
+        "compiled": {
+          "count": 25463,
+          "bytes": 25463,
+          "lines": 421
+        },
+        "saved": -8727,
+        "ratio": 1.5214507648183557,
+        "reduction_percent": -52.15,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 3046,
+          "bytes": 16746,
+          "lines": 228,
+          "files": 1
+        },
+        "compiled": {
+          "count": 4725,
+          "bytes": 25463,
+          "lines": 421
+        },
+        "saved": -1679,
+        "ratio": 1.5512147078135259,
+        "reduction_percent": -55.12,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      }
+    },
+    "solve_this_declared_context": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 49544,
+          "bytes": 49554,
+          "lines": 591,
+          "files": 1
+        },
+        "compiled": {
+          "count": 58271,
+          "bytes": 58271,
+          "lines": 784
+        },
+        "saved": -8727,
+        "ratio": 1.176146455675763,
+        "reduction_percent": -17.61,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 9187,
+          "bytes": 49554,
+          "lines": 591,
+          "files": 1
+        },
+        "compiled": {
+          "count": 10866,
+          "bytes": 58271,
+          "lines": 784
+        },
+        "saved": -1679,
+        "ratio": 1.1827582453466856,
+        "reduction_percent": -18.28,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      }
+    },
+    "shipped_optimization_example": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 3001,
+          "bytes": 3001,
+          "lines": 56,
+          "files": 1
+        },
+        "compiled": {
+          "count": 2440,
+          "bytes": 2440,
+          "lines": 65
+        },
+        "saved": 561,
+        "ratio": 0.8130623125624792,
+        "reduction_percent": 18.69,
+        "max_ratio": 1.0,
+        "smaller": true,
+        "accepted": true
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 556,
+          "bytes": 3001,
+          "lines": 56,
+          "files": 1
+        },
+        "compiled": {
+          "count": 511,
+          "bytes": 2440,
+          "lines": 65
+        },
+        "saved": 45,
+        "ratio": 0.9190647482014388,
+        "reduction_percent": 8.09,
+        "max_ratio": 1.0,
+        "smaller": true,
+        "accepted": true
+      }
+    }
+  }
+}

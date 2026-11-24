@@ -1,0 +1,59 @@
+.....EE.................FFF.............
+======================================================================
+ERROR: test_failed_compile_retains_landed_inventory_and_diagnostics (test_nl_compile.CompileTests.test_failed_compile_retains_landed_inventory_and_diagnostics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_nl_compile.py", line 393, in test_failed_compile_retains_landed_inventory_and_diagnostics
+    inventory = json.loads((audit / "inventory.json").read_text(encoding="utf-8"))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dcarn\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dcarn\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dcarn\\AppData\\Local\\Temp\\tmpix9vsr0r\\kept\\audit\\inventory.json'
+
+======================================================================
+ERROR: test_failed_inventory_is_retained_without_publishing_a_candidate (test_nl_compile.CompileTests.test_failed_inventory_is_retained_without_publishing_a_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_nl_compile.py", line 413, in test_failed_inventory_is_retained_without_publishing_a_candidate
+    inventory = json.loads((audit / "inventory.json").read_text(encoding="utf-8"))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dcarn\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dcarn\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dcarn\\AppData\\Local\\Temp\\tmptjzy79l1\\kept\\audit\\inventory.json'
+
+======================================================================
+FAIL: test_evidence_error_names_only_the_required_form (test_nl_compile.LandingTests.test_evidence_error_names_only_the_required_form) (evidence='exec')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_nl_compile.py", line 137, in test_evidence_error_names_only_the_required_form
+    self.assertIn(message, failure["message"])
+AssertionError: 'requires an `exec`/`read` result' not found in 'source demands exec evidence, but no landed statement records it (a `verify ... from` an exec result, an ask/confirmation, or a write): run the config check and verify debug is off'
+
+======================================================================
+FAIL: test_evidence_error_names_only_the_required_form (test_nl_compile.LandingTests.test_evidence_error_names_only_the_required_form) (evidence='user')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_nl_compile.py", line 137, in test_evidence_error_names_only_the_required_form
+    self.assertIn(message, failure["message"])
+AssertionError: 'requires an ask or confirmation' not found in 'source demands user evidence, but no landed statement records it (a `verify ... from` an exec result, an ask/confirmation, or a write): run the config check and verify debug is off'
+
+======================================================================
+FAIL: test_evidence_error_names_only_the_required_form (test_nl_compile.LandingTests.test_evidence_error_names_only_the_required_form) (evidence='effect')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_nl_compile.py", line 137, in test_evidence_error_names_only_the_required_form
+    self.assertIn(message, failure["message"])
+AssertionError: 'requires a `write` or `save`' not found in 'source demands effect evidence, but no landed statement records it (a `verify ... from` an exec result, an ask/confirmation, or a write): run the config check and verify debug is off'
+
+----------------------------------------------------------------------
+Ran 38 tests in 3.612s
+
+FAILED (failures=3, errors=2)

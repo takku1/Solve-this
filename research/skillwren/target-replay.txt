@@ -1,0 +1,9 @@
+usage: skillwren check [--json] [--all | [--fragment] [--explain] [--summary] [--audit] <file>...]
+  --fragment  check logic blocks inside ordinary Markdown (flow files)
+  --explain   add a plain-language paragraph to each diagnostic
+  --summary   list each flow's inputs, writes, and runs
+  --audit     list each gate's evidence class, each branch's controller,
+              and what each order rule rests on
+  --json      print one JSON object instead (for tools and repair loops);
+              includes each file's unbacked verify gates
+other commands: audit (check retained log against an independent checkpoint), sandbox (observe command effects in an offline restricted container), guard (mediate policy-bound verified writes on a trusted host), policy (generate a pinned, workflow-bound guard policy from a flow), coverage (classify each rule, gate and write as enforced, recorded, instructed or unverifiable), measure (compare measured context sizes), select (select a fixed candidate under empirical risk bounds), certgate (verify a selection certificate against artifacts and context), build (compile and package a reviewed skill), conform (run a skill headless and compare effects), ledger (record a run's steps and check its order rules), explain-workflow (describe a workflow's meaning deterministically), approve (record or check human approval of a workflow), draft (propose a workflow from intent via a model adapter), compile (compile natural language to a checked skill via a model adapter), inventory (check a requirement inventory's coverage and landing)

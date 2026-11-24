@@ -1,0 +1,23 @@
+{
+  "audit_date": "2026-11-23",
+  "sources": [
+    {"id": "sage-hadamard", "title": "SageMath Hadamard constructions", "url": "https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html", "version": "reference manual retrieved 2026-11-23", "accessed": "2026-11-23"},
+    {"id": "cati-pasechnik-v2", "title": "A database of constructions of Hadamard matrices", "url": "https://arxiv.org/abs/2411.18897v2", "version": "2025-08-30 v2", "accessed": "2026-11-23"},
+    {"id": "egan-et-al-v2", "title": "Recent progress in the construction of Hadamard matrices", "url": "https://arxiv.org/abs/2610.27175v2", "version": "2026-11-03 v2; abstract 85 versus retrieved PDF/HTML 95 is unresolved", "accessed": "2026-11-23", "status": "version-discrepancy; independent verification reported, not locally replayed"},
+    {"id": "williamson-et-al-v2", "title": "Generating Hadamard matrices with transformers", "url": "https://arxiv.org/abs/2604.11101v2", "version": "2026-05-11 v2", "accessed": "2026-11-23"}
+  ],
+  "known": [
+    {"id": "sylvester", "statement": "H(2^a) for every integer a >= 0 by Sylvester doubling", "scope": "classical existence family; literature theorem, not a new discovery", "sources": ["sage-hadamard", "cati-pasechnik-v2"]},
+    {"id": "paley-I", "statement": "H(q+1) for prime powers q congruent to 3 modulo 4", "scope": "prime-power domain and congruence are required", "sources": ["sage-hadamard"]},
+    {"id": "paley-II", "statement": "H(2*(q+1)) for odd prime powers q congruent to 1 modulo 4", "scope": "prime-power domain and congruence are required", "sources": ["sage-hadamard"]},
+    {"id": "kronecker", "statement": "H(a) and H(b) imply H(a*b)", "scope": "positive integer orders; construction closure does not imply all multiples of four", "sources": ["sage-hadamard", "cati-pasechnik-v2"]},
+    {"id": "paley-method-barrier", "statement": "Paley constructions fail at orders 2^m*509203", "scope": "a barrier to a construction method, not nonexistence of Hadamard matrices", "sources": ["cati-pasechnik-v2"]},
+    {"id": "reported-2026-orders", "statement": "Independent verification reported for the twelve formerly unresolved orders below 2000", "scope": "external literature report only; local matrices not downloaded or verified", "sources": ["egan-et-al-v2"]}
+  ],
+  "obligations": [
+    {"id": "universal-family-coverage", "statement": "Prove that certified construction rules cover every positive order divisible by four", "scope": "unbounded symbolic coverage, not a finite scan", "kind": "obligation"},
+    {"id": "universal-legendre-pairs", "statement": "A Legendre pair exists at every odd positive length", "scope": "sufficient route to Hadamard; no converse assumed", "kind": "candidate", "sources": ["egan-et-al-v2"]},
+    {"id": "legendre-to-hadamard", "statement": "A Legendre pair of odd length ell yields H(2*ell+2)", "scope": "known implication requiring a formal lifting proof in this project", "kind": "obligation", "sources": ["egan-et-al-v2"]},
+    {"id": "construction-parameter-existence", "statement": "Supply parameters satisfying a proposed universal construction at all required indices", "scope": "cannot be inferred from conditional Gram identities", "kind": "obligation"}
+  ]
+}

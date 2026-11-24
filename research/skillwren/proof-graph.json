@@ -1,0 +1,61 @@
+{
+  "format": "skillwren-research-checkpoint-1",
+  "objective": "OBJECTIVE.md",
+  "objective_sha256": "1b1012f234b47004a7f8cc5c221122bec8ec4fad8de7f5afa00453474840937e",
+  "resolution": "UNRESOLVED",
+  "required_open_dependencies": [
+    "prose_grounding",
+    "actual_model_deficiency",
+    "richer_typed_domains",
+    "sequential_certification",
+    "infinite_family_guarantees",
+    "host_scope_and_wilderbeast"
+  ],
+  "nodes": {
+    "finite_pipeline": {
+      "status": "IMPLEMENTED",
+      "evidence": "change/manifest.json"
+    },
+    "equivalence": {
+      "status": "KNOWN_RESULT",
+      "evidence": "demo-v2/certificate.json",
+      "dependencies": [
+        "finite_pipeline"
+      ]
+    },
+    "risk_transport": {
+      "status": "KNOWN_RESULT",
+      "evidence": "demo-v2/certificate.json",
+      "assumptions": [
+        "identical observation/action domains",
+        "identical feasible relation",
+        "every observation has a feasible action",
+        "same observation distribution"
+      ]
+    },
+    "infeasible_risk_claim": {
+      "status": "RETRACTED",
+      "evidence": "RESULTS.md",
+      "correction": "Risk stays OPEN when any context has no feasible action"
+    },
+    "prose_grounding": {
+      "status": "OPEN"
+    },
+    "actual_model_deficiency": {
+      "status": "OPEN"
+    },
+    "richer_typed_domains": {
+      "status": "OPEN"
+    },
+    "sequential_certification": {
+      "status": "OPEN"
+    },
+    "infinite_family_guarantees": {
+      "status": "OPEN"
+    },
+    "host_scope_and_wilderbeast": {
+      "status": "OPEN"
+    }
+  },
+  "provenance": "Retrospective checkpoint reconstructed from retained artifacts; not a claim of a contemporaneous event journal"
+}

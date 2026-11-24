@@ -1,0 +1,50 @@
+..........................................................................................s......F...F.....................................skillwren ledger: the flow file has no order rules; steps are recorded, nothing is checked
+......................................................s.....................................................................s..................................................................................................................................................................................................................................
+======================================================================
+FAIL: test_explanation_states_each_pair_facts (test_explain_workflow.ExplainerTests.test_explanation_states_each_pair_facts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_explain_workflow.py", line 83, in test_explanation_states_each_pair_facts
+    self.assertIn(fact, text, f'{flow_name}: {fact!r}')
+AssertionError: 'changes nothing' not found in 'Workflow in 05-flow.md:\nflow `summarize`:\n  - \'require request exists\' (line 8) -- gate; failure follows its otherwise branch\n    - otherwise (line 9)\n      - \'abort with "Nothing to summarize."\' (line 10)\n  - \'return request as request\' (line 11)\nOrdering: no order rules beyond the written sequence; that sequence and explicit control flow still apply.\nAuthority: no ask steps; nothing requires a human decision.\nEffects: no explicit writes, flow calls, or commands; effects of reads and prose-defined operations are not established here.\nEnforcement:\n  No guard verbs present; nothing here can be enforced.\nCalls: no cross-file runs; the meaning above is complete.\nWhat this text cannot show: the prose meaning of untyped steps is not machine-checked, so rewording can silently change intent; correlated branch conditions are not recognized; approval here is not a guard policy and grants no capabilities. Run `check` for rule compliance. Deterministic from the AST: no model paraphrased this text.\n' : 05-flow.md: 'changes nothing'
+
+======================================================================
+FAIL: test_v2_corpus_is_clean_frozen_and_explained (test_explain_workflow.ExplainerTests.test_v2_corpus_is_clean_frozen_and_explained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "Z:\Solve-this\experiments\skillwren\tests\test_explain_workflow.py", line 106, in test_v2_corpus_is_clean_frozen_and_explained
+    self.assertIn(fact, text, f'v2 {flow_name}: {fact!r}')
+AssertionError: 'changes nothing' not found in 'Workflow in 05-flow.md:\nflow `summarize`:\n  - \'require request exists\' (line 8) -- gate; failure follows its otherwise branch\n    - otherwise (line 9)\n      - \'abort with "Nothing to summarize."\' (line 10)\n  - \'generate summary from request as summary\' (line 11)\n  - \'return summary as summary\' (line 12)\nOrdering: no order rules beyond the written sequence; that sequence and explicit control flow still apply.\nAuthority: no ask steps; nothing requires a human decision.\nEffects: no explicit writes, flow calls, or commands; effects of reads and prose-defined operations are not established here.\nEnforcement:\n  No guard verbs present; nothing here can be enforced.\nCalls: no cross-file runs; the meaning above is complete.\nWhat this text cannot show: the prose meaning of untyped steps is not machine-checked, so rewording can silently change intent; correlated branch conditions are not recognized; approval here is not a guard policy and grants no capabilities. Run `check` for rule compliance. Deterministic from the AST: no model paraphrased this text.\n' : v2 05-flow.md: 'changes nothing'
+
+----------------------------------------------------------------------
+Ran 490 tests in 24.923s
+
+FAILED (failures=2, skipped=3)
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json
+demo.md: 1 kept of 1 (PROBLEMS)
+  'Approval:' must be one of: human, AI-reviewed baseline (say which kind of review this is; it travels with every result)
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  C:\Users\dcarn\AppData\Local\Temp\tmpcvesxw4m\r.json: scored against candidates (unreviewed, model-drafted); publish only frozen ground truth
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  C:\Users\dcarn\AppData\Local\Temp\tmp80_4u2g8\r.adjudication.md: adjudication sheet missing (fidelity_score.py --adjudication)
+refusing to report: human adjudication is incomplete or the basis is not frozen
+  r.adjudication.md:9: not adjudicated (mark [x] agree or [!] overturn)
+  r.adjudication.md:13: not adjudicated (mark [x] agree or [!] overturn)
+[
+  {
+    "source": "demo",
+    "built": "b.md",
+    "publication": "published",
+    "basis": "frozen, reviewed by Ada on 2026-11-20",
+    "preserved": "2/2",
+    "weakened": 0,
+    "missing": 0,
+    "overturned": 1,
+    "widening_introductions": 1
+  }
+]
+demo.md: 1 kept of 1 (ok)
+  frozen -> frozen/demo.json

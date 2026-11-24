@@ -1,0 +1,35 @@
+{
+  "format": "skillwren-finite-certificate-1",
+  "objective": {
+    "source_sha256": "3aa89bd9b71434f80b12b3b02861ccab0dabe598bca85a0684e62b3f9808c11a",
+    "metric": "tokens",
+    "max_worlds": 65536,
+    "engine_sha256": "ecbbe6323efc13ee8cb2abbc72fa7166c8f20353e473176881648f812bdc7877"
+  },
+  "candidate_sha256": "39717acb8d82e7fda2470e77025f728e15427a39bc7127ded37585e165e2bdd2",
+  "metric": "tokens",
+  "original_size": 183,
+  "candidate_size": 116,
+  "strictly_smaller": true,
+  "audit": {
+    "verdict": "PROVEN_EQUIVALENT",
+    "worlds_checked": 8,
+    "removed_witness": [],
+    "added_witness": [],
+    "scope": "complete declared finite Boolean relation, not LLM behavior"
+  },
+  "decision_risk": {
+    "verdict": "PROVEN_EQUIVALENT",
+    "deficiency_upper": "0",
+    "loss_class": "all finite real losses on identical declared observation/action domains",
+    "risk_model": "same feasible decision rules with the same observation distribution",
+    "argument": "equal relations imply identical projected feasible actions and decision rules; therefore their risk sets and optimal risks coincide",
+    "excluded": [
+      "LLM text interpretation",
+      "undeclared actions",
+      "changed observation channels"
+    ]
+  },
+  "state": "BRANCH_EXHAUSTED",
+  "resolution": "UNRESOLVED: arbitrary natural-language and deployed-model semantics"
+}

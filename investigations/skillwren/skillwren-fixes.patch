@@ -1,0 +1,644 @@
+diff --git a/.gitattributes b/.gitattributes
+index c0e916c..8eaec60 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -17,3 +17,5 @@ plugin/** -text
+ .claude-plugin/marketplace.json -text
+ # Fidelity benchmark sources are pinned by digest in frozen requirement lists.
+ docs/current/research/fidelity-benchmark/sources/** -text
++# The optimized-build review binds these exact source/candidate bytes.
++examples/optimization/** -text
+diff --git a/docs/STATUS.md b/docs/STATUS.md
+index aabda88..849ad71 100644
+--- a/docs/STATUS.md
++++ b/docs/STATUS.md
+@@ -1,6 +1,6 @@
+ # Status
+ 
+-**Last Updated**: 2026-11-21 (fidelity round 2 adjudicated and published)
++**Last Updated**: 2026-11-23 (local Solve This field investigation; prior benchmarks unchanged)
+ 
+ ## Current Phase
+ 
+@@ -15,6 +15,22 @@ runtime comparison. Current verification results are recorded in CI.
+ 
+ ## Active Focus
+ 
++- Local Solve This field investigation (2026-11-23): the optimized-build example
++  failed on a Windows `core.autocrlf=true` checkout because its review-pinned
++  Markdown lacked exact-byte attributes; `examples/optimization/** -text` preserves
++  those bytes. Failed compilation now retains the actual inventory and failure
++  diagnostics with `--keep-failed`; I7 names the tag-specific evidence form, and
++  the adapter distinguishes artifact writes from reads/displays/replies. The
++  explainer reports command effects and preserves written sequence without
++  additional order rules. These are offline regression-tested corrections;
++  historical fidelity benchmark results are unchanged. Prompt classification
++  changes have not been evaluated with a new model round. Automatic semantic
++  retagging, compressor generation, deficiency estimation and adaptive-search
++  guarantees remain open; the selector is not a compressor.
++  The regression harness now interprets the old frozen `changes nothing` fact
++  as absence of explicit writes/calls/commands, not a runtime guarantee; frozen
++  fact files and historical scores have not been rewritten.
++
+ - Fidelity benchmark round 1 published (`research/fidelity-benchmark/builds/2026-11-20/RESULTS.md`;
+   AI-reviewed baseline, AI-adjudicated): skill agent 5/5 published, 85/88
+   preserved, 0 widening; compiler 0/5 published (its evidence rule and
+diff --git a/docs/current/compiler.md b/docs/current/compiler.md
+index ef7c2ab..9a41d13 100644
+--- a/docs/current/compiler.md
++++ b/docs/current/compiler.md
+@@ -186,3 +186,17 @@ Output: the skill files plus `audit/inventory.json`, `audit/review.json`
+ additionally requires the candidate to be smaller), per-file explanations,
+ and `audit/compile-manifest.json`. The compiler never approves and never
+ claims equivalence.
++
++On failure, `--keep-failed DIR` retains the last safely landed candidate when
++available, its actual evidence tags and landing anchors in `audit/inventory.json`,
++and `audit/failure.json` with the failure phase, diagnostics/findings, source
++hashes and adapter-call record. An inventory-phase failure can retain an
++inventory without a candidate. These records are unapproved debugging evidence,
++not a published conversion or semantic-equivalence proof.
++
++I7 diagnostics name the required evidence form for the specific tag. Reading or
++showing an existing file and producing a reply do not themselves require an
++artifact write. Fix incorrect classification at inventory authoring; never
++invent a write to satisfy it or weaken a real external-evidence obligation.
++Evidence tags remain fixed during lowering: automatic semantic retagging and its
++behavioral evaluation are still open work.
+diff --git a/plugin/skillwren/lib/skillwren/inventory.py b/plugin/skillwren/lib/skillwren/inventory.py
+index d648e97..148fdf6 100644
+--- a/plugin/skillwren/lib/skillwren/inventory.py
++++ b/plugin/skillwren/lib/skillwren/inventory.py
+@@ -348,10 +348,17 @@ def check_landing(inventory, candidate):
+             # the measured silent-loss class even when the exec still runs.
+             gates = [hit for hit in hits if hit.kind == "gate"] if evidence == "exec" else []
+             if not any(hit.cls in wanted for hit in (gates or hits)):
++                required = {
++                    "exec": "requires an `exec`/`read` result, with `verify ... from` when landed on a gate",
++                    "user": "requires an ask or confirmation recording the person's decision",
++                    "effect": "requires a `write` or `save` producing the required artifact",
++                }[evidence]
+                 findings.append(_finding(
+                     "I7", f"source demands {evidence} evidence, but no landed statement "
+-                          f"records it (a `verify ... from` an exec result, an ask/confirmation, "
+-                          f"or a write): " + item["text"], ident))
++                          f"records it; {required}. Check the source evidence tag if the "
++                          "source demands no such proof. Do not invent an operation or "
++                          "weaken a real evidence requirement to clear this finding: "
++                          + item["text"], ident))
+     return findings
+ 
+ 
+diff --git a/plugin/skillwren/lib/skillwren/nlcompile.py b/plugin/skillwren/lib/skillwren/nlcompile.py
+index 32e4b5a..443f7ea 100644
+--- a/plugin/skillwren/lib/skillwren/nlcompile.py
++++ b/plugin/skillwren/lib/skillwren/nlcompile.py
+@@ -178,6 +178,9 @@ class Compilation:
+         self.judge = judge
+         self.reverse = reverse
+         self.log = []
++        self.last_inventory = None
++        self.last_files = None
++        self.failure_audit = {"phase": "inventory"}
+         self.questions, self.assumptions = [], []
+         self.sources = {name: raw.decode("utf-8-sig") for name, raw in self.originals.items()}
+         self.numbered = inv.numbered(self.originals)
+@@ -204,10 +207,12 @@ class Compilation:
+             if not isinstance(body, dict):
+                 raise CompileError("adapter must return an `inventory` object")
+             stamped = inv.stamp(body, self.originals)
++            self.last_inventory = stamped
+             try:
+                 findings = inv.check_coverage(stamped, self.originals)
+             except inv.InventoryError as error:
+                 findings = [inv._finding("I1", str(error))]
++            self.failure_audit = {"phase": "inventory", "findings": findings}
+             if not any(f["severity"] == "error" for f in findings):
+                 return stamped, findings
+         raise CompileError("inventory still incomplete after repairs: " + "; ".join(
+@@ -215,6 +220,7 @@ class Compilation:
+ 
+     # phases 3-5
+     def lower(self, inventory, staging):
++        self.failure_audit = {"phase": "lower"}
+         request = {"phase": "lower", "sources": self.numbered, "inventory": inventory,
+                    "layout": self.layout, "reverse": self.reverse}
+         judged, rounds_used = None, 0
+@@ -227,6 +233,8 @@ class Compilation:
+             reply = self.ask(request)
+             files = _safe_files(reply.get("files"))
+             landed = _land(inventory, reply.get("lands", {}), reply.get("scaffolding"))
++            self.last_inventory = landed
++            self.last_files = files
+             if staging.exists():
+                 shutil.rmtree(staging)
+             staging.mkdir(parents=True)
+@@ -252,6 +260,9 @@ class Compilation:
+                     clean = False
+             if clean:
+                 return files, landed, diagnostics, findings, judged, unbacked
++            self.failure_audit = {"phase": "lower", "diagnostics": diagnostics,
++                                  "findings": findings, "judge": judged,
++                                  "unbacked_verifies": unbacked}
+             if rounds_used >= self.rounds:
+                 raise CompileError(_failure(diagnostics, findings), files)
+             rounds_used += 1
+@@ -271,6 +282,26 @@ def _failure(diagnostics, findings):
+     return "candidate still invalid after repairs:\n  " + "\n  ".join(lines)
+ 
+ 
++def _keep_failed(path, error, job):
++    """Retain the actual last inventory and failure context without approving it."""
++    if not path:
++        return
++    root = Path(path)
++    files = error.files or job.last_files
++    if files:
++        write_files(root, files)
++    audit = root / "audit"
++    audit.mkdir(parents=True, exist_ok=True)
++    if job.last_inventory is not None:
++        (audit / "inventory.json").write_text(
++            json.dumps(job.last_inventory, indent=2) + "\n", encoding="utf-8")
++    failure = dict(job.failure_audit, error=str(error), calls=job.log,
++                   sources={name: digest(raw) for name, raw in job.originals.items()},
++                   questions=job.questions, assumptions=job.assumptions,
++                   approved=False, semantic_equivalence_proven=False)
++    (audit / "failure.json").write_text(json.dumps(failure, indent=2) + "\n", encoding="utf-8")
++
++
+ def compile_skill(source, out, adapter, contexts=(), layout="inline", rounds=3,
+                   judge=True, keep_failed=None, reverse=True):
+     out = Path(out).resolve()
+@@ -279,15 +310,18 @@ def compile_skill(source, out, adapter, contexts=(), layout="inline", rounds=3,
+     if not out.parent.is_dir():
+         raise CompileError(f"output parent does not exist: {out.parent}")
+     job = Compilation(source, contexts, adapter, layout, rounds, judge, reverse)
+-    inventory, coverage = job.build_inventory()
++    try:
++        inventory, coverage = job.build_inventory()
++    except CompileError as error:
++        _keep_failed(keep_failed, error, job)
++        raise
+     with tempfile.TemporaryDirectory(prefix="skillwren-compile-", dir=out.parent) as temp:
+         staging = Path(temp) / "artifact"
+         try:
+             files, landed, diagnostics, findings, judged, unbacked = job.lower(
+                 inventory, staging)
+         except CompileError as error:
+-            if keep_failed and error.files:
+-                write_files(Path(keep_failed), error.files)
++            _keep_failed(keep_failed, error, job)
+             raise
+         audit = staging / "audit"
+         audit.mkdir()
+@@ -356,7 +390,7 @@ def main(argv):
+     parser.add_argument("--no-judge", action="store_true")
+     parser.add_argument("--no-reverse", action="store_true",
+                         help="ablation: do not enforce reverse traceability (still measured)")
+-    parser.add_argument("--keep-failed", help="on failure, write the last attempt here")
++    parser.add_argument("--keep-failed", help="on failure, keep the last attempt, inventory and diagnostics here")
+     parser.add_argument("--json", action="store_true", help="print the manifest as JSON")
+     adapter = []
+     if "--" in argv:
+diff --git a/plugin/skillwren/lib/skillwren/validator/workflow.py b/plugin/skillwren/lib/skillwren/validator/workflow.py
+index 2515fd0..7299b3a 100644
+--- a/plugin/skillwren/lib/skillwren/validator/workflow.py
++++ b/plugin/skillwren/lib/skillwren/validator/workflow.py
+@@ -144,7 +144,8 @@ def explain_workflow(path, fragment=None):
+             lines.append(f"  - {rule['first']!r} before {rule['then']!r} "
+                          f"(line {rule['line']})")
+     else:
+-        lines.append("Ordering: no order rules; steps may run in any order.")
++        lines.append("Ordering: no order rules beyond the written sequence; that sequence "
++                     "and explicit control flow still apply.")
+     if dump["exclusion_rules"]:
+         lines.append("Exclusions (must not happen on any path, here or in any caller):")
+         for rule in dump["exclusion_rules"]:
+@@ -164,15 +165,24 @@ def explain_workflow(path, fragment=None):
+     touches = dump["touches"]
+     effected = [(flow, facts) for flow, facts in touches.items()
+                 if facts["writes"] or facts["runs"]]
+-    if effected:
+-        lines.append("Effects (files written or flows run):")
++    commands = [(flow, node) for flow, root in doc.trees.items() for node in walk(root)
++                if node.kind == "action" and node.data == "exec"]
++    if effected or commands:
++        lines.append("Effects (files written, flows run, or commands executed):")
+         for flow, facts in effected:
+             for target in facts["writes"]:
+                 lines.append(f"  - flow `{flow}` writes {target}")
+             for target in facts["runs"]:
+                 lines.append(f"  - flow `{flow}` runs {target}")
++        for flow, node in commands:
++            if re.match(r"exec\s+readonly\s", node.text):
++                effect = "declared read-only; actual effects depend on the execution host"
++            else:
++                effect = "may change state; its effects depend on the command and execution host"
++            lines.append(f"  - flow `{flow}` executes {node.text!r} (line {node.line}); {effect}.")
+     else:
+-        lines.append("Effects: none declared; the workflow changes nothing.")
++        lines.append("Effects: no explicit writes, flow calls, or commands; "
++                     "effects of reads and prose-defined operations are not established here.")
+     eligible, advisory = [], []
+     for flow, root in doc.trees.items():
+         for node in walk(root):
+diff --git a/plugin/skillwren/references/compiler.md b/plugin/skillwren/references/compiler.md
+index ef7c2ab..9a41d13 100644
+--- a/plugin/skillwren/references/compiler.md
++++ b/plugin/skillwren/references/compiler.md
+@@ -186,3 +186,17 @@ Output: the skill files plus `audit/inventory.json`, `audit/review.json`
+ additionally requires the candidate to be smaller), per-file explanations,
+ and `audit/compile-manifest.json`. The compiler never approves and never
+ claims equivalence.
++
++On failure, `--keep-failed DIR` retains the last safely landed candidate when
++available, its actual evidence tags and landing anchors in `audit/inventory.json`,
++and `audit/failure.json` with the failure phase, diagnostics/findings, source
++hashes and adapter-call record. An inventory-phase failure can retain an
++inventory without a candidate. These records are unapproved debugging evidence,
++not a published conversion or semantic-equivalence proof.
++
++I7 diagnostics name the required evidence form for the specific tag. Reading or
++showing an existing file and producing a reply do not themselves require an
++artifact write. Fix incorrect classification at inventory authoring; never
++invent a write to satisfy it or weaken a real external-evidence obligation.
++Evidence tags remain fixed during lowering: automatic semantic retagging and its
++behavioral evaluation are still open work.
+diff --git a/scripts/adapters/claude_compile.py b/scripts/adapters/claude_compile.py
+index 125b960..ff5f4c7 100644
+--- a/scripts/adapters/claude_compile.py
++++ b/scripts/adapters/claude_compile.py
+@@ -74,7 +74,7 @@ not write any SkillWren yet.
+ The sources arrive as numbered listings (`  12| text`). Produce an inventory:
+ 
+ - One requirement per obligation, prohibition, check, gate, branch, human
+-  decision, effect (file written, command run), recovery/repair path,
++  decision, effect (a required write/save/edit, or a command execution), recovery/repair path,
+   ordering ("X before Y", stated or clearly implied), input, output shape,
+   step meaning (what a named step must do), or context that changes
+   decisions (rubrics, thresholds, examples that decide outcomes).
+@@ -83,10 +83,19 @@ The sources arrive as numbered listings (`  12| text`). Produce an inventory:
+   Use `unrepresentable` for things SkillWren cannot check (taste,
+   correlated conditions between branches, optional resources); they will
+   be kept as prose and flagged, never dropped.
+-- `evidence` says what the source demands as proof: `exec` (a command or
+-  check is run and its result judged), `user` (a person decides or
+-  confirms), `effect` (an artifact must exist), `self` (the agent's own
+-  judgment is enough), `none`.
++- `kind` describes the instruction; `evidence` separately describes what
++  the source demands as proof. An instruction to act is not by itself a
++  demand for independent proof.
++- `evidence`: `exec` when a command/file result must substantiate a check,
++  `user` when a person decides or verifies, `effect` only when an artifact
++  must be created or changed (written, saved, edited, committed, or a named
++  output file), `self` when the agent's own judgment suffices, or `none`.
++  Reading/loading an existing file, displaying it unchanged, and producing
++  the reply are not artifact writes: use `self` unless the source also
++  requires external verification. Showing something for a person's review
++  is `user` evidence, not `effect` evidence. A required command run is not
++  artifact evidence merely because its kind is effect.
++  Never add a write or verification command just to satisfy a guessed tag.
+ - `source` gives the exact line spans the requirement comes from. A line
+   may support several requirements.
+ - Every nonblank line must be covered: by a requirement, or by a
+diff --git a/src/skillwren/inventory.py b/src/skillwren/inventory.py
+index d648e97..148fdf6 100644
+--- a/src/skillwren/inventory.py
++++ b/src/skillwren/inventory.py
+@@ -348,10 +348,17 @@ def check_landing(inventory, candidate):
+             # the measured silent-loss class even when the exec still runs.
+             gates = [hit for hit in hits if hit.kind == "gate"] if evidence == "exec" else []
+             if not any(hit.cls in wanted for hit in (gates or hits)):
++                required = {
++                    "exec": "requires an `exec`/`read` result, with `verify ... from` when landed on a gate",
++                    "user": "requires an ask or confirmation recording the person's decision",
++                    "effect": "requires a `write` or `save` producing the required artifact",
++                }[evidence]
+                 findings.append(_finding(
+                     "I7", f"source demands {evidence} evidence, but no landed statement "
+-                          f"records it (a `verify ... from` an exec result, an ask/confirmation, "
+-                          f"or a write): " + item["text"], ident))
++                          f"records it; {required}. Check the source evidence tag if the "
++                          "source demands no such proof. Do not invent an operation or "
++                          "weaken a real evidence requirement to clear this finding: "
++                          + item["text"], ident))
+     return findings
+ 
+ 
+diff --git a/src/skillwren/nlcompile.py b/src/skillwren/nlcompile.py
+index 32e4b5a..443f7ea 100644
+--- a/src/skillwren/nlcompile.py
++++ b/src/skillwren/nlcompile.py
+@@ -178,6 +178,9 @@ class Compilation:
+         self.judge = judge
+         self.reverse = reverse
+         self.log = []
++        self.last_inventory = None
++        self.last_files = None
++        self.failure_audit = {"phase": "inventory"}
+         self.questions, self.assumptions = [], []
+         self.sources = {name: raw.decode("utf-8-sig") for name, raw in self.originals.items()}
+         self.numbered = inv.numbered(self.originals)
+@@ -204,10 +207,12 @@ class Compilation:
+             if not isinstance(body, dict):
+                 raise CompileError("adapter must return an `inventory` object")
+             stamped = inv.stamp(body, self.originals)
++            self.last_inventory = stamped
+             try:
+                 findings = inv.check_coverage(stamped, self.originals)
+             except inv.InventoryError as error:
+                 findings = [inv._finding("I1", str(error))]
++            self.failure_audit = {"phase": "inventory", "findings": findings}
+             if not any(f["severity"] == "error" for f in findings):
+                 return stamped, findings
+         raise CompileError("inventory still incomplete after repairs: " + "; ".join(
+@@ -215,6 +220,7 @@ class Compilation:
+ 
+     # phases 3-5
+     def lower(self, inventory, staging):
++        self.failure_audit = {"phase": "lower"}
+         request = {"phase": "lower", "sources": self.numbered, "inventory": inventory,
+                    "layout": self.layout, "reverse": self.reverse}
+         judged, rounds_used = None, 0
+@@ -227,6 +233,8 @@ class Compilation:
+             reply = self.ask(request)
+             files = _safe_files(reply.get("files"))
+             landed = _land(inventory, reply.get("lands", {}), reply.get("scaffolding"))
++            self.last_inventory = landed
++            self.last_files = files
+             if staging.exists():
+                 shutil.rmtree(staging)
+             staging.mkdir(parents=True)
+@@ -252,6 +260,9 @@ class Compilation:
+                     clean = False
+             if clean:
+                 return files, landed, diagnostics, findings, judged, unbacked
++            self.failure_audit = {"phase": "lower", "diagnostics": diagnostics,
++                                  "findings": findings, "judge": judged,
++                                  "unbacked_verifies": unbacked}
+             if rounds_used >= self.rounds:
+                 raise CompileError(_failure(diagnostics, findings), files)
+             rounds_used += 1
+@@ -271,6 +282,26 @@ def _failure(diagnostics, findings):
+     return "candidate still invalid after repairs:\n  " + "\n  ".join(lines)
+ 
+ 
++def _keep_failed(path, error, job):
++    """Retain the actual last inventory and failure context without approving it."""
++    if not path:
++        return
++    root = Path(path)
++    files = error.files or job.last_files
++    if files:
++        write_files(root, files)
++    audit = root / "audit"
++    audit.mkdir(parents=True, exist_ok=True)
++    if job.last_inventory is not None:
++        (audit / "inventory.json").write_text(
++            json.dumps(job.last_inventory, indent=2) + "\n", encoding="utf-8")
++    failure = dict(job.failure_audit, error=str(error), calls=job.log,
++                   sources={name: digest(raw) for name, raw in job.originals.items()},
++                   questions=job.questions, assumptions=job.assumptions,
++                   approved=False, semantic_equivalence_proven=False)
++    (audit / "failure.json").write_text(json.dumps(failure, indent=2) + "\n", encoding="utf-8")
++
++
+ def compile_skill(source, out, adapter, contexts=(), layout="inline", rounds=3,
+                   judge=True, keep_failed=None, reverse=True):
+     out = Path(out).resolve()
+@@ -279,15 +310,18 @@ def compile_skill(source, out, adapter, contexts=(), layout="inline", rounds=3,
+     if not out.parent.is_dir():
+         raise CompileError(f"output parent does not exist: {out.parent}")
+     job = Compilation(source, contexts, adapter, layout, rounds, judge, reverse)
+-    inventory, coverage = job.build_inventory()
++    try:
++        inventory, coverage = job.build_inventory()
++    except CompileError as error:
++        _keep_failed(keep_failed, error, job)
++        raise
+     with tempfile.TemporaryDirectory(prefix="skillwren-compile-", dir=out.parent) as temp:
+         staging = Path(temp) / "artifact"
+         try:
+             files, landed, diagnostics, findings, judged, unbacked = job.lower(
+                 inventory, staging)
+         except CompileError as error:
+-            if keep_failed and error.files:
+-                write_files(Path(keep_failed), error.files)
++            _keep_failed(keep_failed, error, job)
+             raise
+         audit = staging / "audit"
+         audit.mkdir()
+@@ -356,7 +390,7 @@ def main(argv):
+     parser.add_argument("--no-judge", action="store_true")
+     parser.add_argument("--no-reverse", action="store_true",
+                         help="ablation: do not enforce reverse traceability (still measured)")
+-    parser.add_argument("--keep-failed", help="on failure, write the last attempt here")
++    parser.add_argument("--keep-failed", help="on failure, keep the last attempt, inventory and diagnostics here")
+     parser.add_argument("--json", action="store_true", help="print the manifest as JSON")
+     adapter = []
+     if "--" in argv:
+diff --git a/src/skillwren/validator/workflow.py b/src/skillwren/validator/workflow.py
+index 2515fd0..7299b3a 100644
+--- a/src/skillwren/validator/workflow.py
++++ b/src/skillwren/validator/workflow.py
+@@ -144,7 +144,8 @@ def explain_workflow(path, fragment=None):
+             lines.append(f"  - {rule['first']!r} before {rule['then']!r} "
+                          f"(line {rule['line']})")
+     else:
+-        lines.append("Ordering: no order rules; steps may run in any order.")
++        lines.append("Ordering: no order rules beyond the written sequence; that sequence "
++                     "and explicit control flow still apply.")
+     if dump["exclusion_rules"]:
+         lines.append("Exclusions (must not happen on any path, here or in any caller):")
+         for rule in dump["exclusion_rules"]:
+@@ -164,15 +165,24 @@ def explain_workflow(path, fragment=None):
+     touches = dump["touches"]
+     effected = [(flow, facts) for flow, facts in touches.items()
+                 if facts["writes"] or facts["runs"]]
+-    if effected:
+-        lines.append("Effects (files written or flows run):")
++    commands = [(flow, node) for flow, root in doc.trees.items() for node in walk(root)
++                if node.kind == "action" and node.data == "exec"]
++    if effected or commands:
++        lines.append("Effects (files written, flows run, or commands executed):")
+         for flow, facts in effected:
+             for target in facts["writes"]:
+                 lines.append(f"  - flow `{flow}` writes {target}")
+             for target in facts["runs"]:
+                 lines.append(f"  - flow `{flow}` runs {target}")
++        for flow, node in commands:
++            if re.match(r"exec\s+readonly\s", node.text):
++                effect = "declared read-only; actual effects depend on the execution host"
++            else:
++                effect = "may change state; its effects depend on the command and execution host"
++            lines.append(f"  - flow `{flow}` executes {node.text!r} (line {node.line}); {effect}.")
+     else:
+-        lines.append("Effects: none declared; the workflow changes nothing.")
++        lines.append("Effects: no explicit writes, flow calls, or commands; "
++                     "effects of reads and prose-defined operations are not established here.")
+     eligible, advisory = [], []
+     for flow, root in doc.trees.items():
+         for node in walk(root):
+diff --git a/tests/test_explain_workflow.py b/tests/test_explain_workflow.py
+index d1b0ceb..cd2e15c 100644
+--- a/tests/test_explain_workflow.py
++++ b/tests/test_explain_workflow.py
+@@ -9,6 +9,7 @@ paraphrase.
+ import json
+ from pathlib import Path
+ import sys
++import tempfile
+ import unittest
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+@@ -31,6 +32,39 @@ def load_facts(name):
+ 
+ 
+ class ExplainerTests(unittest.TestCase):
++    def assert_fact(self, fact, text, context):
++        # Preserve the frozen data, while correcting its unsupported inference
++        # that absence of declared effects proves execution has no effects.
++        if fact == 'changes nothing':
++            self.assertIn('no explicit writes, flow calls, or commands', text, context)
++            self.assertNotIn('the workflow changes nothing', text, context)
++        else:
++            self.assertIn(fact, text, context)
++
++    def explain_body(self, body):
++        with tempfile.TemporaryDirectory() as directory:
++            path = Path(directory) / 'SKILL.md'
++            path.write_text('---\nname: example\ndescription: Example.\n---\n\n'
++                            '```logic\nexample:\n' + body + '\n```\n', encoding='utf-8')
++            return explain_workflow(path, fragment=True)
++
++    def test_exec_only_flow_reports_possible_effects(self):
++        text = self.explain_body('  exec build from tools as result\n  return result as result')
++        self.assertNotIn('the workflow changes nothing', text)
++        self.assertIn('may change state', text)
++        self.assertIn('exec build from tools as result', text.split('Effects', 1)[1])
++
++    def test_readonly_exec_is_a_declaration_not_an_effect_guarantee(self):
++        text = self.explain_body('  exec readonly inspect from tools as result\n  return result as result')
++        self.assertNotIn('the workflow changes nothing', text)
++        self.assertIn('declared read-only', text.split('Effects', 1)[1])
++
++    def test_no_order_rules_does_not_erase_written_sequence(self):
++        text = self.explain_body('  read source from context as result\n  return result as result')
++        self.assertNotIn('steps may run in any order', text)
++        self.assertIn('written sequence', text)
++        self.assertNotIn('the workflow changes nothing', text)
++
+     def test_retry_and_default_failure_are_spelled_out(self):
+         text = explain_workflow(PAIRS / 'pairs06-flow.md', fragment=True)
+         self.assertIn("retry (line 67) -- re-runs the failed gate "
+@@ -55,7 +89,7 @@ class ExplainerTests(unittest.TestCase):
+             groups = facts.values() if isinstance(facts, dict) else [facts]
+             for group in groups:
+                 for fact in group:
+-                    self.assertIn(fact, text, f'{flow_name}: {fact!r}')
++                    self.assert_fact(fact, text, f'{flow_name}: {fact!r}')
+                     count += 1
+         self.assertGreaterEqual(count, 80, count)
+ 
+@@ -78,7 +112,7 @@ class ExplainerTests(unittest.TestCase):
+             facts = json.loads((v2 / facts_name).read_text())
+             for group in (facts.values() if isinstance(facts, dict) else [facts]):
+                 for fact in group:
+-                    self.assertIn(fact, text, f'v2 {flow_name}: {fact!r}')
++                    self.assert_fact(fact, text, f'v2 {flow_name}: {fact!r}')
+                     count += 1
+         self.assertEqual(count, 86)
+ 
+diff --git a/tests/test_nl_compile.py b/tests/test_nl_compile.py
+index eb623a8..e0304ac 100644
+--- a/tests/test_nl_compile.py
++++ b/tests/test_nl_compile.py
+@@ -123,6 +123,20 @@ class InventoryCoverageTests(unittest.TestCase):
+ 
+ 
+ class LandingTests(unittest.TestCase):
++    def test_evidence_error_names_only_the_required_form(self):
++        expected = {"exec": "requires an `exec`/`read` result",
++                    "user": "requires an ask or confirmation",
++                    "effect": "requires a `write` or `save`"}
++        for evidence, message in expected.items():
++            with self.subTest(evidence=evidence):
++                _, body, path = self.landed(GOOD_SKILL, LANDS, reverse=False)
++                body["requirements"][1]["evidence"] = evidence
++                body["requirements"][1]["lands"] = ["# Config deploy"]
++                findings = inv.check_landing(body, inv.Candidate(path))
++                failure = next(f for f in findings if f["rule"] == "I7")
++                self.assertIn(message, failure["message"])
++                self.assertIn("Do not invent", failure["message"])
++
+     def landed(self, text, lands, scaffolding=None, reverse=True):
+         directory = tempfile.TemporaryDirectory()
+         self.addCleanup(directory.cleanup)
+@@ -369,6 +383,49 @@ class CompileTests(unittest.TestCase):
+         self.assertTrue((kept / "SKILL.md").is_file())
+         self.assertEqual(len(self.requests("repair")), 2)
+ 
++    def test_failed_compile_retains_landed_inventory_and_diagnostics(self):
++        out, kept = self.dir / "out", self.dir / "kept"
++        script = self.script(lower=[{"files": {"SKILL.md": BAD_SKILL}, "lands": BAD_LANDS}])
++        with self.assertRaises(CompileError):
++            compile_skill(SOURCE, out, self.adapter(script), rounds=0, keep_failed=kept)
++        self.assertFalse(out.exists())
++        audit = kept / "audit"
++        inventory = json.loads((audit / "inventory.json").read_text(encoding="utf-8"))
++        self.assertEqual(inventory["requirements"][1]["evidence"], "exec")
++        self.assertEqual(inventory["requirements"][1]["lands"], BAD_LANDS["R2"])
++        failure = json.loads((audit / "failure.json").read_text(encoding="utf-8"))
++        self.assertEqual(failure["phase"], "lower")
++        self.assertFalse(failure["approved"])
++        self.assertTrue(failure["diagnostics"]["SKILL.md"]["errors"])
++        self.assertIn("I7", {f["rule"] for f in failure["findings"]})
++        self.assertEqual([c["phase"] for c in failure["calls"]], ["inventory", "lower"])
++
++    def test_failed_inventory_is_retained_without_publishing_a_candidate(self):
++        partial = copy.deepcopy(INVENTORY)
++        partial["requirements"] = partial["requirements"][:-1]
++        script = self.script(inventory=[{"inventory": partial}])
++        out, kept = self.dir / "out", self.dir / "kept"
++        with self.assertRaises(CompileError):
++            compile_skill(SOURCE, out, self.adapter(script), rounds=0, keep_failed=kept)
++        self.assertFalse(out.exists())
++        self.assertFalse((kept / "SKILL.md").exists())
++        audit = kept / "audit"
++        inventory = json.loads((audit / "inventory.json").read_text(encoding="utf-8"))
++        self.assertEqual(len(inventory["requirements"]), 4)
++        failure = json.loads((audit / "failure.json").read_text(encoding="utf-8"))
++        self.assertEqual(failure["phase"], "inventory")
++        self.assertIn("I3", {f["rule"] for f in failure["findings"]})
++
++    def test_invalid_repair_keeps_the_previous_validly_landed_attempt(self):
++        script = self.script(lower=[{"files": {"SKILL.md": BAD_SKILL}, "lands": BAD_LANDS}],
++                             repair=[{}])
++        kept = self.dir / "kept"
++        with self.assertRaises(CompileError):
++            compile_skill(SOURCE, self.dir / "out", self.adapter(script), keep_failed=kept)
++        self.assertEqual((kept / "SKILL.md").read_text(encoding="utf-8"), BAD_SKILL)
++        inventory = json.loads((kept / "audit/inventory.json").read_text(encoding="utf-8"))
++        self.assertEqual(inventory["requirements"][1]["lands"], BAD_LANDS["R2"])
++
+     def test_judge_drop_gets_one_repair_and_is_reported(self):
+         drop = dict(JUDGE_CLEAN, omission=["R3 recovery"])
+         script = self.script(judge=[drop])
+diff --git a/tests/test_optimization.py b/tests/test_optimization.py
+index 42f0afc..9dba1f0 100644
+--- a/tests/test_optimization.py
++++ b/tests/test_optimization.py
+@@ -179,6 +179,12 @@ class TestOptimizedBuild(unittest.TestCase):
+         self.assertEqual(report["optimization"]["metric"], "tokens")
+         self.assertEqual(report["optimization"]["review"]["requirements"], 6)
+ 
++    def test_worked_example_review_bytes_match_on_every_platform(self):
++        example = ROOT / "examples/optimization"
++        review = json.loads((example / "review.json").read_text(encoding="utf-8"))
++        self.assertEqual(digest((example / "original.md").read_bytes()), review["original_sha256"])
++        self.assertEqual(digest((example / "SKILL.md").read_bytes()), review["logic_sha256"])
++
+     def test_cli_rejects_unreviewed_conversion_before_publication(self):
+         env = dict(os.environ, PYTHONPATH=str(ROOT / "src"))
+         output = self.root / "unreviewed"

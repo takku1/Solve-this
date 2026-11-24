@@ -1,0 +1,1548 @@
+[
+  {
+    "number": 0,
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "kind": "init",
+    "payload": {
+      "id": "hadamard-conjecture",
+      "domain": "k in positive integers; real sign matrices of order 4*k",
+      "statement": "forall k in Z_{>0}, exists H in {-1,1}^{4k x 4k}, H*transpose(H) = 4k*I",
+      "formal_type": "HadamardConjecture",
+      "resolution": [
+        "CONJECTURE_PROVEN",
+        "CONJECTURE_REFUTED"
+      ],
+      "non_resolutions": [
+        "finite verification",
+        "known constructions",
+        "restricted UNSAT",
+        "candidate counterexample",
+        "branch exhaustion",
+        "budget exhaustion"
+      ]
+    },
+    "hash": "4bbb4619f720662a085970d0c019dae7bff0aec647d9079a036add27cabe4cbb"
+  },
+  {
+    "number": 1,
+    "previous": "4bbb4619f720662a085970d0c019dae7bff0aec647d9079a036add27cabe4cbb",
+    "kind": "source",
+    "payload": {
+      "id": "sage-hadamard",
+      "title": "SageMath Hadamard constructions",
+      "url": "https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html",
+      "version": "reference manual retrieved 2026-11-23",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    },
+    "hash": "b42303d41dec1d02ec5b6e78a94bb73d8baedeab3529e9caf98102b37423c65e"
+  },
+  {
+    "number": 2,
+    "previous": "b42303d41dec1d02ec5b6e78a94bb73d8baedeab3529e9caf98102b37423c65e",
+    "kind": "source",
+    "payload": {
+      "id": "cati-pasechnik-v2",
+      "title": "A database of constructions of Hadamard matrices",
+      "url": "https://arxiv.org/abs/2411.18897v2",
+      "version": "2025-08-30 v2",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    },
+    "hash": "98f6d132bfb8ee7632a2a9a7390c3fe6ae9bd94ff962a5305a43a344db68ae1c"
+  },
+  {
+    "number": 3,
+    "previous": "98f6d132bfb8ee7632a2a9a7390c3fe6ae9bd94ff962a5305a43a344db68ae1c",
+    "kind": "source",
+    "payload": {
+      "id": "egan-et-al-v2",
+      "title": "Recent progress in the construction of Hadamard matrices",
+      "url": "https://arxiv.org/abs/2610.27175v2",
+      "version": "2026-11-03 v2; abstract 85 versus retrieved PDF/HTML 95 is unresolved",
+      "accessed": "2026-11-23",
+      "status": "version-discrepancy; independent verification reported, not locally replayed"
+    },
+    "hash": "84c0b434685adde22626619dfd575ad5d0eb257fd57f4f3dd6cfb20ff43616b4"
+  },
+  {
+    "number": 4,
+    "previous": "84c0b434685adde22626619dfd575ad5d0eb257fd57f4f3dd6cfb20ff43616b4",
+    "kind": "source",
+    "payload": {
+      "id": "williamson-et-al-v2",
+      "title": "Generating Hadamard matrices with transformers",
+      "url": "https://arxiv.org/abs/2604.11101v2",
+      "version": "2026-05-11 v2",
+      "accessed": "2026-11-23",
+      "status": "literature"
+    },
+    "hash": "a746d3dae80876f49f3b4d3a9f796745a7f1a7fb81d80b61faa3649c9ad993aa"
+  },
+  {
+    "number": 5,
+    "previous": "a746d3dae80876f49f3b4d3a9f796745a7f1a7fb81d80b61faa3649c9ad993aa",
+    "kind": "claim",
+    "payload": {
+      "id": "sylvester",
+      "statement": "H(2^a) for every integer a >= 0 by Sylvester doubling",
+      "scope": "classical existence family; literature theorem, not a new discovery",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard",
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "95f2306cfe3ef4bdc14f5a10b368a1bf26e5a915bd494e640ad88dbd8e8127a1"
+  },
+  {
+    "number": 6,
+    "previous": "95f2306cfe3ef4bdc14f5a10b368a1bf26e5a915bd494e640ad88dbd8e8127a1",
+    "kind": "observation",
+    "payload": {
+      "claim": "sylvester",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard",
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 6
+    },
+    "hash": "6365ccd7a0702b41a8f74a225f3661a9bcc082180fbce9f4ce374551a30bf839"
+  },
+  {
+    "number": 7,
+    "previous": "6365ccd7a0702b41a8f74a225f3661a9bcc082180fbce9f4ce374551a30bf839",
+    "kind": "claim",
+    "payload": {
+      "id": "paley-I",
+      "statement": "H(q+1) for prime powers q congruent to 3 modulo 4",
+      "scope": "prime-power domain and congruence are required",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "9b1a1e0d4d5fca987cd56fefdc204bcf30aee62fa3db2cf3beffc76a2f8251c7"
+  },
+  {
+    "number": 8,
+    "previous": "9b1a1e0d4d5fca987cd56fefdc204bcf30aee62fa3db2cf3beffc76a2f8251c7",
+    "kind": "observation",
+    "payload": {
+      "claim": "paley-I",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 8
+    },
+    "hash": "b1e664d1bbaddd4bd6d490937fe4479188517644cda066314754f487953b5753"
+  },
+  {
+    "number": 9,
+    "previous": "b1e664d1bbaddd4bd6d490937fe4479188517644cda066314754f487953b5753",
+    "kind": "claim",
+    "payload": {
+      "id": "paley-II",
+      "statement": "H(2*(q+1)) for odd prime powers q congruent to 1 modulo 4",
+      "scope": "prime-power domain and congruence are required",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "3a6623bc7172ad54ecb5c9a7ea11945e92a591cccd62adb8691792fcab7b6678"
+  },
+  {
+    "number": 10,
+    "previous": "3a6623bc7172ad54ecb5c9a7ea11945e92a591cccd62adb8691792fcab7b6678",
+    "kind": "observation",
+    "payload": {
+      "claim": "paley-II",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 10
+    },
+    "hash": "97edd987d519bd049fcbcd1cdc578fe5b20be87b310d2f419f794bdbf9aab06b"
+  },
+  {
+    "number": 11,
+    "previous": "97edd987d519bd049fcbcd1cdc578fe5b20be87b310d2f419f794bdbf9aab06b",
+    "kind": "claim",
+    "payload": {
+      "id": "kronecker",
+      "statement": "H(a) and H(b) imply H(a*b)",
+      "scope": "positive integer orders; construction closure does not imply all multiples of four",
+      "kind": "known",
+      "sources": [
+        "sage-hadamard",
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "97cd6d68cb938db5b2ec93f4d5e203a6ed92fcf779323b1033078edad59e7b67"
+  },
+  {
+    "number": 12,
+    "previous": "97cd6d68cb938db5b2ec93f4d5e203a6ed92fcf779323b1033078edad59e7b67",
+    "kind": "observation",
+    "payload": {
+      "claim": "kronecker",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "sage-hadamard",
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 12
+    },
+    "hash": "eba2be42a555fa1f7b4b9bf620ba753dc5b00e80b8b2bf457976a10fa3225ed0"
+  },
+  {
+    "number": 13,
+    "previous": "eba2be42a555fa1f7b4b9bf620ba753dc5b00e80b8b2bf457976a10fa3225ed0",
+    "kind": "claim",
+    "payload": {
+      "id": "paley-method-barrier",
+      "statement": "Paley constructions fail at orders 2^m*509203",
+      "scope": "a barrier to a construction method, not nonexistence of Hadamard matrices",
+      "kind": "known",
+      "sources": [
+        "cati-pasechnik-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "3c162384a2e96037e2e4a68c479d6e1062e32fd6ab9c23bb47c45ca861939a63"
+  },
+  {
+    "number": 14,
+    "previous": "3c162384a2e96037e2e4a68c479d6e1062e32fd6ab9c23bb47c45ca861939a63",
+    "kind": "observation",
+    "payload": {
+      "claim": "paley-method-barrier",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "cati-pasechnik-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 14
+    },
+    "hash": "cc5c7cb0b752a9d851ad428fcc15af5f37b4f8cbd353088b2391fd52ce2b9797"
+  },
+  {
+    "number": 15,
+    "previous": "cc5c7cb0b752a9d851ad428fcc15af5f37b4f8cbd353088b2391fd52ce2b9797",
+    "kind": "claim",
+    "payload": {
+      "id": "reported-2026-orders",
+      "statement": "Independent verification reported for the twelve formerly unresolved orders below 2000",
+      "scope": "external literature report only; local matrices not downloaded or verified",
+      "kind": "known",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "b990ecdbfd65390f8d90252046541cd6278abaf306d64809dba30545d74669e6"
+  },
+  {
+    "number": 16,
+    "previous": "b990ecdbfd65390f8d90252046541cd6278abaf306d64809dba30545d74669e6",
+    "kind": "observation",
+    "payload": {
+      "claim": "reported-2026-orders",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "sources": [
+          "egan-et-al-v2"
+        ],
+        "local_proof": false
+      },
+      "branch": null,
+      "event_number": 16
+    },
+    "hash": "7b33193bd7bd7dd54bcf1e26962f82a78ef3ec5cd931ac19e88a8d7dfaa8a07f"
+  },
+  {
+    "number": 17,
+    "previous": "7b33193bd7bd7dd54bcf1e26962f82a78ef3ec5cd931ac19e88a8d7dfaa8a07f",
+    "kind": "claim",
+    "payload": {
+      "id": "universal-family-coverage",
+      "statement": "Prove that certified construction rules cover every positive order divisible by four",
+      "scope": "unbounded symbolic coverage, not a finite scan",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "e841fd1efd068806247a1ecff97543f682b5bd5a7061b7e512f8280df87ed4fd"
+  },
+  {
+    "number": 18,
+    "previous": "e841fd1efd068806247a1ecff97543f682b5bd5a7061b7e512f8280df87ed4fd",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "universal-family-coverage",
+      "kind": "may_support"
+    },
+    "hash": "f3a9bfb6886b595dae741e5c140542c1f45213a4af737c306b24c1bebe131c46"
+  },
+  {
+    "number": 19,
+    "previous": "f3a9bfb6886b595dae741e5c140542c1f45213a4af737c306b24c1bebe131c46",
+    "kind": "claim",
+    "payload": {
+      "id": "universal-legendre-pairs",
+      "statement": "A Legendre pair exists at every odd positive length",
+      "scope": "sufficient route to Hadamard; no converse assumed",
+      "kind": "candidate",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "6a410ee80d13f7f2490bbf6a4e9f81887204b95f537efb42cbe84fc0a310e74d"
+  },
+  {
+    "number": 20,
+    "previous": "6a410ee80d13f7f2490bbf6a4e9f81887204b95f537efb42cbe84fc0a310e74d",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "universal-legendre-pairs",
+      "kind": "may_support"
+    },
+    "hash": "9da6a2f06d7af4ede187ea28a4d4bb17c6d31d86ff7d603b5daf5f16f9f038de"
+  },
+  {
+    "number": 21,
+    "previous": "9da6a2f06d7af4ede187ea28a4d4bb17c6d31d86ff7d603b5daf5f16f9f038de",
+    "kind": "claim",
+    "payload": {
+      "id": "legendre-to-hadamard",
+      "statement": "A Legendre pair of odd length ell yields H(2*ell+2)",
+      "scope": "known implication requiring a formal lifting proof in this project",
+      "kind": "obligation",
+      "sources": [
+        "egan-et-al-v2"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "b1028c02b968f8d7295178b66638ff0b25a8d1c7d128f30ebefca6d4261e2bcb"
+  },
+  {
+    "number": 22,
+    "previous": "b1028c02b968f8d7295178b66638ff0b25a8d1c7d128f30ebefca6d4261e2bcb",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "legendre-to-hadamard",
+      "kind": "may_support"
+    },
+    "hash": "3c690d30a910ff88c6d51697253cdd9f4caef3dab590c1f2a81d58637113292e"
+  },
+  {
+    "number": 23,
+    "previous": "3c690d30a910ff88c6d51697253cdd9f4caef3dab590c1f2a81d58637113292e",
+    "kind": "claim",
+    "payload": {
+      "id": "construction-parameter-existence",
+      "statement": "Supply parameters satisfying a proposed universal construction at all required indices",
+      "scope": "cannot be inferred from conditional Gram identities",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "27eb42831ff2170426167279ea6cbc527d8a64394f1df318c37512f7e430cffc"
+  },
+  {
+    "number": 24,
+    "previous": "27eb42831ff2170426167279ea6cbc527d8a64394f1df318c37512f7e430cffc",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "construction-parameter-existence",
+      "kind": "may_support"
+    },
+    "hash": "5f18259fe2db25ff087b2ed6e2e1fba9771c89c0262c61040ce5f556273f69f0"
+  },
+  {
+    "number": 25,
+    "previous": "5f18259fe2db25ff087b2ed6e2e1fba9771c89c0262c61040ce5f556273f69f0",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-family-coverage",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    "hash": "f8c4bd22b6f41794e809ce4ac35878b8adf5550c51d67047c99da23ea0ef3528"
+  },
+  {
+    "number": 26,
+    "previous": "f8c4bd22b6f41794e809ce4ac35878b8adf5550c51d67047c99da23ea0ef3528",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-legendre-pairs",
+      "dependency": "legendre-to-hadamard",
+      "kind": "may_support"
+    },
+    "hash": "195cb57a068a81b69d015c0c44cf46b5296fbadda86ff62a89967f323409b982"
+  },
+  {
+    "number": 27,
+    "previous": "195cb57a068a81b69d015c0c44cf46b5296fbadda86ff62a89967f323409b982",
+    "kind": "claim",
+    "payload": {
+      "id": "block-5fe6a86c26f17e87",
+      "statement": "Signed block operator [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [
+        "sage-hadamard"
+      ],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "fdac5b751790e9230643a6d96f00ca249cdeca74587997c10a5b1a1def34828e"
+  },
+  {
+    "number": 28,
+    "previous": "fdac5b751790e9230643a6d96f00ca249cdeca74587997c10a5b1a1def34828e",
+    "kind": "observation",
+    "payload": {
+      "claim": "block-5fe6a86c26f17e87",
+      "state": "KNOWN_RESULT",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 28
+    },
+    "hash": "301f7c11f9065475877ae6401c034ee8ea80ec0bc0ec26d6b8e820ff8c1d520c"
+  },
+  {
+    "number": 29,
+    "previous": "301f7c11f9065475877ae6401c034ee8ea80ec0bc0ec26d6b8e820ff8c1d520c",
+    "kind": "claim",
+    "payload": {
+      "id": "gram-5fe6a86c26f17e87",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "48e4cf6d33854e9ef1d28fd5a97bfef284ff06eb3acf507c06327a412fea8a01"
+  },
+  {
+    "number": 30,
+    "previous": "48e4cf6d33854e9ef1d28fd5a97bfef284ff06eb3acf507c06327a412fea8a01",
+    "kind": "claim",
+    "payload": {
+      "id": "lifting-5fe6a86c26f17e87",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"A\",-1],[\"A\",-1],[\"A\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "9a3d34cff8707ef5b8e5799b55bac31d21f209bc0bc9efec2a6a8a543990cd4f"
+  },
+  {
+    "number": 31,
+    "previous": "9a3d34cff8707ef5b8e5799b55bac31d21f209bc0bc9efec2a6a8a543990cd4f",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "gram-5fe6a86c26f17e87",
+      "kind": "requires"
+    },
+    "hash": "fad80cbe1ce9dd90d8e7101942ef54f4db15bc0808c4aab8e219b596af72adef"
+  },
+  {
+    "number": 32,
+    "previous": "fad80cbe1ce9dd90d8e7101942ef54f4db15bc0808c4aab8e219b596af72adef",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "lifting-5fe6a86c26f17e87",
+      "kind": "requires"
+    },
+    "hash": "d58d6a640acb3628442567ad47396dc0aecffefce3daa200f65d60e827d889b3"
+  },
+  {
+    "number": 33,
+    "previous": "d58d6a640acb3628442567ad47396dc0aecffefce3daa200f65d60e827d889b3",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-5fe6a86c26f17e87",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    "hash": "8e2e27ff3c670b97f41631e9f81ac107bdf1387122520db59c790ca16f6c3a27"
+  },
+  {
+    "number": 34,
+    "previous": "8e2e27ff3c670b97f41631e9f81ac107bdf1387122520db59c790ca16f6c3a27",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-family-coverage",
+      "dependency": "block-5fe6a86c26f17e87",
+      "kind": "may_support"
+    },
+    "hash": "c03d29bf35de795e70568e1e8e23279151434342d386ece3f871f16dcbb9fd02"
+  },
+  {
+    "number": 35,
+    "previous": "c03d29bf35de795e70568e1e8e23279151434342d386ece3f871f16dcbb9fd02",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-5fe6a86c26f17e87",
+      "kind": "may_support"
+    },
+    "hash": "3ba2348f6282e9b15ebadb2c97c65c769f9c67239af2348d3335c7eb390c4eaf"
+  },
+  {
+    "number": 36,
+    "previous": "3ba2348f6282e9b15ebadb2c97c65c769f9c67239af2348d3335c7eb390c4eaf",
+    "kind": "attempt",
+    "payload": {
+      "claim": "gram-5fe6a86c26f17e87",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean",
+        "source_sha256": "6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50",
+        "output": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.log",
+        "output_sha256": "254e8cfe36fcbb1b1ccd958663b1a1b957fb4dee2af50d1b0eb93012e69ba4f5",
+        "exit_code": 0
+      }
+    },
+    "hash": "f1430b0852dbd344950638de87809436ea90b7711835ff83f259147dbe12835f"
+  },
+  {
+    "number": 37,
+    "previous": "f1430b0852dbd344950638de87809436ea90b7711835ff83f259147dbe12835f",
+    "kind": "proof",
+    "payload": {
+      "claim": "gram-5fe6a86c26f17e87",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * aa) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.lean",
+        "source_sha256": "6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50",
+        "output": "evidence/6853b983cca152775b4fa4ae31fb03c0220ee8f7c0f99f078fc6e6dcc48cda50.log",
+        "output_sha256": "254e8cfe36fcbb1b1ccd958663b1a1b957fb4dee2af50d1b0eb93012e69ba4f5",
+        "exit_code": 0
+      }
+    },
+    "hash": "43b381ab1d3b32df5af0b6f747332a36a81effaaf9603866ddfb22c7aa507ab2"
+  },
+  {
+    "number": 38,
+    "previous": "43b381ab1d3b32df5af0b6f747332a36a81effaaf9603866ddfb22c7aa507ab2",
+    "kind": "claim",
+    "payload": {
+      "id": "block-f347e3a0425942cf",
+      "statement": "Signed block operator [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "6ea720ccd46ed851d8aae838fdf79765ec95e9de2046ebf1741affe6ef88ce71"
+  },
+  {
+    "number": 39,
+    "previous": "6ea720ccd46ed851d8aae838fdf79765ec95e9de2046ebf1741affe6ef88ce71",
+    "kind": "observation",
+    "payload": {
+      "claim": "block-f347e3a0425942cf",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 39
+    },
+    "hash": "53b69f95ad891f0a2eb25ac942134c529796ed0d884f1cf44f947186b910d9db"
+  },
+  {
+    "number": 40,
+    "previous": "53b69f95ad891f0a2eb25ac942134c529796ed0d884f1cf44f947186b910d9db",
+    "kind": "claim",
+    "payload": {
+      "id": "gram-f347e3a0425942cf",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "8907fe20fb622698b06b16a3cd5637d55c1da6d2b5842d21ca00fd594c5dc515"
+  },
+  {
+    "number": 41,
+    "previous": "8907fe20fb622698b06b16a3cd5637d55c1da6d2b5842d21ca00fd594c5dc515",
+    "kind": "claim",
+    "payload": {
+      "id": "lifting-f347e3a0425942cf",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"A\",-1],[\"B\",-1],[\"B\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "455dff652565c2210edcb37bb67b277ef09d917361c4940f8a44227646cd65cd"
+  },
+  {
+    "number": 42,
+    "previous": "455dff652565c2210edcb37bb67b277ef09d917361c4940f8a44227646cd65cd",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "gram-f347e3a0425942cf",
+      "kind": "requires"
+    },
+    "hash": "ac6bdaa9f2e2a6c6f63999f841375ecde35b3794ebab16be3705ed67cfabd7b1"
+  },
+  {
+    "number": 43,
+    "previous": "ac6bdaa9f2e2a6c6f63999f841375ecde35b3794ebab16be3705ed67cfabd7b1",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "lifting-f347e3a0425942cf",
+      "kind": "requires"
+    },
+    "hash": "6428dacffc79ec63c6d784aa685a33220665affa2a44adce916cd7520d6a8865"
+  },
+  {
+    "number": 44,
+    "previous": "6428dacffc79ec63c6d784aa685a33220665affa2a44adce916cd7520d6a8865",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-f347e3a0425942cf",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    "hash": "09387710b162fcbbf3625123f35dda1a91a20ac42b662b063c011695826b91b3"
+  },
+  {
+    "number": 45,
+    "previous": "09387710b162fcbbf3625123f35dda1a91a20ac42b662b063c011695826b91b3",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-family-coverage",
+      "dependency": "block-f347e3a0425942cf",
+      "kind": "may_support"
+    },
+    "hash": "effc338777f896b0e8267f1b1efafe0c5dd4b15e82488ec75a113364170943d9"
+  },
+  {
+    "number": 46,
+    "previous": "effc338777f896b0e8267f1b1efafe0c5dd4b15e82488ec75a113364170943d9",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-f347e3a0425942cf",
+      "kind": "may_support"
+    },
+    "hash": "55ed7c09d671979184fa1c766d00013485af8fb64565bcac0b4b9fd54aa78f5f"
+  },
+  {
+    "number": 47,
+    "previous": "55ed7c09d671979184fa1c766d00013485af8fb64565bcac0b4b9fd54aa78f5f",
+    "kind": "attempt",
+    "payload": {
+      "claim": "gram-f347e3a0425942cf",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.lean",
+        "source_sha256": "d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7",
+        "output": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.log",
+        "output_sha256": "ee849787e3b27b6fb18c7bc2aead9380a513b0e59ab6fb016f2b6db5cb8471db",
+        "exit_code": 0
+      }
+    },
+    "hash": "ccca728ca14bb50906627ae57420ec4149fc3116c6c6adcb066019829a85d138"
+  },
+  {
+    "number": 48,
+    "previous": "ccca728ca14bb50906627ae57420ec4149fc3116c6c6adcb066019829a85d138",
+    "kind": "proof",
+    "payload": {
+      "claim": "gram-f347e3a0425942cf",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((2 * aa) = 2*n) \u2227 (0 = 0) \u2227 (0 = 0) \u2227 ((2 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.lean",
+        "source_sha256": "d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7",
+        "output": "evidence/d37bdc0a3ace05ed277ee4f2b49d8c51743c7e1b7d3e9c25834d1b0a9b3c27d7.log",
+        "output_sha256": "ee849787e3b27b6fb18c7bc2aead9380a513b0e59ab6fb016f2b6db5cb8471db",
+        "exit_code": 0
+      }
+    },
+    "hash": "aa52df4a75bdbcabeed9d02f1a2e524756b1f0ebe28b1bfae9022bcd2ceef7f7"
+  },
+  {
+    "number": 49,
+    "previous": "aa52df4a75bdbcabeed9d02f1a2e524756b1f0ebe28b1bfae9022bcd2ceef7f7",
+    "kind": "claim",
+    "payload": {
+      "id": "block-77650a5902a83896",
+      "statement": "Signed block operator [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]]",
+      "scope": "A,B square Hadamard of same order n",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "bc832d8539c6d7060998b5d7001b6cac756e8600f853a2636d484683d62e0a50"
+  },
+  {
+    "number": 50,
+    "previous": "bc832d8539c6d7060998b5d7001b6cac756e8600f853a2636d484683d62e0a50",
+    "kind": "observation",
+    "payload": {
+      "claim": "block-77650a5902a83896",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": null,
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 50
+    },
+    "hash": "0a8245b7c8a60cf34b41134e51da66f3a5267978ac45318500e09a0cd63877b0"
+  },
+  {
+    "number": 51,
+    "previous": "0a8245b7c8a60cf34b41134e51da66f3a5267978ac45318500e09a0cd63877b0",
+    "kind": "claim",
+    "payload": {
+      "id": "gram-77650a5902a83896",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "71ac2c7fddc0e6891981b84c7f16746cf38df10c47e34bf01d6fb720fd41b40f"
+  },
+  {
+    "number": 52,
+    "previous": "71ac2c7fddc0e6891981b84c7f16746cf38df10c47e34bf01d6fb720fd41b40f",
+    "kind": "claim",
+    "payload": {
+      "id": "lifting-77650a5902a83896",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"B\",-1],[\"A\",-1],[\"B\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "40d2a0034a0f198f9ff42d10c833393c702e42668144428f817956da504047ee"
+  },
+  {
+    "number": 53,
+    "previous": "40d2a0034a0f198f9ff42d10c833393c702e42668144428f817956da504047ee",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-77650a5902a83896",
+      "dependency": "gram-77650a5902a83896",
+      "kind": "requires"
+    },
+    "hash": "0ceda0c144e13a1a1b171665dd7fe403a6620e62ecdc2332a615f2994ffe5fe4"
+  },
+  {
+    "number": 54,
+    "previous": "0ceda0c144e13a1a1b171665dd7fe403a6620e62ecdc2332a615f2994ffe5fe4",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-77650a5902a83896",
+      "dependency": "lifting-77650a5902a83896",
+      "kind": "requires"
+    },
+    "hash": "906eeecd9c867a38e68c80e57749991d07c5d94004899d1a567dc8a5b8a196d8"
+  },
+  {
+    "number": 55,
+    "previous": "906eeecd9c867a38e68c80e57749991d07c5d94004899d1a567dc8a5b8a196d8",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-77650a5902a83896",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    "hash": "801bb9304d562a3616a8e41ce5c5c7ef9e096eedef00ccaf48f3957ac8db8769"
+  },
+  {
+    "number": 56,
+    "previous": "801bb9304d562a3616a8e41ce5c5c7ef9e096eedef00ccaf48f3957ac8db8769",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-family-coverage",
+      "dependency": "block-77650a5902a83896",
+      "kind": "may_support"
+    },
+    "hash": "068b0e4eb1f45f1465d7276c89692ec20b2f85f51fa15c0335ffef22cb076ec5"
+  },
+  {
+    "number": 57,
+    "previous": "068b0e4eb1f45f1465d7276c89692ec20b2f85f51fa15c0335ffef22cb076ec5",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-77650a5902a83896",
+      "kind": "may_support"
+    },
+    "hash": "1db9f2a6daa6a70520b36d45d3bf68d37004d18cf7d0c0928c01e9bc96660d7f"
+  },
+  {
+    "number": 58,
+    "previous": "1db9f2a6daa6a70520b36d45d3bf68d37004d18cf7d0c0928c01e9bc96660d7f",
+    "kind": "claim",
+    "payload": {
+      "id": "block-babf882252d5aea7",
+      "statement": "Signed block operator [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "A,B square Hadamard of same order n; AB^T = BA^T (amicability)",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "abe3217297385934529c25c55d9a0cd9632cd00463dd947822301d37ab85b9e6"
+  },
+  {
+    "number": 59,
+    "previous": "abe3217297385934529c25c55d9a0cd9632cd00463dd947822301d37ab85b9e6",
+    "kind": "observation",
+    "payload": {
+      "claim": "block-babf882252d5aea7",
+      "state": "EMPIRICALLY_SUPPORTED",
+      "evidence": {
+        "trials": [
+          {
+            "input_order": 1,
+            "output_order": 2,
+            "valid": true
+          },
+          {
+            "input_order": 2,
+            "output_order": 4,
+            "valid": true
+          },
+          {
+            "input_order": 4,
+            "output_order": 8,
+            "valid": true
+          },
+          {
+            "input_order": 8,
+            "output_order": 16,
+            "valid": true
+          }
+        ],
+        "all_valid": true,
+        "assumption_removal_counterexample": {
+          "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+          "A": [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              -1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "output_hadamard": false
+        },
+        "limits": "Four exact cases support this parameterized candidate only; they prove no universal family or parameter existence."
+      },
+      "branch": "constructive-algebra",
+      "event_number": 59
+    },
+    "hash": "eb674be6052dbf875c7c84bcc793201689a98e08b91d2a773810a1b208bf6f8a"
+  },
+  {
+    "number": 60,
+    "previous": "eb674be6052dbf875c7c84bcc793201689a98e08b91d2a773810a1b208bf6f8a",
+    "kind": "claim",
+    "payload": {
+      "id": "gram-babf882252d5aea7",
+      "statement": "Scalar Gram cancellation for [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "arbitrary integer Gram entries under the displayed equalities; not a matrix existence theorem",
+      "kind": "lemma",
+      "sources": [],
+      "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "3ff4af11a15d2f002fdaa2a42f0ee49c4d5a84da62ce31cd80edc03e9bb2b79c"
+  },
+  {
+    "number": 61,
+    "previous": "3ff4af11a15d2f002fdaa2a42f0ee49c4d5a84da62ce31cd80edc03e9bb2b79c",
+    "kind": "claim",
+    "payload": {
+      "id": "lifting-babf882252d5aea7",
+      "statement": "Lift the scalar identities for [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]] to a sign-matrix theorem with exact indices and dimensions",
+      "scope": "parameterized matrices of positive equal input order",
+      "kind": "obligation",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "27f0edc2f94ec14610f5b2445c92ac29a816c2f01fdde72c696e17468b9333d9"
+  },
+  {
+    "number": 62,
+    "previous": "27f0edc2f94ec14610f5b2445c92ac29a816c2f01fdde72c696e17468b9333d9",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "gram-babf882252d5aea7",
+      "kind": "requires"
+    },
+    "hash": "6143bfcdfad6269ffd20bf0ac1bc64673f0d3102112485ca82fe61d8ee4ef115"
+  },
+  {
+    "number": 63,
+    "previous": "6143bfcdfad6269ffd20bf0ac1bc64673f0d3102112485ca82fe61d8ee4ef115",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "lifting-babf882252d5aea7",
+      "kind": "requires"
+    },
+    "hash": "8536c9783765c0e8faa269dcc2988074c0f2b47f6bb7c890694a7fe61a5cb3e1"
+  },
+  {
+    "number": 64,
+    "previous": "8536c9783765c0e8faa269dcc2988074c0f2b47f6bb7c890694a7fe61a5cb3e1",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "construction-parameter-existence",
+      "kind": "requires"
+    },
+    "hash": "4450e5a9557361d03e869042203268b6389727ecd24005a81f1512525f2ecc41"
+  },
+  {
+    "number": 65,
+    "previous": "4450e5a9557361d03e869042203268b6389727ecd24005a81f1512525f2ecc41",
+    "kind": "edge",
+    "payload": {
+      "claim": "universal-family-coverage",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "may_support"
+    },
+    "hash": "4293b8fae565b7f290800308cc7d59b196977eed72037d30d5520176bed36151"
+  },
+  {
+    "number": 66,
+    "previous": "4293b8fae565b7f290800308cc7d59b196977eed72037d30d5520176bed36151",
+    "kind": "edge",
+    "payload": {
+      "claim": "hadamard-conjecture",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "may_support"
+    },
+    "hash": "cd100bc761072a1af215367d6e321601a47135d463c63b6ec2c32fc444bddf6c"
+  },
+  {
+    "number": 67,
+    "previous": "cd100bc761072a1af215367d6e321601a47135d463c63b6ec2c32fc444bddf6c",
+    "kind": "claim",
+    "payload": {
+      "id": "unguarded-babf882252d5aea7",
+      "statement": "The same block operator works without amicability: [[\"A\",-1],[\"B\",-1],[\"B\",-1],[\"A\",1]]",
+      "scope": "all Hadamard A,B of the same order",
+      "kind": "candidate",
+      "sources": [],
+      "formal_type": null,
+      "status": "UNRESOLVED",
+      "novelty": "UNREVIEWED"
+    },
+    "hash": "5b414b4a55eb19f2738b8ff22b3355bd28c4765cf36b8f4167a5b47619293b5d"
+  },
+  {
+    "number": 68,
+    "previous": "5b414b4a55eb19f2738b8ff22b3355bd28c4765cf36b8f4167a5b47619293b5d",
+    "kind": "observation",
+    "payload": {
+      "claim": "unguarded-babf882252d5aea7",
+      "state": "COUNTEREXAMPLE_FOUND",
+      "evidence": {
+        "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+        "A": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ]
+        ],
+        "B": [
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "output_hadamard": false
+      },
+      "branch": "obstruction-theory",
+      "event_number": 68
+    },
+    "hash": "8967dbe49e414e6d9b903297caf52cef35b90a2a72df458d7b4420076c1615aa"
+  },
+  {
+    "number": 69,
+    "previous": "8967dbe49e414e6d9b903297caf52cef35b90a2a72df458d7b4420076c1615aa",
+    "kind": "edge",
+    "payload": {
+      "claim": "block-babf882252d5aea7",
+      "dependency": "unguarded-babf882252d5aea7",
+      "kind": "generalizes"
+    },
+    "hash": "5d77dd6d43728ae24be2d8ebb8ea36e830fd101e435ab3412fa82006d91efb05"
+  },
+  {
+    "number": 70,
+    "previous": "5d77dd6d43728ae24be2d8ebb8ea36e830fd101e435ab3412fa82006d91efb05",
+    "kind": "attempt",
+    "payload": {
+      "run_key": "c2bd3b8c26377d525b3d87764e9200539c7e3c7830097a331ea893d6fc2f6680",
+      "artifact": "attempt-d655335eae3cdc705cda87683fea10c4ae3bf37236cb4d9ab096cd00007eb7d9.json",
+      "artifact_sha256": "91b3b7df817ab69b5f6882ab3eca152461fcd92ae0c0aaeacb65f348149b7a60",
+      "candidate_state": "BRANCH_EXHAUSTED",
+      "engine_sha256": "ffaf49f07ce00da9eb2ab9d2539596344851cf543623095f182ddebec508f86c"
+    },
+    "hash": "6691623ad3029e208283737f6803e4abbfb384cfd4f686c7658e77b3cb1b60b2"
+  },
+  {
+    "number": 71,
+    "previous": "6691623ad3029e208283737f6803e4abbfb384cfd4f686c7658e77b3cb1b60b2",
+    "kind": "checkpoint",
+    "payload": {
+      "state": "BUDGET_EXHAUSTED",
+      "remaining": [
+        "matrix lifting",
+        "parameter existence",
+        "novelty/equivalence review",
+        "global coverage"
+      ],
+      "reason": "This invocation ended; finite grammar exhaustion is only a branch result"
+    },
+    "hash": "52cc1c05f2e8c81f133090a5e7a591287d8307897949f14fe80f47c4a103ea35"
+  },
+  {
+    "number": 72,
+    "previous": "52cc1c05f2e8c81f133090a5e7a591287d8307897949f14fe80f47c4a103ea35",
+    "kind": "program",
+    "payload": {
+      "audit": "evidence/audit-a14f54c8c3ebbe1e9336314d3526176d13084b8517570dd753e04e4c9ce07218.md",
+      "audit_sha256": "a14f54c8c3ebbe1e9336314d3526176d13084b8517570dd753e04e4c9ce07218",
+      "program": "evidence/program-bf90a9155bf7bd5cae3b3f7129f5d6b8d9d372b0b82693bad967e1a561018937.md",
+      "program_sha256": "bf90a9155bf7bd5cae3b3f7129f5d6b8d9d372b0b82693bad967e1a561018937"
+    },
+    "hash": "52cd068677eb543382d21538e16d33c2f2191156abd954f03add6225716c4e28"
+  },
+  {
+    "number": 73,
+    "previous": "52cd068677eb543382d21538e16d33c2f2191156abd954f03add6225716c4e28",
+    "kind": "checkpoint",
+    "payload": {
+      "state": "RUNNING"
+    },
+    "hash": "87538b558a229c1adacbc819b835858c3608ff9a30b00b066785a5c43f7edcdd"
+  },
+  {
+    "number": 74,
+    "previous": "87538b558a229c1adacbc819b835858c3608ff9a30b00b066785a5c43f7edcdd",
+    "kind": "attempt",
+    "payload": {
+      "claim": "gram-77650a5902a83896",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.lean",
+        "source_sha256": "ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1",
+        "output": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.log",
+        "output_sha256": "dc67005408cfb0f88c7aa6b40b9a06c604abf8be427a7de7969750e0b6b150c2",
+        "exit_code": 0
+      }
+    },
+    "hash": "a3f83064f719285a399f3c1854e7cd03be850784893d3042f7376b1548dc1684"
+  },
+  {
+    "number": 75,
+    "previous": "a3f83064f719285a399f3c1854e7cd03be850784893d3042f7376b1548dc1684",
+    "kind": "proof",
+    "payload": {
+      "claim": "gram-77650a5902a83896",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (-1 * bb) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.lean",
+        "source_sha256": "ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1",
+        "output": "evidence/ec327a56a117967a0d51311c8cf25b1d9eb399674c9bb856978a6b98d7cb79d1.log",
+        "output_sha256": "dc67005408cfb0f88c7aa6b40b9a06c604abf8be427a7de7969750e0b6b150c2",
+        "exit_code": 0
+      }
+    },
+    "hash": "7bb91b7f15e19721b78c9043ebc2b86bfa16bfe00d7d6aeda9ff5ef0928db147"
+  },
+  {
+    "number": 76,
+    "previous": "7bb91b7f15e19721b78c9043ebc2b86bfa16bfe00d7d6aeda9ff5ef0928db147",
+    "kind": "observation",
+    "payload": {
+      "claim": "unguarded-babf882252d5aea7",
+      "state": "COUNTEREXAMPLE_FOUND",
+      "evidence": {
+        "scope": "removed amicability hypothesis only; not the Hadamard conjecture",
+        "A": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ]
+        ],
+        "B": [
+          [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "output_hadamard": false
+      },
+      "branch": "obstruction-theory",
+      "event_number": 76
+    },
+    "hash": "b05b15be78c4e7a28deca714b859419e35cbf3b206996c2a8f365ead2d281859"
+  },
+  {
+    "number": 77,
+    "previous": "b05b15be78c4e7a28deca714b859419e35cbf3b206996c2a8f365ead2d281859",
+    "kind": "edge-retracted",
+    "payload": {
+      "edge": {
+        "claim": "block-babf882252d5aea7",
+        "dependency": "unguarded-babf882252d5aea7",
+        "kind": "generalizes"
+      },
+      "reason": "Correct direction: removing a hypothesis generalizes the conditional claim"
+    },
+    "hash": "117a5a4cb4c111c4e26308a40ab7d60a352b42bb31fd49bdd573e4769293ee31"
+  },
+  {
+    "number": 78,
+    "previous": "117a5a4cb4c111c4e26308a40ab7d60a352b42bb31fd49bdd573e4769293ee31",
+    "kind": "edge",
+    "payload": {
+      "claim": "unguarded-babf882252d5aea7",
+      "dependency": "block-babf882252d5aea7",
+      "kind": "generalizes"
+    },
+    "hash": "c9540e98bfd2e2b6d873c16bfca6d579bdf89124b41f66b40f2f4922ff6322e0"
+  },
+  {
+    "number": 79,
+    "previous": "c9540e98bfd2e2b6d873c16bfca6d579bdf89124b41f66b40f2f4922ff6322e0",
+    "kind": "attempt",
+    "payload": {
+      "claim": "gram-babf882252d5aea7",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.lean",
+        "source_sha256": "7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55",
+        "output": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.log",
+        "output_sha256": "38c682a97f7d75a0eafaa707fc7e8e9c5975364f39dd140857bb6313e33bbf5e",
+        "exit_code": 0
+      }
+    },
+    "hash": "02a9b0f03ddc3aaeab9a3fa9fdd2a0d89d6586a86f058e9d1f2de11bf8a75eef"
+  },
+  {
+    "number": 80,
+    "previous": "02a9b0f03ddc3aaeab9a3fa9fdd2a0d89d6586a86f058e9d1f2de11bf8a75eef",
+    "kind": "proof",
+    "payload": {
+      "claim": "gram-babf882252d5aea7",
+      "receipt": {
+        "verified": true,
+        "formal_type": "\u2200 (n aa bb ab ba : Int), aa = n \u2192 bb = n \u2192 ab = ba \u2192 ((1 * aa) + (1 * bb) = 2*n) \u2227 ((1 * ab) + (-1 * ba) = 0) \u2227 ((-1 * ab) + (1 * ba) = 0) \u2227 ((1 * aa) + (1 * bb) = 2*n)",
+        "scope": "exact elaborated statement; no novelty or global coverage inferred",
+        "status": "VERIFIED",
+        "version": "Lean (version 4.33.1, x86_64-w64-windows-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)",
+        "binary_sha256": "af49bacfabaa1fea71332ca0feae0fa1a60912219d5902291adc79f905bffb8d",
+        "binary": "C:\\Users\\dcarn\\.elan\\toolchains\\leanprover--lean4---v4.33.1\\bin\\lean.exe",
+        "trusted_core_sha256": "58fe6d068c3bb87a3e61abae53f1ff1b43d05967a5d68c9f2525c51650bb7df1",
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "source": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.lean",
+        "source_sha256": "7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55",
+        "output": "evidence/7b169e7ae1ca78a844808e405161e4bb65b8055320d6d244ceffd4479ceeee55.log",
+        "output_sha256": "38c682a97f7d75a0eafaa707fc7e8e9c5975364f39dd140857bb6313e33bbf5e",
+        "exit_code": 0
+      }
+    },
+    "hash": "2fe749bb86d0c6dd7e4dc564d29bd9df198e8dae7074645b18174c857cbf2d20"
+  },
+  {
+    "number": 81,
+    "previous": "2fe749bb86d0c6dd7e4dc564d29bd9df198e8dae7074645b18174c857cbf2d20",
+    "kind": "attempt",
+    "payload": {
+      "run_key": "569291dd1ba788ce48e90998dd5bf158788d61ac1dcfaf970284e5f68b153100",
+      "artifact": "attempt-6d0373f3ab76a81ef2b5d0218482daee188d444f78a8c1b50747c634342b93f0.json",
+      "artifact_sha256": "99b39cbb54d03613dc44008f2b61aabf84aecb8b4926a3aa204f663d4476f0f3",
+      "candidate_state": "BRANCH_EXHAUSTED",
+      "engine_sha256": "47bde149c2a9bf55a87db10265419ea33226128e55b18ccff698bc0fe9a677a1"
+    },
+    "hash": "a8fe60b213122ff1513f579800c698adbb0c32b8c67f3fd6576ffcca305e3e5e"
+  },
+  {
+    "number": 82,
+    "previous": "a8fe60b213122ff1513f579800c698adbb0c32b8c67f3fd6576ffcca305e3e5e",
+    "kind": "checkpoint",
+    "payload": {
+      "state": "BUDGET_EXHAUSTED",
+      "remaining": [
+        "matrix lifting",
+        "parameter existence",
+        "novelty/equivalence review",
+        "global coverage"
+      ],
+      "reason": "This invocation ended; finite grammar exhaustion is only a branch result"
+    },
+    "hash": "452801a402f35baf04d393f7b45ad22686791ff4799f0cb402d6dc8c5052694b"
+  }
+]

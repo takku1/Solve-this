@@ -1,0 +1,64 @@
+{
+  "verified_files": [
+    {
+      "path": "README.md",
+      "before_sha256": "dcd68a6f5692757d6a2f3fe2f50521613a06d65956726831efdc081bbf62ca31",
+      "after_sha256": "d174d49086894ab864b91c60d15fe4060234fa78d7752c9a1891d57c1d6b1af6"
+    },
+    {
+      "path": "src/skillwren/cli.py",
+      "before_sha256": "1b4117f1d7f6a846b42d009d73d0d5b738a0521bd2a1d17114d6a6559f6b87c5",
+      "after_sha256": "b591a8fba682197150297c3d9d44f1772482f4a48a7d783a62138bd789b5f67a"
+    },
+    {
+      "path": "src/skillwren/finite_policy.py",
+      "before_sha256": null,
+      "after_sha256": "e110bf010b3fcc909ace6ab398f2cdaf2dfef74976fd59fcae8bfb34cd251c8c"
+    },
+    {
+      "path": "src/skillwren/policy_compression.py",
+      "before_sha256": null,
+      "after_sha256": "5e582b1606c0f9e021c90bf504296d10fb40313ab795b93aa5d15a7684aa7087"
+    },
+    {
+      "path": "src/skillwren/policy_proof.py",
+      "before_sha256": null,
+      "after_sha256": "42aa154fda8ea64e47be04e8be29794e9598417a0d5e24c230875f7e6acfbb56"
+    },
+    {
+      "path": "tests/test_policy_compression.py",
+      "before_sha256": null,
+      "after_sha256": "c5d0ced4c0a979e819b316926e947106ab04fe8b8647638e06760800946105b1"
+    },
+    {
+      "path": "docs/current/design/finite-policy-compression.md",
+      "before_sha256": null,
+      "after_sha256": "6768905c0fe67df6b97ce7f763e9cadc3d0a0c85d6f7aa0592ef363a82c7e16a"
+    },
+    {
+      "path": "examples/optimization/finite-policy.json",
+      "before_sha256": null,
+      "after_sha256": "59ac72348d96d28b192ab394eeae835edde9e5a06921c86388b85bc7e6a8281b"
+    },
+    {
+      "path": "plugin/skillwren/lib/skillwren/cli.py",
+      "before_sha256": "4e9422e4ee434c06981f200c0c7134e82ef4c0919c52883cf434e9cb22caee0d",
+      "after_sha256": "8b8c86a81a01fd89d9728a65d96a9bce21cd751dab94dad5e057a44c438ffe07"
+    },
+    {
+      "path": "plugin/skillwren/lib/skillwren/finite_policy.py",
+      "before_sha256": null,
+      "after_sha256": "e110bf010b3fcc909ace6ab398f2cdaf2dfef74976fd59fcae8bfb34cd251c8c"
+    },
+    {
+      "path": "plugin/skillwren/lib/skillwren/policy_compression.py",
+      "before_sha256": null,
+      "after_sha256": "5e582b1606c0f9e021c90bf504296d10fb40313ab795b93aa5d15a7684aa7087"
+    },
+    {
+      "path": "plugin/skillwren/lib/skillwren/policy_proof.py",
+      "before_sha256": null,
+      "after_sha256": "42aa154fda8ea64e47be04e8be29794e9598417a0d5e24c230875f7e6acfbb56"
+    }
+  ]
+}

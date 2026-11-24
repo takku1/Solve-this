@@ -1,0 +1,166 @@
+{
+  "source_commit": "a5d7d40fab57b90bad0d07bf736479ff23b70808",
+  "selected_baseline_files": [
+    "SKILL.md",
+    "references/decision-policy.md",
+    "references/evaluation-scenarios.md",
+    "references/experiment-protocol.md",
+    "references/game-theory-and-design.md",
+    "references/probe-patterns.md",
+    "references/research-and-evidence.md",
+    "references/research-foundations.md",
+    "references/result-template.md",
+    "references/sources.md",
+    "references/worked-examples.md"
+  ],
+  "selected_candidate_files": [
+    "SKILL.md",
+    "references/decision-policy.md",
+    "references/evaluation-scenarios.md",
+    "references/experiment-protocol.md",
+    "references/game-theory-and-design.md",
+    "references/probe-patterns.md",
+    "references/research-and-evidence.md",
+    "references/research-backlog.md",
+    "references/research-foundations.md",
+    "references/result-template.md",
+    "references/sources.md",
+    "references/worked-examples.md"
+  ],
+  "candidate": "solve-this-tuned",
+  "limits": "Size only. No semantic equivalence or behavioral preservation inferred.",
+  "measurements": {
+    "solve_this_entry": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 16508,
+          "bytes": 16518,
+          "lines": 228,
+          "files": 1
+        },
+        "compiled": {
+          "count": 22414,
+          "bytes": 22414,
+          "lines": 380
+        },
+        "saved": -5906,
+        "ratio": 1.3577659316694937,
+        "reduction_percent": -35.78,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 3036,
+          "bytes": 16518,
+          "lines": 228,
+          "files": 1
+        },
+        "compiled": {
+          "count": 4116,
+          "bytes": 22414,
+          "lines": 380
+        },
+        "saved": -1080,
+        "ratio": 1.3557312252964426,
+        "reduction_percent": -35.57,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      }
+    },
+    "solve_this_declared_context": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 49316,
+          "bytes": 49326,
+          "lines": 591,
+          "files": 1
+        },
+        "compiled": {
+          "count": 58091,
+          "bytes": 58095,
+          "lines": 790
+        },
+        "saved": -8775,
+        "ratio": 1.1779341390218185,
+        "reduction_percent": -17.79,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 9177,
+          "bytes": 49326,
+          "lines": 591,
+          "files": 1
+        },
+        "compiled": {
+          "count": 10793,
+          "bytes": 58095,
+          "lines": 790
+        },
+        "saved": -1616,
+        "ratio": 1.176092404925357,
+        "reduction_percent": -17.61,
+        "max_ratio": 1.0,
+        "smaller": false,
+        "accepted": false
+      }
+    },
+    "shipped_optimization_example": {
+      "characters": {
+        "metric": "characters",
+        "tokenizer": null,
+        "original": {
+          "count": 2945,
+          "bytes": 2945,
+          "lines": 56,
+          "files": 1
+        },
+        "compiled": {
+          "count": 2375,
+          "bytes": 2375,
+          "lines": 65
+        },
+        "saved": 570,
+        "ratio": 0.8064516129032258,
+        "reduction_percent": 19.35,
+        "max_ratio": 1.0,
+        "smaller": true,
+        "accepted": true
+      },
+      "tokens": {
+        "metric": "tokens",
+        "tokenizer": "cl100k_base",
+        "original": {
+          "count": 555,
+          "bytes": 2945,
+          "lines": 56,
+          "files": 1
+        },
+        "compiled": {
+          "count": 510,
+          "bytes": 2375,
+          "lines": 65
+        },
+        "saved": 45,
+        "ratio": 0.918918918918919,
+        "reduction_percent": 8.11,
+        "max_ratio": 1.0,
+        "smaller": true,
+        "accepted": true
+      }
+    }
+  }
+}

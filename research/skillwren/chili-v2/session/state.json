@@ -1,0 +1,295 @@
+{
+  "schema_version": "0.1",
+  "kind": "measured_development_session",
+  "state": "STOPPED",
+  "lineage_id": "5514723ffad3452cbed164fdb92897b6",
+  "acceptances": [],
+  "plan": {
+    "artifact_paths": [
+      "build/policies.json"
+    ],
+    "regression_limits": {
+      "wall_seconds": 5
+    },
+    "reductions": [
+      0.05
+    ],
+    "quantum": 1,
+    "minimum_target": 1,
+    "repetitions": 3,
+    "confirmation_repetitions": 3,
+    "max_generations": 1,
+    "max_stagnation": 3,
+    "max_commands": 200,
+    "wall_seconds": 3600,
+    "seed": 31,
+    "schema_version": "0.1",
+    "concept": "Reduce full executable finite-policy bytes with identical decisions",
+    "project_config": "Z:\\Solve-this\\research\\skillwren\\chili-v2\\baseline\\.chilicrisp\\project.json",
+    "benchmark_command": [
+      "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "driver.py"
+    ],
+    "objective": "artifact_bytes"
+  },
+  "project": {
+    "schema_version": "0.1",
+    "root": "..",
+    "build": null,
+    "test": [
+      "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-B",
+      "driver.py"
+    ],
+    "command_seconds": 300,
+    "comparison_seconds": 1200,
+    "output_bytes_per_stream": 1048576,
+    "protected_paths": [
+      "driver.py",
+      "fixtures.json",
+      "src"
+    ]
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "cpu_count": 32,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "psutil": "6.1.0",
+    "collector_sha256": "02a575fe33d93690abddc069a6f498025ae51122397665a887caa331519eff97"
+  },
+  "runtime_identities": {
+    "benchmark": {
+      "path": "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "sha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a"
+    },
+    "test": {
+      "path": "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "sha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a"
+    }
+  },
+  "controller_sha256": "07be250e27959c60c5a2d328a9491d12d7f871b4cb62f6cf98a0af41eb029825",
+  "created_epoch": 1795499001.1889012,
+  "deadline_epoch": 1795502601.1889012,
+  "reserved_commands": 19,
+  "pending": null,
+  "stagnation": 0,
+  "target": 1843,
+  "champion": 1,
+  "champions": [
+    {
+      "id": "initial",
+      "source": "champions/initial",
+      "source_hash": "207b852551ca6d510487aedb8ee8664b2026c482aa343585030a0cdd1a90dd98",
+      "metrics": {
+        "wall_seconds": 0.09299999999348074,
+        "sampled_peak_rss_bytes": 18075648,
+        "sampled_cpu_seconds": 0.046875,
+        "sampled_io_read_bytes": 1238929,
+        "sampled_io_write_bytes": 2007,
+        "artifact_bytes": 1941
+      },
+      "verification": {
+        "public": "baseline_public",
+        "sealed": "not_run",
+        "production": "not_accepted"
+      },
+      "correctness_record": "runs\\baseline\\comparison-2df82a3dbe1646b790da2cf7fc85ca72\\comparison.json"
+    },
+    {
+      "id": "generation-1-999d75cc30de492c915eb220c7739bf2",
+      "source": "candidates\\generation-1-999d75cc30de492c915eb220c7739bf2",
+      "source_hash": "b8e946d6f87f295e297fd1a176969ebc1d1c091dfa04a3ae0218d5fb84ae38e8",
+      "verification": {
+        "public": "public_confirmation",
+        "sealed": "not_run",
+        "production": "not_accepted"
+      },
+      "metrics": {
+        "wall_seconds": 0.10899999999674037,
+        "sampled_peak_rss_bytes": 18776064,
+        "sampled_cpu_seconds": 0.0625,
+        "sampled_io_read_bytes": 1198667,
+        "sampled_io_write_bytes": 0,
+        "artifact_bytes": 1402
+      }
+    }
+  ],
+  "generations": [
+    {
+      "id": 1,
+      "parent": "initial",
+      "target": 1843,
+      "research": {
+        "hypothesis": "Authorized Boolean rewrites reduce redundant policy context",
+        "mechanism": "Enable the audited rewrite search instead of the identity fallback",
+        "falsification": "Any changed golden decision, metadata, failed audit or insufficient byte reduction",
+        "sources": [
+          {
+            "reference": "https://arxiv.org/abs/2108.12099",
+            "supports": "Separate proposal incentives from independent verification; this is not PVG training"
+          }
+        ]
+      },
+      "evidence_stage": "measured",
+      "decision": "accepted_experimental",
+      "phases": {
+        "exploration": {
+          "records": [
+            {
+              "variant": "candidate",
+              "block": 0,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-0-candidate\\measurement.json"
+            },
+            {
+              "variant": "baseline",
+              "block": 0,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-0-baseline\\measurement.json"
+            },
+            {
+              "variant": "candidate",
+              "block": 1,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-1-candidate\\measurement.json"
+            },
+            {
+              "variant": "baseline",
+              "block": 1,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-1-baseline\\measurement.json"
+            },
+            {
+              "variant": "candidate",
+              "block": 2,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-2-candidate\\measurement.json"
+            },
+            {
+              "variant": "baseline",
+              "block": 2,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\exploration-2-baseline\\measurement.json"
+            }
+          ],
+          "medians": {
+            "baseline": {
+              "wall_seconds": 0.09400000001187436,
+              "sampled_peak_rss_bytes": 17555456,
+              "sampled_cpu_seconds": 0.0625,
+              "sampled_io_read_bytes": 1238929,
+              "sampled_io_write_bytes": 2007,
+              "artifact_bytes": 1941
+            },
+            "candidate": {
+              "wall_seconds": 0.09400000001187436,
+              "sampled_peak_rss_bytes": 18673664,
+              "sampled_cpu_seconds": 0.078125,
+              "sampled_io_read_bytes": 1198667,
+              "sampled_io_write_bytes": 0,
+              "artifact_bytes": 1402
+            }
+          }
+        },
+        "confirmation": {
+          "records": [
+            {
+              "variant": "baseline",
+              "block": 0,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-0-baseline\\measurement.json"
+            },
+            {
+              "variant": "candidate",
+              "block": 0,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-0-candidate\\measurement.json"
+            },
+            {
+              "variant": "candidate",
+              "block": 1,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-1-candidate\\measurement.json"
+            },
+            {
+              "variant": "baseline",
+              "block": 1,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-1-baseline\\measurement.json"
+            },
+            {
+              "variant": "baseline",
+              "block": 2,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-2-baseline\\measurement.json"
+            },
+            {
+              "variant": "candidate",
+              "block": 2,
+              "measurement": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\confirmation-2-candidate\\measurement.json"
+            }
+          ],
+          "medians": {
+            "baseline": {
+              "wall_seconds": 0.09299999999348074,
+              "sampled_peak_rss_bytes": 18649088,
+              "sampled_cpu_seconds": 0.078125,
+              "sampled_io_read_bytes": 1238929,
+              "sampled_io_write_bytes": 2007,
+              "artifact_bytes": 1941
+            },
+            "candidate": {
+              "wall_seconds": 0.10899999999674037,
+              "sampled_peak_rss_bytes": 18776064,
+              "sampled_cpu_seconds": 0.0625,
+              "sampled_io_read_bytes": 1198667,
+              "sampled_io_write_bytes": 0,
+              "artifact_bytes": 1402
+            }
+          }
+        }
+      },
+      "source_hash": "b8e946d6f87f295e297fd1a176969ebc1d1c091dfa04a3ae0218d5fb84ae38e8",
+      "repeat_of": [],
+      "source": "candidates\\generation-1-999d75cc30de492c915eb220c7739bf2",
+      "correctness_record": "runs\\generation-1-999d75cc30de492c915eb220c7739bf2\\comparison-3d605c25dd704fbebfd97dd3651deba5\\comparison.json",
+      "verification": {
+        "public": "public_confirmation",
+        "sealed": "not_run",
+        "production": "not_accepted"
+      }
+    }
+  ],
+  "events": [
+    {
+      "kind": "baseline_measured",
+      "source_hash": "207b852551ca6d510487aedb8ee8664b2026c482aa343585030a0cdd1a90dd98"
+    },
+    {
+      "kind": "accepted_experimental",
+      "generation": 1,
+      "champion": "generation-1-999d75cc30de492c915eb220c7739bf2"
+    }
+  ],
+  "correctness_contract": {
+    "driver.py": {
+      "sha256": "2991271122f8bc0a5d5acde9de13bed55b88ff136c0b4f0cf52d0d496f6bbc93",
+      "executable": false
+    },
+    "fixtures.json": {
+      "sha256": "2a711564c66839f6492fb65f745950de22a4480c4f0a6e822bacd4cdca266f63",
+      "executable": false
+    },
+    "src": {
+      "kind": "directory"
+    },
+    "src/skillwren": {
+      "kind": "directory"
+    },
+    "src/skillwren/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "executable": false
+    },
+    "src/skillwren/finite_policy.py": {
+      "sha256": "e110bf010b3fcc909ace6ab398f2cdaf2dfef74976fd59fcae8bfb34cd251c8c",
+      "executable": false
+    },
+    "src/skillwren/policy_compression.py": {
+      "sha256": "5e582b1606c0f9e021c90bf504296d10fb40313ab795b93aa5d15a7684aa7087",
+      "executable": false
+    }
+  },
+  "stdout_hash": "55e368fec13b0e3a4eebf95c117497a39dd0c2d339463e6faf7fec5466c17fec",
+  "stop_reason": "generation_cap"
+}

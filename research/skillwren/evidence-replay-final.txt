@@ -1,0 +1,15 @@
+{
+  "verified_applied_files": 12,
+  "certificate": {
+    "verified": true,
+    "strictly_smaller": true,
+    "audit": {
+      "verdict": "PROVEN_EQUIVALENT",
+      "worlds_checked": 8,
+      "removed_witness": [],
+      "added_witness": [],
+      "scope": "complete declared finite Boolean relation, not LLM behavior"
+    }
+  },
+  "original_objective": "UNRESOLVED"
+}

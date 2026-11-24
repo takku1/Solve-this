@@ -1,0 +1,52 @@
+flowchart TD
+  n0["hadamard-conjecture | UNRESOLVED"]
+  n1["sylvester | KNOWN_RESULT"]
+  n2["paley-I | KNOWN_RESULT"]
+  n3["paley-II | KNOWN_RESULT"]
+  n4["kronecker | KNOWN_RESULT"]
+  n5["paley-method-barrier | KNOWN_RESULT"]
+  n6["reported-2026-orders | KNOWN_RESULT"]
+  n7["universal-family-coverage | UNRESOLVED"]
+  n8["universal-legendre-pairs | UNRESOLVED"]
+  n9["legendre-to-hadamard | UNRESOLVED"]
+  n10["construction-parameter-existence | UNRESOLVED"]
+  n11["block-5fe6a86c26f17e87 | KNOWN_RESULT"]
+  n12["gram-5fe6a86c26f17e87 | LEMMA_PROVEN"]
+  n13["lifting-5fe6a86c26f17e87 | UNRESOLVED"]
+  n14["block-f347e3a0425942cf | EMPIRICALLY_SUPPORTED"]
+  n15["gram-f347e3a0425942cf | LEMMA_PROVEN"]
+  n16["lifting-f347e3a0425942cf | UNRESOLVED"]
+  n17["block-77650a5902a83896 | EMPIRICALLY_SUPPORTED"]
+  n18["gram-77650a5902a83896 | LEMMA_PROVEN"]
+  n19["lifting-77650a5902a83896 | UNRESOLVED"]
+  n20["block-babf882252d5aea7 | EMPIRICALLY_SUPPORTED"]
+  n21["gram-babf882252d5aea7 | LEMMA_PROVEN"]
+  n22["lifting-babf882252d5aea7 | UNRESOLVED"]
+  n23["unguarded-babf882252d5aea7 | COUNTEREXAMPLE_FOUND"]
+  n7 -. may_support .-> n0
+  n8 -. may_support .-> n0
+  n9 -. may_support .-> n0
+  n10 -. may_support .-> n0
+  n10 --> n7
+  n9 -. may_support .-> n8
+  n12 --> n11
+  n13 --> n11
+  n10 --> n11
+  n11 -. may_support .-> n7
+  n11 -. may_support .-> n0
+  n15 --> n14
+  n16 --> n14
+  n10 --> n14
+  n14 -. may_support .-> n7
+  n14 -. may_support .-> n0
+  n18 --> n17
+  n19 --> n17
+  n10 --> n17
+  n17 -. may_support .-> n7
+  n17 -. may_support .-> n0
+  n21 --> n20
+  n22 --> n20
+  n10 --> n20
+  n20 -. may_support .-> n7
+  n20 -. may_support .-> n0
+  n20 -. generalizes .-> n23

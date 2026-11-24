@@ -1,0 +1,25 @@
+{
+  "command": [
+    "C:\\Users\\dcarn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-B",
+    "driver.py"
+  ],
+  "outcome": "pass",
+  "exit_code": 0,
+  "elapsed_seconds": 0.10899999999674037,
+  "capture": {
+    "stdout": {
+      "bytes": 66,
+      "sha256": "55e368fec13b0e3a4eebf95c117497a39dd0c2d339463e6faf7fec5466c17fec",
+      "hash_scope": "complete_stream",
+      "truncated": false
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hash_scope": "complete_stream",
+      "truncated": false
+    }
+  },
+  "error": null
+}

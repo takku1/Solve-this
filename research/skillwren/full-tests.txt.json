@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "py",
+    "-3",
+    "-B",
+    "-c",
+    "import sys; sys.path.insert(0,'src'); import pytest; raise SystemExit(pytest.main(['tests','-q','-p','no:cacheprovider']))"
+  ],
+  "cwd": "Z:\\Solve-this\\experiments\\skillwren",
+  "returncode": 1,
+  "elapsed_seconds": 29.797
+}
